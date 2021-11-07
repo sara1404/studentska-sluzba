@@ -2,16 +2,27 @@ package model;
 
 import java.util.Date;
 
+enum VrednostOcene {
+	SEST(6), SEDAM(7), OSAM(8), DEVET(9), DESET(10);
+	int vrOcene;
+		VrednostOcene(int i) { this.vrOcene = i; }  
+	public int getValue() {
+		return vrOcene;
+	}
+};
+
+
 public class Ocena {
 	private Student student;
 	private Predmet predmet;
-	private int ocena;
+	private VrednostOcene ocena;
 	private Date datumPolaganja;
-	public Ocena(Student student, Predmet predmet, int ocena, Date datumPolaganja) {
+	
+	public Ocena(Student student, Predmet predmet, VrednostOcene ocena, Date datumPolaganja) {
 		super();
 		this.student = student;
 		this.predmet = predmet;
-		this.ocena = ocena;
+		this.ocena = VrednostOcene.SEDAM;
 		this.datumPolaganja = datumPolaganja;
 		
 		//moguca provera za opseg ocene, razmotriti jos
@@ -28,10 +39,10 @@ public class Ocena {
 	public void setPredmet(Predmet predmet) {
 		this.predmet = predmet;
 	}
-	public int getOcena() {
+	public VrednostOcene getOcena() {
 		return ocena;
 	}
-	public void setOcena(int ocena) {
+	public void setOcena(VrednostOcene ocena) {
 		this.ocena = ocena;
 	}
 	public Date getDatumPolaganja() {

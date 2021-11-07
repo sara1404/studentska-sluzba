@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -10,7 +12,8 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame(){
 		setTitle("Studentska služba");
-		setVisible(true);
+
+		getContentPane().setBackground(Color.DARK_GRAY);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension dim = kit.getScreenSize();
@@ -18,5 +21,9 @@ public class MainFrame extends JFrame {
 		int height = dim.height;
 		setSize(width * 3/4, height *3/4);
 		setLocationRelativeTo(null);
+		
+		ToolBar tb = new ToolBar();
+		getContentPane().add(tb, BorderLayout.NORTH);
+		setVisible(true);
 	}
 }

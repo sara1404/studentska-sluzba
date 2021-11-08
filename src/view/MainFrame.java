@@ -14,6 +14,7 @@ public class MainFrame extends JFrame {
 		setTitle("Studentska služba");
 
 		getContentPane().setBackground(Color.DARK_GRAY);
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension dim = kit.getScreenSize();
@@ -24,6 +25,10 @@ public class MainFrame extends JFrame {
 		
 		ToolBar tb = new ToolBar();
 		getContentPane().add(tb, BorderLayout.NORTH);
+		
+		MenuBar menu = new MenuBar();
+		this.setJMenuBar(menu);
+		
 		setVisible(true);
 	}
 }

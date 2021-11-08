@@ -1,5 +1,4 @@
 package view;
-
 import model.Ocena;
 
 public class MyApp {

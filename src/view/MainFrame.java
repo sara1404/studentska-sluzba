@@ -29,9 +29,7 @@ public class MainFrame extends JFrame {
 		ToolBar tb = new ToolBar();
 		getContentPane().add(tb, BorderLayout.NORTH);
 
-		StatusBar status = new StatusBar();
-		status.setPreferredSize(new Dimension(this.getWidth(), 30));
-		add(status, BorderLayout.SOUTH);
+		
 
 		setVisible(true);
 	}

@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -80,14 +81,14 @@ public class MenuBar extends JMenuBar{
 		add(help);
 		
 		//setting icons
-		fNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new.png")));
-		save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png")));
-		open.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/open.png")));
-		close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png")));
-		eEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png")));
-		delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/del.png")));
-		hHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-		about.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about.png")));
+		fNew.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/new.png")));
+		save.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/save.png")));
+		open.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/open.png")));
+		close.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/close.png")));
+		eEdit.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/edit.png")));
+		delete.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/del.png")));
+		hHelp.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/help.png")));
+		about.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/about.png")));
 		
 		
 	}

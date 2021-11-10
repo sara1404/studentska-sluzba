@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -34,21 +35,29 @@ public class MenuBar extends JMenuBar{
 		JMenuItem predmet = new JMenuItem("Predmeti", KeyEvent.VK_R);
 		predmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
 		open.add(student);
+		Utils.setCursor(student);
 		open.add(predmet);
+		Utils.setCursor(predmet);
 		open.add(profesor);
+		Utils.setCursor(profesor);
 		open.add(katedra);
+		Utils.setCursor(katedra);
 		JMenuItem close = new JMenuItem("Close", KeyEvent.VK_C);
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 	
 		
 		
 		file.add(fNew);
+		Utils.setCursor(fNew);
 		file.addSeparator();
 		file.add(save);
+		Utils.setCursor(save);
 		file.addSeparator();
 		file.add(open);
+		Utils.setCursor(open);
 		file.addSeparator();
 		file.add(close);
+		Utils.setCursor(close);
 		
 		add(file);
 		
@@ -61,8 +70,10 @@ public class MenuBar extends JMenuBar{
 		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, ActionEvent.CTRL_MASK));
 		
 		edit.add(eEdit);
+		Utils.setCursor(eEdit);
 		edit.addSeparator();
 		edit.add(delete);
+		Utils.setCursor(delete);
 		
 		add(edit);
 		
@@ -75,8 +86,10 @@ public class MenuBar extends JMenuBar{
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		
 		help.add(hHelp);
+		Utils.setCursor(hHelp);
 		help.addSeparator();
 		help.add(about);
+		Utils.setCursor(about);
 		
 		add(help);
 		

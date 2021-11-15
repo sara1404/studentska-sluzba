@@ -4,27 +4,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 
 
-public class AddStudentWindow extends JFrame{
+public class AddStudentDialog extends JDialog{
 	
 	ArrayList<JTextField> dataInputs;
 	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
 	
-	public AddStudentWindow() {
+	public AddStudentDialog() {
+		
+		setModalityType(DEFAULT_MODALITY_TYPE);
 		
 		dataInputs = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -32,7 +31,6 @@ public class AddStudentWindow extends JFrame{
 		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(box);
 		getContentPane().setBackground(Color.DARK_GRAY);
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;
 		int height = dim.height;

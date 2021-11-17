@@ -1,11 +1,11 @@
 package model;
 
-public class Adress {
+public class Address {
 	private String street;
 	private int number;
 	private String town;
 	private String country;
-	public Adress(String street, int number, String town, String country) {
+	public Address(String street, int number, String town, String country) {
 		super();
 		this.street = street;
 		this.number = number;

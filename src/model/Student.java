@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,7 +9,7 @@ enum Status{B, S};
 public class Student {
 	private String surname;
 	private String name;
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String homeAdress;
 	private String phone;
 	private String email;
@@ -19,7 +20,7 @@ public class Student {
 	private double averageGrade;
 	private ArrayList<Grade> passedExams;
 	private ArrayList<Grade> failedExams;
-	public Student(String surname, String name, Date dateOfBirth, String homeAdress, String phone, String email,
+	public Student(String surname, String name, LocalDate dateOfBirth, String homeAdress, String phone, String email,
 			String index, int startYear, int currentYear, Status status, double averageGrade,
 			ArrayList<Grade> passedExams, ArrayList<Grade> failedExams) {
 		super();
@@ -49,10 +50,10 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	public String getHomeAdress() {

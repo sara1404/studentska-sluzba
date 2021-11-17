@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -26,22 +25,22 @@ public class MenuBar extends JMenuBar{
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		JMenu open = new JMenu("Open");
 		open.setMnemonic(KeyEvent.VK_O);
-		JMenuItem student = new JMenuItem("Studenti", KeyEvent.VK_T);
+		JMenuItem student = new JMenuItem("Students", KeyEvent.VK_T);
 		student.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.ALT_MASK));
-		JMenuItem profesor = new JMenuItem("Profesori", KeyEvent.VK_P);
-		profesor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
-		JMenuItem katedra = new JMenuItem("Katedre", KeyEvent.VK_K);
-		katedra.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.ALT_MASK));
-		JMenuItem predmet = new JMenuItem("Predmeti", KeyEvent.VK_R);
-		predmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
+		JMenuItem professor = new JMenuItem("Professors", KeyEvent.VK_P);
+		professor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
+		JMenuItem department = new JMenuItem("Departments", KeyEvent.VK_R);
+		department.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
+		JMenuItem subject = new JMenuItem("Subjects", KeyEvent.VK_B);
+		subject.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		open.add(student);
 		Utils.setCursor(student);
-		open.add(predmet);
-		Utils.setCursor(predmet);
-		open.add(profesor);
-		Utils.setCursor(profesor);
-		open.add(katedra);
-		Utils.setCursor(katedra);
+		open.add(subject);
+		Utils.setCursor(subject);
+		open.add(professor);
+		Utils.setCursor(professor);
+		open.add(department);
+		Utils.setCursor(department);
 		JMenuItem close = new JMenuItem("Close", KeyEvent.VK_C);
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 	
@@ -102,6 +101,10 @@ public class MenuBar extends JMenuBar{
 		delete.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/del.png")));
 		hHelp.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/help.png")));
 		about.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/about.png")));
+		student.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/student.png")));
+		professor.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/professor.png")));
+		subject.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/subject.png")));
+		department.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/department.png")));
 		
 		
 	}

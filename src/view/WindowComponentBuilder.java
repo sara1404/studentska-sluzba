@@ -9,7 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+
 import javax.swing.JPanel;
+
+import javax.swing.JList;
+
 import javax.swing.JTextField;
 
 public class WindowComponentBuilder {
@@ -27,6 +31,14 @@ public class WindowComponentBuilder {
 		return combo;
 	}
 	
+	public static JList<String> createMultipleSelectionList(){
+		String[] items = { "Item 1", "Item 2", "Item 3", "Item 4" };
+	    JList<String> theList = new JList<String>(items);
+	    //theList.setVisibleRowCount(0);
+	    return theList;
+		
+	}
+	
 	public static JLabel createLabel(String text) {
 		JLabel label = new JLabel();
 		label.setForeground(Color.WHITE);
@@ -41,6 +53,7 @@ public class WindowComponentBuilder {
 		comp.setPreferredSize(new Dimension(width, height));
 	}
 	
+
 	public static JPanel createButtons(JButton btn1, JButton btn2) {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
@@ -60,4 +73,5 @@ public class WindowComponentBuilder {
 		
 		return panel;
 	}
+
 }

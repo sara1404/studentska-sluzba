@@ -15,8 +15,9 @@ import javax.swing.WindowConstants;
 
 
 
+
 public class AddStudentWindow extends JDialog{
-	
+
 	ArrayList<JTextField> dataInputs;
 	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
@@ -30,6 +31,7 @@ public class AddStudentWindow extends JDialog{
 		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(box);
 		getContentPane().setBackground(Color.DARK_GRAY);
+
 		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;

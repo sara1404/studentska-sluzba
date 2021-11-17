@@ -7,27 +7,30 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 
-public class AddSubjectWindow extends JFrame {
+public class AddSubjectWindow extends JDialog {
 	
 	ArrayList<JTextField> dataInputs;
 	private String[] labelText = {"Sifra predmeta*", "Naziv predmeta*", "Semestar*", "Godina studija*", "Predmetni profesor*", "Broj ESPB bodova*"};
-	
+	ArrayList<JButton> buttonsInAddStudentForm;
 	
 	public AddSubjectWindow() {
 		
 		dataInputs = new ArrayList<JTextField>();
+		buttonsInAddStudentForm = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Dodavanje predmeta");
 		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(box);
 		getContentPane().setBackground(Color.DARK_GRAY);
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;
 		int height = dim.height;
@@ -43,7 +46,9 @@ public class AddSubjectWindow extends JFrame {
 			}
 		}
 		
-		getContentPane().add(WindowComponentBuilder.createButtons("Potvrdi", "Odustani"));
+		buttonsInAddStudentForm.add(new JButton());
+		buttonsInAddStudentForm.add(new JButton());
+		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
 		
 		setVisible(true);
 	}

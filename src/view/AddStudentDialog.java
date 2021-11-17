@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+
+
+
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -15,13 +18,16 @@ import javax.swing.WindowConstants;
 
 
 
-public class AddStudentWindow extends JDialog{
+public class AddStudentDialog extends JDialog{
+
 	
 	ArrayList<JTextField> dataInputs;
 	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
+
 	ArrayList<JButton> buttonsInAddStudentForm;
-	public AddStudentWindow() {
+	public AddStudentDialog() {
+
 		
 		dataInputs = new ArrayList<>();
 		buttonsInAddStudentForm = new ArrayList<>();

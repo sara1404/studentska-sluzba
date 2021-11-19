@@ -57,10 +57,8 @@ public class AddStudentDialog extends JDialog{
 		buttonsInAddStudentForm.add(new JButton());
 		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
 		
-		
-		
-		
 		setVisible(true);
+		
 	}
 	
 	private JPanel createPanel(String text, JComponent comp) {

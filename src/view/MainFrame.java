@@ -1,13 +1,17 @@
 package view;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
+
+import controller.ListenerController;
 
 public class MainFrame extends JFrame {
 	
@@ -37,6 +41,13 @@ public class MainFrame extends JFrame {
 		StatusBar status = new StatusBar();
 		status.setPreferredSize(new Dimension(this.getWidth(), 30));
 		add(status, BorderLayout.SOUTH);
+		
+		JTabbedPane tab = new JTabbedPane();
+		StudentPanel studentPanel = new StudentPanel();
+		tab.addTab("Studenti", studentPanel);
+		add(tab);
+		
+		ListenerController.tabListener(tab, status);
 
 		setVisible(true);
 		

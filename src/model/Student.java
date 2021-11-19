@@ -10,7 +10,7 @@ public class Student {
 	private String surname;
 	private String name;
 	private LocalDate dateOfBirth;
-	private String homeAdress;
+	private Address homeAdress;
 	private String phone;
 	private String email;
 	private String index;
@@ -20,7 +20,7 @@ public class Student {
 	private double averageGrade;
 	private ArrayList<Grade> passedExams;
 	private ArrayList<Grade> failedExams;
-	public Student(String surname, String name, LocalDate dateOfBirth, String homeAdress, String phone, String email,
+	public Student(String surname, String name, LocalDate dateOfBirth, Address homeAdress, String phone, String email,
 			String index, int startYear, int currentYear, Status status, double averageGrade,
 			ArrayList<Grade> passedExams, ArrayList<Grade> failedExams) {
 		super();
@@ -56,10 +56,10 @@ public class Student {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public String getHomeAdress() {
+	public Address getHomeAdress() {
 		return homeAdress;
 	}
-	public void setHomeAdress(String homeAdress) {
+	public void setHomeAdress(Address homeAdress) {
 		this.homeAdress = homeAdress;
 	}
 	public String getPhone() {

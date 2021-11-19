@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -44,7 +43,11 @@ public class MainFrame extends JFrame {
 		
 		JTabbedPane tab = new JTabbedPane();
 		StudentPanel studentPanel = new StudentPanel();
+		ProfessorPanel professorPanel = new ProfessorPanel();
+		SubjectPanel subjectPanel = new SubjectPanel();
 		tab.addTab("Studenti", studentPanel);
+		tab.addTab("Profesori", professorPanel);
+		tab.addTab("Predmeti", subjectPanel);
 		add(tab);
 		
 		ListenerController.tabListener(tab, status);

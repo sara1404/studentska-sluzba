@@ -10,18 +10,18 @@ public class ToolBar extends JToolBar {
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
 		
-		Button createEntity = new Button("Open dialog", "src/toolbar_imgs/open_dialog.png");
+		Button createEntity = new Button("Open entity", "src/toolbar_imgs/open_dialog.png");
 		add(createEntity);
 		
 		addSeparator();
 		
-		Button changeEntity = new Button("Change dialog", "src/toolbar_imgs/pen.png");
+		Button changeEntity = new Button("Change entity", "src/toolbar_imgs/pen.png");
 		add(changeEntity);
 		
 		addSeparator();
 		
 		
-		Button removeEntity = new Button("Remove dialog", "src/toolbar_imgs/remove.png");
+		Button removeEntity = new Button("Remove entity", "src/toolbar_imgs/remove.png");
 		add(removeEntity);
 		
 		add(Box.createHorizontalGlue());

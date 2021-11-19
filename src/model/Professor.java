@@ -1,22 +1,23 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Professor {
 	private String surname;
 	private String name;
-	private Date dateOfBirth;
-	private String homeAdress;
+	private LocalDate dateOfBirth;
+	private Address homeAdress;
 	private String phone;
 	private String email;
-	private String officeAdress;
+	private Address officeAdress;
 	private String id;
 	private String title;
 	private int yearsOfService;
 	private ArrayList<Subject> subjectList;
-	public Professor(String surname, String name, Date dateOfBirth, String homeAdress, String phone, String email,
-			String officeAdress, String id, String title, int yearsOfService, ArrayList<Subject> subjectList) {
+	public Professor(String surname, String name, LocalDate dateOfBirth, Address homeAdress, String phone, String email,
+			Address officeAdress, String id, String title, int yearsOfService, ArrayList<Subject> subjectList) {
 		super();
 		this.surname = surname;
 		this.name = name;
@@ -42,16 +43,16 @@ public class Professor {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public String getHomeAdress() {
+	public Address getHomeAdress() {
 		return homeAdress;
 	}
-	public void setHomeAdress(String homeAdress) {
+	public void setHomeAdress(Address homeAdress) {
 		this.homeAdress = homeAdress;
 	}
 	public String getPhone() {
@@ -66,10 +67,10 @@ public class Professor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getOfficeAdress() {
+	public Address getOfficeAdress() {
 		return officeAdress;
 	}
-	public void setOfficeAdress(String officeAdress) {
+	public void setOfficeAdress(Address officeAdress) {
 		this.officeAdress = officeAdress;
 	}
 	public String getId() {

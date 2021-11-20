@@ -3,41 +3,40 @@ package model;
 import java.util.ArrayList;
 
 public class Department {
-	private String departmentKey;
-	private String departmentName;
-	private Professor departmentHead;
-	ArrayList<Professor> departmentProfessors;
-	public Department(String departmentKey, String departmentName, Professor departmentHead,
-			ArrayList<Professor> departmentProfessors) {
+	private String key;
+	private String name;
+	private Professor head;
+	ArrayList<Professor> professors;
+	public Department(String key, String name, Professor head, ArrayList<Professor> professors) {
 		super();
-		this.departmentKey = departmentKey;
-		this.departmentName = departmentName;
-		this.departmentHead = departmentHead;
-		this.departmentProfessors = departmentProfessors;
+		this.key = key;
+		this.name = name;
+		this.head = head;
+		this.professors = professors;
 	}
-	public String getDepartmentKey() {
-		return departmentKey;
+	public String getKey() {
+		return key;
 	}
-	public void setDepartmentKey(String departmentKey) {
-		this.departmentKey = departmentKey;
+	public void setKey(String key) {
+		this.key = key;
 	}
-	public String getDepartmentName() {
-		return departmentName;
+	public String getName() {
+		return name;
 	}
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Professor getDepartmentHead() {
-		return departmentHead;
+	public Professor getHead() {
+		return head;
 	}
-	public void setDepartmentHead(Professor departmentHead) {
-		this.departmentHead = departmentHead;
+	public void setHead(Professor head) {
+		this.head = head;
 	}
-	public ArrayList<Professor> getDepartmentProfessors() {
-		return departmentProfessors;
+	public ArrayList<Professor> getProfessors() {
+		return professors;
 	}
-	public void setDepartmentProfessors(ArrayList<Professor> departmentProfessors) {
-		this.departmentProfessors = departmentProfessors;
+	public void setProfessors(ArrayList<Professor> professors) {
+		this.professors = professors;
 	}
 	
 	

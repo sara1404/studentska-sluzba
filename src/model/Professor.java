@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+enum Title {ASSISTANT, DOCENT, ASSOCIATED, FULL};
+
 public class Professor {
 	private String surname;
 	private String name;
@@ -13,11 +15,11 @@ public class Professor {
 	private String email;
 	private Address officeAdress;
 	private String id;
-	private String title;
+	private Title title;
 	private int yearsOfService;
 	private ArrayList<Subject> subjectList;
 	public Professor(String surname, String name, LocalDate dateOfBirth, Address homeAdress, String phone, String email,
-			Address officeAdress, String id, String title, int yearsOfService, ArrayList<Subject> subjectList) {
+			Address officeAdress, String id, Title title, int yearsOfService, ArrayList<Subject> subjectList) {
 		super();
 		this.surname = surname;
 		this.name = name;
@@ -79,10 +81,10 @@ public class Professor {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getTitle() {
+	public Title getTitle() {
 		return title;
 	}
-	public void setTitle(String title) {
+	public void setTitle(Title title) {
 		this.title = title;
 	}
 	public int getYearsOfService() {

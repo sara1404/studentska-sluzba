@@ -56,7 +56,7 @@ public class ListenerController {
 				// TODO Auto-generated method stub
 				if(tab.getSelectedIndex() == 0) 
 					frame.getAddStudentWindow().setVisible(true);
-				
+
 				else if(tab.getSelectedIndex() == 1) 
 					frame.getAddProfessorDialog().setVisible(true);
 				

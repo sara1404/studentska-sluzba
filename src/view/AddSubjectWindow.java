@@ -13,6 +13,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+
+import controller.ListenerController;
+
 import javax.swing.JFrame;
 
 public class AddSubjectWindow extends JDialog {
@@ -22,7 +25,7 @@ public class AddSubjectWindow extends JDialog {
 	ArrayList<JButton> buttonsInAddStudentForm;
 	
 	public AddSubjectWindow() {
-		
+		setModalityType(DEFAULT_MODALITY_TYPE);
 		dataInputs = new ArrayList<JTextField>();
 		buttonsInAddStudentForm = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -50,7 +53,9 @@ public class AddSubjectWindow extends JDialog {
 		buttonsInAddStudentForm.add(new JButton());
 		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
 		
-		setVisible(true);
+		ListenerController.closeWindowOnCancelListener(this, buttonsInAddStudentForm.get(1));
+		
+		
 	}
 	
 	private JPanel createPanel(String text, JComponent comp) {

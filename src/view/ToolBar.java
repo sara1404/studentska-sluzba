@@ -6,24 +6,32 @@ import javax.swing.Box;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.ListenerController;
+
 public class ToolBar extends JToolBar {
+	Button createEntityBtn;
+	Button changeEntityBtn;
+	Button removeEntityBtn;
+	Button searchBtn;
+	
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
-		
-		Button createEntity = new Button("Open dialog", "src/toolbar_imgs/open_dialog.png");
-		add(createEntity);
-		
-		addSeparator();
-		
-		Button changeEntity = new Button("Change dialog", "src/toolbar_imgs/pen.png");
-		add(changeEntity);
+
+		createEntityBtn = new Button("Open entity", "src/toolbar_imgs/open_dialog.png");
+		add(createEntityBtn);
 		
 		addSeparator();
 		
+		changeEntityBtn = new Button("Change entity", "src/toolbar_imgs/pen.png");
+		add(changeEntityBtn);
+
 		
-		Button removeEntity = new Button("Remove dialog", "src/toolbar_imgs/remove.png");
-		add(removeEntity);
+		addSeparator();
 		
+
+		removeEntityBtn = new Button("Remove entity", "src/toolbar_imgs/remove.png");
+		add(removeEntityBtn);
+
 		add(Box.createHorizontalGlue());
 		
 		TextField searchInput = new TextField();
@@ -31,12 +39,27 @@ public class ToolBar extends JToolBar {
 		
 		addSeparator();
 		
-		Button searchBtn = new Button("Search", "src/toolbar_imgs/search_icon.png");
+		searchBtn = new Button("Search", "src/toolbar_imgs/search_icon.png");
 		add(searchBtn);
 		
 		setFloatable(false);
 		setBackground(new Color(48, 51, 49));
 		
-		
+	}
+	
+	public Button getCreateEntityBtn() {
+		return createEntityBtn;
+	}
+	
+	public Button getChangeEntityBtn() {
+		return changeEntityBtn;
+	}
+	
+	public Button getRemoveEntityBtn() {
+		return removeEntityBtn;
+	}
+	
+	public Button getSearchBtn() {
+		return searchBtn;
 	}
 }

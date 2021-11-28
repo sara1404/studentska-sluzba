@@ -6,6 +6,7 @@ public class MyApp {
 		MainFrame mf = new MainFrame();
 		AddStudentWindow asd = new AddStudentWindow();
 		AddProfessorDialog apd = new AddProfessorDialog();
+
 		
 	}
 

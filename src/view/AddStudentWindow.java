@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import controller.ListenerController;
+
 
 
 
@@ -22,8 +24,10 @@ public class AddStudentWindow extends JDialog{
 	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
 	ArrayList<JButton> buttonsInAddStudentForm;
+
 	public AddStudentWindow() {
-		
+	
+		setModalityType(DEFAULT_MODALITY_TYPE);
 		dataInputs = new ArrayList<>();
 		buttonsInAddStudentForm = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -52,6 +56,9 @@ public class AddStudentWindow extends JDialog{
 		buttonsInAddStudentForm.add(new JButton());
 		buttonsInAddStudentForm.add(new JButton());
 		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
+		
+
+		ListenerController.closeWindowOnCancelListener(this, buttonsInAddStudentForm.get(1));
 		
 		
 		

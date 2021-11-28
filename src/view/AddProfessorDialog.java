@@ -152,7 +152,7 @@ public class AddProfessorDialog extends JDialog implements ActionListener{
 
 		add(panBottom,BorderLayout.SOUTH);
         //pack();
-		setVisible(true); 
+		//setVisible(true); 
 		
 	}
 

@@ -11,8 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
+import controller.ListenerController;
+
 public class ChangeStudentWindow extends JDialog{
 	public ChangeStudentWindow() {
+		setModalityType(DEFAULT_MODALITY_TYPE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Izmena studenta");
 		getContentPane().setBackground(Color.DARK_GRAY);
@@ -35,7 +38,7 @@ public class ChangeStudentWindow extends JDialog{
 		tab1.addTab("Informacije", info);
 		
 
-		
+		ListenerController.closeWindowOnCancelListener(this, info.getButtonsInAddStudentForm().get(1));
 		
 		SubjectsPassedStudent subPassed = new SubjectsPassedStudent();
 		subPassed.setPreferredSize(new Dimension(200, 200));
@@ -50,6 +53,5 @@ public class ChangeStudentWindow extends JDialog{
 		tab1.addTab("Nepolozeni", subNotPassed);
 		add(tab1);
 		
-		setVisible(true);
 	}
 }

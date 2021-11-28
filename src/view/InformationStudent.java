@@ -8,10 +8,12 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import controller.ListenerController;
 import model.Student;
 
 public class InformationStudent extends JPanel{
@@ -38,6 +40,8 @@ public class InformationStudent extends JPanel{
 		buttonsInAddStudentForm.add(new JButton());
 		buttonsInAddStudentForm.add(new JButton());
 		add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
+		
+		
 	}
 	
 	private JPanel createPanel(String text, JComponent comp) {
@@ -72,6 +76,9 @@ public class InformationStudent extends JPanel{
 		dataInputs.get(7).setText(String.valueOf(student.getStartYear()));
 		
 	}
-	
+
+	public ArrayList<JButton> getButtonsInAddStudentForm() {
+		return buttonsInAddStudentForm;
+	}
 	
 }

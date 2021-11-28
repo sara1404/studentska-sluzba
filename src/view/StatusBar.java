@@ -11,17 +11,21 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class StatusBar extends JPanel {
+		JLabel currentTablbl = new JLabel("Studenti");
 	public StatusBar() {
 		
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBackground(new Color(48, 51, 49));
-		JLabel statusLabel = new JLabel("Studentska sluzba");
+		JLabel statusLabel = new JLabel("Studentska sluzba - ");
+
 		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		statusLabel.setForeground(Color.WHITE);
-		
+		currentTablbl.setHorizontalAlignment(SwingConstants.LEFT);
+		currentTablbl.setForeground(Color.WHITE);
 		add(Box.createHorizontalStrut(10));
 		
 		add(statusLabel);	//pored ovoga mora se dodati i naziv taba ali tek nakon sto se to implemetira, NE ZABORAVITI!
+		add(currentTablbl);
 		
 		
 		add(Box.createHorizontalGlue());
@@ -46,4 +50,9 @@ public class StatusBar extends JPanel {
 		
 		add(Box.createHorizontalStrut(10));
 	}
+	
+	public void setCurrentTab(String currentTab) {
+		currentTablbl.setText(currentTab);
+	}
+	
 }

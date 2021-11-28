@@ -17,6 +17,7 @@ public class ToolBar extends JToolBar {
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
 
+
 		createEntityBtn = new Button("Open entity", "src/toolbar_imgs/open_dialog.png");
 		add(createEntityBtn);
 		

@@ -14,7 +14,7 @@ import controller.ListenerController;
 
 public class MainFrame extends JFrame {
 
-	AddStudentWindow addStudentDialog = new AddStudentWindow();
+	AddStudentDialog addStudentDialog = new AddStudentDialog();
 	AddProfessorDialog addProfessorDialog = new AddProfessorDialog();
 	AddSubjectWindow addSubjectDialog = new AddSubjectWindow();
 
@@ -45,6 +45,7 @@ public class MainFrame extends JFrame {
 		StatusBar status = new StatusBar();
 		status.setPreferredSize(new Dimension(this.getWidth(), 30));
 		add(status, BorderLayout.SOUTH);
+
 		JTabbedPane tab = new JTabbedPane();
 		StudentPanel studentPanel = new StudentPanel();
 		ProfessorPanel professorPanel = new ProfessorPanel();
@@ -54,7 +55,11 @@ public class MainFrame extends JFrame {
 		tab.addTab("Predmeti", subjectPanel);
 
 		add(tab);
-		//Nista moraces ove klase ponovo
+		
+		ListenerController.tabListener(tab, status);
+
+
+		add(tab);
 		ListenerController.tabListener(tab, status);
 		ListenerController.setDisplayAddDialogAction(this, tab, tb.getCreateEntityBtn());
 		ListenerController.setDisplayChangeDialogAction(this, tab, tb.getChangeEntityBtn());

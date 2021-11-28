@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 
 
@@ -9,8 +10,8 @@ public class Grade {
 	private Student student;
 	private Subject subject;
 	private int grade;
-	private Date examDate;
-	public Grade(Student student, Subject subject, int grade, Date examDate) {
+	private LocalDate examDate;
+	public Grade(Student student, Subject subject, int grade, LocalDate examDate) {
 		super();
 		this.student = student;
 		this.subject = subject;
@@ -52,11 +53,11 @@ public class Grade {
 		}
 	}
 	
-	public Date getExamDate() {
+	public LocalDate getExamDate() {
 		return examDate;
 	}
 	
-	public void setExamDate(Date examDate) {
+	public void setExamDate(LocalDate examDate) {
 		this.examDate = examDate;
 	}
 	

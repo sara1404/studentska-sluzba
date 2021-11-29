@@ -19,6 +19,10 @@ public class MainFrame extends JFrame {
 	AddSubjectWindow addSubjectDialog = new AddSubjectWindow();
 
 	ChangeStudentWindow changeStudentDialog = new ChangeStudentWindow();
+	ChangeSubjectDialog changeSubjectDialog = new ChangeSubjectDialog();
+	
+	
+	MenuBar menu = new MenuBar();
 
 	public MainFrame() {
 
@@ -61,8 +65,15 @@ public class MainFrame extends JFrame {
 
 		add(tab);
 		ListenerController.tabListener(tab, status);
+		//toolbar listener
 		ListenerController.setDisplayAddDialogAction(this, tab, tb.getCreateEntityBtn());
 		ListenerController.setDisplayChangeDialogAction(this, tab, tb.getChangeEntityBtn());
+		ListenerController.setDisplayDeleteDialogAction(this, tab, tb.getRemoveEntityBtn());
+		
+		//menubar listener
+		ListenerController.setDisplayAddDialogAction(this, tab, menu.getfNew());
+		ListenerController.setDisplayChangeDialogAction(this, tab, menu.geteEdit());
+		ListenerController.setDisplayDeleteDialogAction(this, tab, menu.getDelete());
 		
 		setVisible(true);
 
@@ -83,7 +94,9 @@ public class MainFrame extends JFrame {
 	public ChangeStudentWindow getChangeStudentDialog() {
 		return changeStudentDialog;
 	}
-	
-	
 
+	public ChangeSubjectDialog getChangeSubjectDialog() {
+		return changeSubjectDialog;
+	}
+	
 }

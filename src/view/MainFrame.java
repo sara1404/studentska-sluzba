@@ -7,10 +7,21 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import controller.ListenerController;
+import view.dialogs.AddProfessorDialog;
+import view.dialogs.AddStudentDialog;
+import view.dialogs.AddSubjectWindow;
+import view.dialogs.ChangeStudentWindow;
+import view.dialogs.ChangeSubjectDialog;
+import view.menuBar.MenuBar;
+import view.statusBar.StatusBar;
+import view.tabs.MainTab;
+import view.tabs.tables.StudentTable;
+import view.toolbar.ToolBar;
 
 public class MainFrame extends JFrame {
 
@@ -50,14 +61,19 @@ public class MainFrame extends JFrame {
 		status.setPreferredSize(new Dimension(this.getWidth(), 30));
 		add(status, BorderLayout.SOUTH);
 
-		JTabbedPane tab = new JTabbedPane();
-		StudentPanel studentPanel = new StudentPanel();
-		ProfessorPanel professorPanel = new ProfessorPanel();
-		SubjectPanel subjectPanel = new SubjectPanel();
-		tab.addTab("Studenti", studentPanel);
-		tab.addTab("Profesori", professorPanel);
-		tab.addTab("Predmeti", subjectPanel);
-
+//		JTabbedPane tab = new JTabbedPane();
+//		String[][] data = {
+//	            { "ra-76-2019", "Sara", "Sinjeri", "3", "B", "9.24" }
+//	        };
+//		String[] columnNames = { "Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek" };
+//		//JTable studentTable = new JTable(data, columnNames);
+//		StudentTable studentTable = new StudentTable(data, columnNames);
+		
+		
+//		tab.addTab("Studenti", new JScrollPane(studentTable));
+//		tab.addTab("Profesori", professorPanel);
+	//	tab.addTab("Predmeti", subjectPanel);
+		MainTab tab = new MainTab();
 		add(tab);
 		
 		ListenerController.tabListener(tab, status);

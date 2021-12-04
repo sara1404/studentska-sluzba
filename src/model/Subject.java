@@ -2,7 +2,22 @@ package model;
 
 import java.util.ArrayList;
 
-enum Semester {SUMMER, WINTER};
+enum Semester {
+	SUMMER("summer"), WINTER("winter");
+	String value;
+	Semester(String value) {
+		this.value = value;
+	}
+	
+	public String getValue() {
+		return value;
+	}
+	
+	public static Semester getSemesterWithString(String semester) {
+		if(semester.equals("summer")) return Semester.SUMMER;
+		else return Semester.WINTER;
+	}
+};
 
 public class Subject {
 	private String subjectKey;
@@ -13,8 +28,7 @@ public class Subject {
 	private int ESPB;
 	private ArrayList<Student> studentsPassed;
 	private ArrayList<Student> studentsFailed;
-	public Subject(String subjectKey, String subjectName, Semester semester, int year, Professor professor, int eSPB,
-			ArrayList<Student> studentsPassed, ArrayList<Student> studentsFailed) {
+	public Subject(String subjectKey, String subjectName, Semester semester, int year, Professor professor, int eSPB) {
 		super();
 		this.subjectKey = subjectKey;
 		this.subjectName = subjectName;
@@ -22,8 +36,8 @@ public class Subject {
 		this.year = year;
 		this.professor = professor;
 		ESPB = eSPB;
-		this.studentsPassed = studentsPassed;
-		this.studentsFailed = studentsFailed;
+		studentsPassed = new ArrayList<>();
+		studentsFailed = new ArrayList<>();
 	}
 	public String getSubjectKey() {
 		return subjectKey;
@@ -72,6 +86,11 @@ public class Subject {
 	}
 	public void setStudentsFailed(ArrayList<Student> studentsFailed) {
 		this.studentsFailed = studentsFailed;
+	}
+	@Override
+	public String toString() {
+		return subjectKey +", "+ subjectName + ", " + semester + ", "
+				+ year + ", " + professor +", " + ESPB ;
 	}
 	
 	

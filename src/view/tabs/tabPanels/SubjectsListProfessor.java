@@ -1,9 +1,11 @@
-package view;
+package view.tabs.tabPanels;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import utils.Utils;
 
 public class SubjectsListProfessor extends JPanel{
 	

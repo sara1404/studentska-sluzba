@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import view.MainFrame;
-import view.StatusBar;
+import view.statusBar.StatusBar;
 
 public class ListenerController {
 	public static void tabListener(JTabbedPane tab, StatusBar bar) {

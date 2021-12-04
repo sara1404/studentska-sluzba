@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controller.ListenerController;
+import utils.WindowComponentBuilder;
 
 import javax.swing.JFrame;
 

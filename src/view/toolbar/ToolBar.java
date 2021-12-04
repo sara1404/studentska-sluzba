@@ -1,8 +1,10 @@
-package view;
+package view.toolbar;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
@@ -16,9 +18,10 @@ public class ToolBar extends JToolBar {
 	
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
-
+		//ToolbarListener tl = new ToolbarListener("Create entity", KeyEvent.VK_X, "test opis", "src/menubar_imgs/about.png");
 
 		createEntityBtn = new Button("Open entity", "src/toolbar_imgs/open_dialog.png");
+		
 		add(createEntityBtn);
 		
 		addSeparator();

@@ -1,8 +1,11 @@
-package view;
+package view.tabs.tabPanels;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import utils.Utils;
+import utils.WindowComponentBuilder;
 
 public class SubjectsNotPassedStudent extends JPanel{
 	public SubjectsNotPassedStudent() {

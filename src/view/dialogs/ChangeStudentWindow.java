@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,6 +12,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import controller.ListenerController;
+import view.tabs.tabPanels.InformationStudent;
+import view.tabs.tabPanels.SubjectsNotPassedStudent;
+import view.tabs.tabPanels.SubjectsPassedStudent;
 
 public class ChangeStudentWindow extends JDialog{
 	public ChangeStudentWindow() {

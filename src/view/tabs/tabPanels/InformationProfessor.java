@@ -1,4 +1,4 @@
-package view;
+package view.tabs.tabPanels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,6 +6,8 @@ import java.awt.Color;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+
+import utils.WindowComponentBuilder;
 
 public class InformationProfessor extends JPanel{
 	

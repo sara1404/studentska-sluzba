@@ -1,4 +1,4 @@
-package view;
+package view.statusBar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;

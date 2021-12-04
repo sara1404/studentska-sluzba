@@ -19,7 +19,7 @@ public class Professor {
 	private int yearsOfService;
 	private ArrayList<Subject> subjectList;
 	public Professor(String surname, String name, LocalDate dateOfBirth, Address homeAdress, String phone, String email,
-			Address officeAdress, String id, Title title, int yearsOfService, ArrayList<Subject> subjectList) {
+			Address officeAdress, String id, Title title, int yearsOfService) {
 		super();
 		this.surname = surname;
 		this.name = name;
@@ -31,7 +31,7 @@ public class Professor {
 		this.id = id;
 		this.title = title;
 		this.yearsOfService = yearsOfService;
-		this.subjectList = subjectList;
+		subjectList = new ArrayList<>();
 	}
 	public String getSurname() {
 		return surname;

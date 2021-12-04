@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,6 +17,7 @@ import javax.swing.WindowConstants;
 import controller.ListenerController;
 import model.Student;
 import model.Subject;
+import utils.WindowComponentBuilder;
 
 public class ChangeSubjectDialog extends JDialog{
 	ArrayList<JTextField> dataInputs;

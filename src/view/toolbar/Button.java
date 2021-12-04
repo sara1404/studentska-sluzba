@@ -1,10 +1,12 @@
-package view;
+package view.toolbar;
 
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import utils.Utils;
 
 public class Button extends JButton{
 	

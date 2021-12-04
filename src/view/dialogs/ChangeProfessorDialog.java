@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
+
+import view.tabs.tabPanels.InformationProfessor;
+import view.tabs.tabPanels.SubjectsListProfessor;
 
 public class ChangeProfessorDialog extends JDialog{
 	

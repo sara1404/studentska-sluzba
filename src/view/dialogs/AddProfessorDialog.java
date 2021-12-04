@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,6 +12,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+
+import utils.WindowComponentBuilder;
 
 public class AddProfessorDialog extends JDialog implements ActionListener{
 	

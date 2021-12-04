@@ -24,6 +24,8 @@ import view.tabs.tables.StudentTable;
 import view.toolbar.ToolBar;
 
 public class MainFrame extends JFrame {
+	
+	private static MainFrame instance = null;
 
 	AddStudentDialog addStudentDialog = new AddStudentDialog();
 	AddProfessorDialog addProfessorDialog = new AddProfessorDialog();
@@ -35,7 +37,7 @@ public class MainFrame extends JFrame {
 	
 	MenuBar menu = new MenuBar();
 
-	public MainFrame() {
+	private MainFrame() {
 
 		Toolkit kit = Toolkit.getDefaultToolkit();
 
@@ -93,6 +95,12 @@ public class MainFrame extends JFrame {
 		
 		setVisible(true);
 
+	}
+	
+	public static MainFrame getInstance() {
+		if(instance == null)
+			instance = new MainFrame();
+		return instance;
 	}
 
 	public AddStudentDialog getAddStudentDialog() {

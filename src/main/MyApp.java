@@ -10,7 +10,7 @@ import view.MainFrame;
 public class MyApp {
 
 	public static void main(String[] args) {
-		MainFrame mf = new MainFrame();
+		MainFrame mf = MainFrame.getInstance();
 		DatabaseReader dr = new DatabaseReader();
 		ArrayList<Student> students;
 		try {

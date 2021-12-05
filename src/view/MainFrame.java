@@ -15,6 +15,7 @@ import controller.ListenerController;
 import view.dialogs.AddProfessorDialog;
 import view.dialogs.AddStudentDialog;
 import view.dialogs.AddSubjectWindow;
+import view.dialogs.ChangeProfessorDialog;
 import view.dialogs.ChangeStudentWindow;
 import view.dialogs.ChangeSubjectDialog;
 import view.menuBar.MenuBar;
@@ -32,9 +33,10 @@ public class MainFrame extends JFrame {
 	AddSubjectWindow addSubjectDialog = new AddSubjectWindow();
 
 	ChangeStudentWindow changeStudentDialog = new ChangeStudentWindow();
+	ChangeProfessorDialog changeProfessorDialog = new ChangeProfessorDialog();
 	ChangeSubjectDialog changeSubjectDialog = new ChangeSubjectDialog();
 	
-	
+	MainTab tab;
 	MenuBar menu = new MenuBar();
 
 	private MainFrame() {
@@ -118,9 +120,18 @@ public class MainFrame extends JFrame {
 	public ChangeStudentWindow getChangeStudentDialog() {
 		return changeStudentDialog;
 	}
+	
+	public ChangeProfessorDialog getChangeProfessorDialog() {
+		return changeProfessorDialog;
+	}
 
 	public ChangeSubjectDialog getChangeSubjectDialog() {
 		return changeSubjectDialog;
 	}
+
+	public MainTab getTab() {
+		return tab;
+	}
+	
 	
 }

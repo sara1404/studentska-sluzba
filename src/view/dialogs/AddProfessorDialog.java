@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -13,9 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+import controller.ListenerController;
+import utils.Utils;
 import utils.WindowComponentBuilder;
 
-public class AddProfessorDialog extends JDialog implements ActionListener{
+public class AddProfessorDialog extends JDialog {
 	
 	JPanel panCenter = new JPanel();
 	BoxLayout boxCenter = new BoxLayout(panCenter, BoxLayout.Y_AXIS);
@@ -54,9 +54,6 @@ public class AddProfessorDialog extends JDialog implements ActionListener{
 		setSize(width * 3/8, height *3/4);
 		setLocationRelativeTo(null);
 		
-		//setIconImage(null);
-		
-		
 		panCenter.setLayout(boxCenter);
 		panCenter.setBackground(Color.DARK_GRAY);
 
@@ -70,9 +67,7 @@ public class AddProfessorDialog extends JDialog implements ActionListener{
         setPanel("Broj licne karte*", 0);
         setPanel("Zvanje*", 1);
         setPanel("Godine staza*", 0);
-        //list of subjects TODO
         
-      
         panCenter.add(Box.createVerticalStrut(25));  
         add(panCenter,BorderLayout.CENTER);
        
@@ -88,28 +83,20 @@ public class AddProfessorDialog extends JDialog implements ActionListener{
 		
 		JButton btnCancel=new JButton("Odustani");
 		btnCancel.setPreferredSize(new Dimension(100,25));
-		btnCancel.addActionListener(this);
 		
 		panBottom.add(Box.createHorizontalStrut(200));
 		panBottom.add(btnOk);
+		Utils.setCursor(btnOk);
 		panBottom.add(Box.createHorizontalStrut(100));
 		panBottom.add(btnCancel);
+		Utils.setCursor(btnCancel);
+		ListenerController.closeWindowOnCancelListener(this, btnCancel);
 		panBottom.add(Box.createHorizontalStrut(10));
 		panBottom.add(Box.createVerticalStrut(50));
 		
 
 		add(panBottom,BorderLayout.SOUTH);
-		//setVisible(true); 
-
 		
 	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		dispose();
-		
-	}
-
 	
 }

@@ -9,7 +9,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import controller.ListenerController;
 import utils.Utils;
+import view.MainFrame;
 
 
 public class MenuBar extends JMenuBar{
@@ -63,6 +65,7 @@ public class MenuBar extends JMenuBar{
 
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		
+		ListenerController.closeApplication(close);
 		
 		file.add(fNew);
 		Utils.setCursor(fNew);
@@ -124,7 +127,6 @@ public class MenuBar extends JMenuBar{
 		subject.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/subject.png")));
 		department.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/department.png")));
 
-		
 		
 	}
 

@@ -13,6 +13,9 @@ import view.tabs.tabPanels.SubjectsListProfessor;
 public class ChangeProfessorDialog extends JDialog{
 	
 	public ChangeProfessorDialog() {
+		
+		setModalityType(DEFAULT_MODALITY_TYPE);
+		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		
 		setTitle("Izmena profesora");
@@ -32,7 +35,6 @@ public class ChangeProfessorDialog extends JDialog{
 		subj.setBackground(Color.DARK_GRAY);
 		add(tab);
 		
-		setVisible(true);
 	}
 
 }

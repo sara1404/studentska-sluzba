@@ -15,6 +15,9 @@ import view.dialogs.AddStudentDialog;
 
 public class AddStudentController {
 	
+	private static AddStudentController instance = null;
+	
+	private AddStudentController() {};
 	
 	public static void addStudent(AddStudentDialog studentDialog) {
 		try {
@@ -84,4 +87,10 @@ public class AddStudentController {
 		Address address = new Address(addressData[0], Integer.parseInt(addressData[1]), addressData[2], addressData[3]);
 		return address;
 	} 
+	
+	public static AddStudentController getInstance() {
+		if(instance != null) 
+			instance = new AddStudentController();
+		return instance;
+	}
 }

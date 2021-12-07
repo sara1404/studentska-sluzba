@@ -14,6 +14,11 @@ import view.dialogs.AddStudentDialog;
 import view.dialogs.AddSubjectDialog;
 
 public class AddSubjectController {
+	
+	private static AddSubjectController instance = null;
+	
+	private AddSubjectController() {};
+	
 	public static void addStudent(AddSubjectDialog subjectDialog) {
 		try {
 			//validateFields(subjectDialog.getDataInputs());
@@ -46,5 +51,9 @@ public class AddSubjectController {
 		return subject;
 	}
 	
-	
+	public static AddSubjectController getInstance() {
+		if(instance != null)
+			instance = new AddSubjectController();
+		return instance;
+	}
 }

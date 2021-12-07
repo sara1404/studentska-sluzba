@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
 import controller.ListenerController;
 import view.dialogs.AddProfessorDialog;
 import view.dialogs.AddStudentDialog;
-import view.dialogs.AddSubjectWindow;
+import view.dialogs.AddSubjectDialog;
 import view.dialogs.ChangeProfessorDialog;
 import view.dialogs.ChangeStudentWindow;
 import view.dialogs.ChangeSubjectDialog;
@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
 
 	AddStudentDialog addStudentDialog = new AddStudentDialog();
 	AddProfessorDialog addProfessorDialog = new AddProfessorDialog();
-	AddSubjectWindow addSubjectDialog = new AddSubjectWindow();
+	AddSubjectDialog addSubjectDialog = new AddSubjectDialog();
 
 	ChangeStudentWindow changeStudentDialog = new ChangeStudentWindow();
 	ChangeProfessorDialog changeProfessorDialog = new ChangeProfessorDialog();
@@ -113,7 +113,7 @@ public class MainFrame extends JFrame {
 		return addProfessorDialog;
 	}
 
-	public AddSubjectWindow getAddSubjectDialog() {
+	public AddSubjectDialog getAddSubjectDialog() {
 		return addSubjectDialog;
 	}
 

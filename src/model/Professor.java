@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-enum Title {ASSISTANT, DOCENT, ASSOCIATED, FULL};
+import enums.Title;
+
 
 public class Professor {
 	private String surname;

@@ -4,22 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-enum Status{
-	B("BUDZET"), S("SAMOFINANSIRANJE");	
-	String value;
-	Status(String value) {
-		this.value = value;
-	}
-	
-	public String getValue() {
-		return value;
-	}
-	
-	public static Status getStatusWithString(String status) {
-		if(status.equals("BUDZET")) return Status.B;
-		else return Status.S;
-	}
-};
+import enums.Status;
 
 public class Student {
 	private String surname;

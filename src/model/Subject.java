@@ -2,22 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-enum Semester {
-	SUMMER("summer"), WINTER("winter");
-	String value;
-	Semester(String value) {
-		this.value = value;
-	}
-	
-	public String getValue() {
-		return value;
-	}
-	
-	public static Semester getSemesterWithString(String semester) {
-		if(semester.equals("summer")) return Semester.SUMMER;
-		else return Semester.WINTER;
-	}
-};
+import enums.Semester;
 
 public class Subject {
 	private String subjectKey;

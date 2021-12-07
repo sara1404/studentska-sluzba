@@ -14,12 +14,8 @@ import javax.swing.WindowConstants;
 import controller.ListenerController;
 import view.dialogs.AddProfessorDialog;
 import view.dialogs.AddStudentDialog;
-<<<<<<< HEAD
 import view.dialogs.AddSubjectDialog;
-=======
-import view.dialogs.AddSubjectWindow;
 import view.dialogs.ChangeProfessorDialog;
->>>>>>> cf274d48e06ee4b850613e635f5b21ce3a3e712c
 import view.dialogs.ChangeStudentWindow;
 import view.dialogs.ChangeSubjectDialog;
 import view.menuBar.MenuBar;

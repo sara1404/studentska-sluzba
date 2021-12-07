@@ -23,9 +23,8 @@ public class WindowComponentBuilder {
 		return input;
 	}
 	
-	public static JComboBox<String> createComboBoxField() {
-		String[] fakePodaci = {"pod1", "pod2", "pod3"};
-		JComboBox<String> combo = new JComboBox<String>(fakePodaci);
+	public static JComboBox<String> createComboBoxField(String[] data) {
+		JComboBox<String> combo = new JComboBox<String>(data);
 		combo.setSelectedIndex(0);
 		setContainerSize(combo, 120, 30);
 		return combo;

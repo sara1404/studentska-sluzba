@@ -31,8 +31,14 @@ public class InformationStudent extends JPanel{
 		
 		for(int i = 0; i < namesSerbian.length; i++) {
 
-			if(i > namesSerbian.length - 3) 
-				add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField()));
+			if(i == 8) {
+				String[] data = {"1", "2", "3", "4", "5", "6"};
+				add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
+			}
+			else if(i == 9) {
+				String[] data = {"B", "S"};
+				add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
+			}
 			else {
 				add(createPanel(namesSerbian[i], WindowComponentBuilder.createTextField()));
 				add(Box.createVerticalStrut(10));

@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 public class StatusBar extends JPanel {
 		JLabel currentTablbl = new JLabel("Studenti");
+		JLabel timeLbl = new JLabel();
 	public StatusBar() {
 		
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -30,12 +31,13 @@ public class StatusBar extends JPanel {
 		
 		add(Box.createHorizontalGlue());
 		
-		LocalTime time = LocalTime.now();
-		JLabel timeLabel = new JLabel(DateTimeFormatter.ofPattern("HH:mm").format(time));
-		timeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		timeLabel.setForeground(Color.WHITE);
+		add(timeLbl);
+
+ 	    timeLbl.setHorizontalAlignment(SwingConstants.RIGHT);
+ 	    timeLbl.setForeground(Color.WHITE);
 		
-		add(timeLabel);
+		getTime();
+		
 		
 		add(Box.createHorizontalStrut(10));
 		
@@ -54,5 +56,26 @@ public class StatusBar extends JPanel {
 	public void setCurrentTab(String currentTab) {
 		currentTablbl.setText(currentTab);
 	}
-	
+	private void getTime() {
+		Thread t1 = new Thread(){
+	        public void run(){
+	           while(true){
+	               try {
+	            	   LocalTime time = LocalTime.now();
+		        	   int hours = time.getHour();
+		        	   int minutes = time.getMinute();
+		        	   int seconds = time.getSecond();
+		        	   String hoursStr = hours < 10 ? "0" + hours : String.valueOf(hours);
+		        	   String minutesStr = minutes < 10 ? "0" + minutes : String.valueOf(minutes);
+		        	   String secondsStr = seconds < 10 ? "0" + seconds : String.valueOf(seconds);
+		        	   timeLbl.setText(hoursStr + ":" + minutesStr + ":" + secondsStr);
+		        	   sleep(1000);
+		            } catch (InterruptedException e) {
+		                    e.printStackTrace();
+		            }
+	        }
+	    }
+	   };
+	   t1.start();
+	}
 }

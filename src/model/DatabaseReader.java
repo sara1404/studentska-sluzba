@@ -5,14 +5,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import enums.Semester;
+import enums.Status;
+
 public class DatabaseReader {
+	
+	private static DatabaseReader instance = null;
+	
 	private ArrayList<Student> students;
 	private ArrayList<Professor> professors;
-	public DatabaseReader() {
+	private ArrayList<Subject> subjects;
+	private DatabaseReader() {
 		try 
 		{
 			this.students = readStudentDatabase();
 			this.professors = null;
+			this.subjects = readSubjectDatabase();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -70,5 +78,24 @@ public class DatabaseReader {
 			if(professors.get(i).getId().equals(id)) return professors.get(i);
 		}
 		return null;
+	}
+	
+	public static DatabaseReader getInstance() {
+		if(instance == null){
+			instance = new DatabaseReader();
+		}
+		return instance;
+	}
+
+	public ArrayList<Student> getStudents() {
+		return students;
+	}
+
+	public ArrayList<Professor> getProfessors() {
+		return professors;
+	}
+	
+	public ArrayList<Subject> getSubjects() {
+		return subjects;
 	}
 }

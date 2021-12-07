@@ -24,7 +24,9 @@ public class InformationProfessor extends JPanel{
         		pan.add(WindowComponentBuilder.createTextField());
         		break;
         	case 1:
-        		pan.add(WindowComponentBuilder.createComboBoxField());
+        		String[] data = {};
+        		
+        		pan.add(WindowComponentBuilder.createComboBoxField(data));
         		break;
         }
         panCenter.add(pan);

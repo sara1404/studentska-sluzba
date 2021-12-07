@@ -31,7 +31,8 @@ public class AddProfessorDialog extends JDialog implements ActionListener{
         		pan.add(WindowComponentBuilder.createTextField());
         		break;
         	case 1:
-        		pan.add(WindowComponentBuilder.createComboBoxField());
+        		String[] data = {" "};
+        		pan.add(WindowComponentBuilder.createComboBoxField(data));
         		break;
         }
         panCenter.add(pan);

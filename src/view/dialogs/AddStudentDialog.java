@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-
-
-
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -18,6 +16,7 @@ import javax.swing.WindowConstants;
 
 import controller.ListenerController;
 import utils.WindowComponentBuilder;
+import view.listeners.StudentListener;
 
 
 
@@ -27,7 +26,8 @@ public class AddStudentDialog extends JDialog{
 
 	
 
-	ArrayList<JTextField> dataInputs;
+	private ArrayList<JTextField> dataInputs;
+	private ArrayList<JComboBox> comboInputs;
 	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
 
@@ -36,6 +36,7 @@ public class AddStudentDialog extends JDialog{
 	public AddStudentDialog() {
 
 		dataInputs = new ArrayList<>();
+		comboInputs = new ArrayList<>();
 		buttonsInAddStudentForm = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Dodavanje studenta");
@@ -52,8 +53,14 @@ public class AddStudentDialog extends JDialog{
 		
 		for(int i = 0; i < namesSerbian.length; i++) {
 
-			if(i > namesSerbian.length - 3) 
-				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField()));
+			if(i == 8) {
+				String[] data = {"1", "2", "3", "4", "5", "6"};
+				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
+			}
+			else if(i == 9) {
+				String[] data = {"B", "S"};
+				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
+			}
 			else {
 				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createTextField()));
 				getContentPane().add(Box.createVerticalStrut(10));
@@ -63,7 +70,7 @@ public class AddStudentDialog extends JDialog{
 		buttonsInAddStudentForm.add(new JButton());
 		buttonsInAddStudentForm.add(new JButton());
 		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
-		
+		buttonsInAddStudentForm.get(0).addActionListener(StudentListener.studentAddingListener(buttonsInAddStudentForm.get(0)));
 		ListenerController.closeWindowOnCancelListener(this, buttonsInAddStudentForm.get(1));
 		
 	}
@@ -73,7 +80,7 @@ public class AddStudentDialog extends JDialog{
 		panel.setBackground(Color.DARK_GRAY);
 		panel.add(WindowComponentBuilder.createLabel(text));		
 		panel.add(Box.createHorizontalStrut(50));
-		addToArrayIfTextField(comp);
+		addComponentToArray(comp);
 		panel.add(comp);
 		BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
 		panel.setLayout(box);
@@ -83,11 +90,24 @@ public class AddStudentDialog extends JDialog{
 	
 	
 	
-	private void addToArrayIfTextField(JComponent comp) {
+	private void addComponentToArray(JComponent comp) {
 		if(comp instanceof JTextField) {
 			dataInputs.add((JTextField)comp);
 		}
+		else if(comp instanceof JComboBox) {
+			comboInputs.add((JComboBox)comp);
+		}
+	}
+
+	public ArrayList<JTextField> getDataInputs() {
+		return dataInputs;
 	}
 	
+	public JTextField getTextFieldAt(int index) {
+		return dataInputs.get(index);
+	}
 	
+	public JComboBox getComboAt(int index) {
+		return comboInputs.get(index);
+	}
 }

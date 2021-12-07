@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -16,18 +17,21 @@ import javax.swing.WindowConstants;
 
 import controller.ListenerController;
 import utils.WindowComponentBuilder;
+import view.toolbar.Button;
 
 import javax.swing.JFrame;
 
-public class AddSubjectWindow extends JDialog {
+public class AddSubjectDialog extends JDialog {
 	
 	ArrayList<JTextField> dataInputs;
-	private String[] labelText = {"Sifra predmeta*", "Naziv predmeta*", "Semestar*", "Godina studija*", "Predmetni profesor*", "Broj ESPB bodova*"};
+	ArrayList<JComboBox> comboInputs;
+	private String[] labelText = {"Sifra predmeta*", "Naziv predmeta*", "Semestar*", "Godina studija*", "Broj ESPB bodova*"};
 	ArrayList<JButton> buttonsInAddStudentForm;
 	
-	public AddSubjectWindow() {
+	public AddSubjectDialog() {
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		dataInputs = new ArrayList<JTextField>();
+		comboInputs = new ArrayList<JComboBox>();
 		buttonsInAddStudentForm = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Dodavanje predmeta");
@@ -43,7 +47,12 @@ public class AddSubjectWindow extends JDialog {
 		
 		for(int i = 0; i < labelText.length; i++) {
 			if(i == 2) {
-				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createComboBoxField()));
+				String[] data = {"LETNJI", "ZIMSKI"};
+				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createComboBoxField(data)));
+			}
+			else if(i == 3) {
+				String[] data = {"1", "2", "3", "4", "5", "6"};
+				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createComboBoxField(data)));
 			}
 			else {
 				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createTextField()));
@@ -64,7 +73,7 @@ public class AddSubjectWindow extends JDialog {
 		panel.setBackground(Color.DARK_GRAY);
 		panel.add(WindowComponentBuilder.createLabel(text));		
 		panel.add(Box.createHorizontalStrut(50));
-		addToArrayIfTextField(comp);
+		addComponentToArray(comp);
 		panel.add(comp);
 		BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
 		panel.setLayout(box);
@@ -72,9 +81,26 @@ public class AddSubjectWindow extends JDialog {
 		return panel;
 	}
 	
-	private void addToArrayIfTextField(JComponent comp) {
+	
+	
+	private void addComponentToArray(JComponent comp) {
 		if(comp instanceof JTextField) {
 			dataInputs.add((JTextField)comp);
 		}
+		else if(comp instanceof JComboBox) {
+			comboInputs.add((JComboBox)comp);
+		}
+	}
+
+	public ArrayList<JTextField> getDataInputs() {
+		return dataInputs;
+	}
+	
+	public JTextField getTextFieldAt(int index) {
+		return dataInputs.get(index);
+	}
+	
+	public JComboBox getComboAt(int index) {
+		return comboInputs.get(index);
 	}
 }

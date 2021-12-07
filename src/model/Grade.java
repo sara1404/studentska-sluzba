@@ -2,10 +2,6 @@ package model;
 
 import java.time.LocalDate;
 
-
-
-
-
 public class Grade {
 	private Student student;
 	private Subject subject;

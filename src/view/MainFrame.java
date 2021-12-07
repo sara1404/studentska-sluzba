@@ -14,7 +14,12 @@ import javax.swing.WindowConstants;
 import controller.ListenerController;
 import view.dialogs.AddProfessorDialog;
 import view.dialogs.AddStudentDialog;
+<<<<<<< HEAD
 import view.dialogs.AddSubjectDialog;
+=======
+import view.dialogs.AddSubjectWindow;
+import view.dialogs.ChangeProfessorDialog;
+>>>>>>> cf274d48e06ee4b850613e635f5b21ce3a3e712c
 import view.dialogs.ChangeStudentWindow;
 import view.dialogs.ChangeSubjectDialog;
 import view.menuBar.MenuBar;
@@ -24,18 +29,21 @@ import view.tabs.tables.StudentTable;
 import view.toolbar.ToolBar;
 
 public class MainFrame extends JFrame {
+	
+	private static MainFrame instance = null;
 
 	AddStudentDialog addStudentDialog = new AddStudentDialog();
 	AddProfessorDialog addProfessorDialog = new AddProfessorDialog();
 	AddSubjectDialog addSubjectDialog = new AddSubjectDialog();
 
 	ChangeStudentWindow changeStudentDialog = new ChangeStudentWindow();
+	ChangeProfessorDialog changeProfessorDialog = new ChangeProfessorDialog();
 	ChangeSubjectDialog changeSubjectDialog = new ChangeSubjectDialog();
 	
-	
+	MainTab tab;
 	MenuBar menu = new MenuBar();
 
-	public MainFrame() {
+	private MainFrame() {
 
 		Toolkit kit = Toolkit.getDefaultToolkit();
 
@@ -94,6 +102,12 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 
 	}
+	
+	public static MainFrame getInstance() {
+		if(instance == null)
+			instance = new MainFrame();
+		return instance;
+	}
 
 	public AddStudentDialog getAddStudentDialog() {
 		return addStudentDialog;
@@ -110,9 +124,18 @@ public class MainFrame extends JFrame {
 	public ChangeStudentWindow getChangeStudentDialog() {
 		return changeStudentDialog;
 	}
+	
+	public ChangeProfessorDialog getChangeProfessorDialog() {
+		return changeProfessorDialog;
+	}
 
 	public ChangeSubjectDialog getChangeSubjectDialog() {
 		return changeSubjectDialog;
 	}
+
+	public MainTab getTab() {
+		return tab;
+	}
+	
 	
 }

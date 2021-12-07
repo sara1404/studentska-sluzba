@@ -14,6 +14,7 @@ import javax.swing.event.ChangeListener;
 
 import view.MainFrame;
 import view.statusBar.StatusBar;
+import view.tabs.MainTab;
 
 public class ListenerController {
 	public static void tabListener(JTabbedPane tab, StatusBar bar) {
@@ -48,6 +49,17 @@ public class ListenerController {
 			}
 		});
 	}
+	
+	public static void closeApplication(JMenuItem itm) {
+		itm.addActionListener(new ActionListener () {
+			
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+	
 
 	public static void setDisplayAddDialogAction(MainFrame frame, JTabbedPane tab, JComponent comp) {
 		ActionListener listener = new ActionListener() {
@@ -82,6 +94,8 @@ public class ListenerController {
 				// TODO Auto-generated method stub
 				if (tab.getSelectedIndex() == 0)
 					frame.getChangeStudentDialog().setVisible(true);
+				else if (tab.getSelectedIndex() == 1)
+					frame.getChangeProfessorDialog().setVisible(true);
 				else
 					frame.getChangeSubjectDialog().setVisible(true);
 
@@ -105,6 +119,16 @@ public class ListenerController {
 				if (tab.getSelectedIndex() == 0) {
 					resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this entity?",
 							"Brisanje studenta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				}
+				
+				else if (tab.getSelectedIndex() == 1 ) {
+					resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this entity?",
+							"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				}
+				
+				else {
+					resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this entity?",
+							"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				}
 			}
 

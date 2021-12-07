@@ -30,6 +30,8 @@ public class InformationProfessor extends JPanel{
         		break;
         }
         panCenter.add(pan);
+        
+        
 		
        
 	}

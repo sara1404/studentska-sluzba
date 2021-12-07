@@ -21,5 +21,6 @@ public class MainTab extends JTabbedPane {
 		add("Profesori", new JScrollPane(professorTable));
 		add("Predmeti", new JScrollPane(subjectTable));
 	}
+	
 
 }

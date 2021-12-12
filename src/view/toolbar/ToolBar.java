@@ -9,6 +9,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import controller.ListenerController;
+import view.listeners.ToolbarListener;
 
 public class ToolBar extends JToolBar {
 	Button createEntityBtn;
@@ -18,22 +19,25 @@ public class ToolBar extends JToolBar {
 	
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
-		//ToolbarListener tl = new ToolbarListener("Create entity", KeyEvent.VK_X, "test opis", "src/menubar_imgs/about.png");
+		ToolbarListener tlNew = new ToolbarListener(KeyEvent.VK_N);
+		ToolbarListener tlChange = new ToolbarListener(KeyEvent.VK_E);
+		ToolbarListener tlDelete = new ToolbarListener(KeyEvent.VK_DELETE);
+		ToolbarListener tlSearch = new ToolbarListener(KeyEvent.VK_S);
 
-		createEntityBtn = new Button("Open entity", "src/toolbar_imgs/open_dialog.png");
+		createEntityBtn = new Button("Open entity", "src/toolbar_imgs/open_dialog.png", tlNew);
 		
 		add(createEntityBtn);
 		
 		addSeparator();
 		
-		changeEntityBtn = new Button("Change entity", "src/toolbar_imgs/pen.png");
+		changeEntityBtn = new Button("Change entity", "src/toolbar_imgs/pen.png", tlChange);
 		add(changeEntityBtn);
 
 		
 		addSeparator();
 		
 
-		removeEntityBtn = new Button("Remove entity", "src/toolbar_imgs/remove.png");
+		removeEntityBtn = new Button("Remove entity", "src/toolbar_imgs/remove.png", tlDelete);
 		add(removeEntityBtn);
 
 		add(Box.createHorizontalGlue());
@@ -43,7 +47,7 @@ public class ToolBar extends JToolBar {
 		
 		addSeparator();
 		
-		searchBtn = new Button("Search", "src/toolbar_imgs/search_icon.png");
+		searchBtn = new Button("Search", "src/toolbar_imgs/search_icon.png", tlSearch);
 		add(searchBtn);
 		
 		setFloatable(false);

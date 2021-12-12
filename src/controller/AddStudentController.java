@@ -19,21 +19,19 @@ public class AddStudentController {
 	
 	private AddStudentController() {};
 	
-	public static void addStudent(AddStudentDialog studentDialog) {
+	public  void addStudent(AddStudentDialog studentDialog) {
 		try {
 			validateFields(studentDialog.getDataInputs());
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-			ArrayList<Student> students = databaseReader.getStudents();
-			String name = studentDialog.getTextFieldAt(0).getText();
-			String currentYear = studentDialog.getComboAt(0).getSelectedItem().toString();
-			students.add(generateStudentFromDialogInputs(studentDialog));
+			Student newStudent = generateStudentFromDialogInputs(studentDialog);
+			databaseReader.addNewStudent(newStudent);
 		} catch(NullPointerException | DateTimeException e) {
 			JOptionPane.showMessageDialog(studentDialog, e.getMessage(), "Greska u poljima!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
 	
-	private static void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+	private void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
 		
 		for(int i = 0; i < fields.size(); i++) {
 			JTextField field = fields.get(i);
@@ -44,7 +42,7 @@ public class AddStudentController {
 		}
 	}
 	
-	private static boolean validDateFormat(String date) {
+	private boolean validDateFormat(String date) {
 		try {
 			LocalDate.parse(date);
 			return true;
@@ -53,7 +51,7 @@ public class AddStudentController {
 		}
 	}
 	
-	private static boolean validAddressFormat(String address) {
+	private boolean validAddressFormat(String address) {
 		try {
 			String[] data = address.split("#");
 			if(data[0] == " " || data[1] == " " || data[2] == " " || data[3] == " ") {
@@ -66,7 +64,7 @@ public class AddStudentController {
 		return true;
 	}
 	
-	private static Student generateStudentFromDialogInputs(AddStudentDialog addStudentDialog) {
+	private Student generateStudentFromDialogInputs(AddStudentDialog addStudentDialog) {
 		String name = addStudentDialog.getTextFieldAt(0).getText().trim();
 		String surname = addStudentDialog.getTextFieldAt(1).getText().trim();
 		LocalDate birthDate = LocalDate.parse(addStudentDialog.getTextFieldAt(2).getText().trim());
@@ -82,14 +80,14 @@ public class AddStudentController {
 		return student;
 	}
 	
-	private static Address stringToAddress(String text) {
+	private Address stringToAddress(String text) {
 		String[] addressData = text.split("#");
 		Address address = new Address(addressData[0], Integer.parseInt(addressData[1]), addressData[2], addressData[3]);
 		return address;
 	} 
 	
 	public static AddStudentController getInstance() {
-		if(instance != null) 
+		if(instance == null) 
 			instance = new AddStudentController();
 		return instance;
 	}

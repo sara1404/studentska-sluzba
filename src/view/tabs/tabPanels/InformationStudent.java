@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,13 +21,15 @@ import utils.WindowComponentBuilder;
 
 public class InformationStudent extends JPanel{
 	
-	ArrayList<JTextField> dataInputs;
+	ArrayList<JTextField> textFields;
+	ArrayList<JComboBox> combos;
 	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
 	ArrayList<JButton> buttonsInAddStudentForm;
 	public InformationStudent() {
 		
-		dataInputs = new ArrayList<>();
+		textFields = new ArrayList<>();
+		combos = new ArrayList<>();
 		buttonsInAddStudentForm = new ArrayList<>();
 		
 		for(int i = 0; i < namesSerbian.length; i++) {
@@ -57,7 +60,7 @@ public class InformationStudent extends JPanel{
 		panel.setBackground(Color.DARK_GRAY);
 		panel.add(WindowComponentBuilder.createLabel(text));		
 		panel.add(Box.createHorizontalStrut(50));
-		addToArrayIfTextField(comp);
+		addComponentToArray(comp);
 		panel.add(comp);
 		BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
 		panel.setLayout(box);
@@ -66,27 +69,40 @@ public class InformationStudent extends JPanel{
 	}
 	
 	
-	
-	private void addToArrayIfTextField(JComponent comp) {
+	private void addComponentToArray(JComponent comp) {
 		if(comp instanceof JTextField) {
-			dataInputs.add((JTextField)comp);
+			textFields.add((JTextField)comp);
+		}
+		else if(comp instanceof JComboBox) {
+			combos.add((JComboBox)comp);
 		}
 	}
 	
 	public void fillFormWithStudentInfo(Student student) {
-		dataInputs.get(0).setText(student.getName());
-		dataInputs.get(1).setText(student.getSurname());
-		dataInputs.get(2).setText(Utils.DateToString(student.getDateOfBirth()));
-		dataInputs.get(3).setText(student.getHomeAdress().toString());
-		dataInputs.get(4).setText(student.getPhone());
-		dataInputs.get(5).setText(student.getEmail());
-		dataInputs.get(6).setText(student.getIndex());
-		dataInputs.get(7).setText(String.valueOf(student.getStartYear()));
-		
+		textFields.get(0).setText(student.getName());
+		textFields.get(1).setText(student.getSurname());
+		textFields.get(2).setText(student.getDateOfBirth().toString());
+		textFields.get(3).setText(student.getHomeAdress().toString());
+		textFields.get(4).setText(student.getPhone());
+		textFields.get(5).setText(student.getEmail());
+		textFields.get(6).setText(student.getIndex());
+		textFields.get(7).setText(String.valueOf(student.getStartYear()));
+		combos.get(0).setSelectedIndex(student.getCurrentYear() - 1);
+		if(student.getStatus().getValue().equals("BUDZET"))
+			combos.get(1).setSelectedIndex(0);
+		else
+			combos.get(1).setSelectedIndex(1);
 	}
 
 	public ArrayList<JButton> getButtonsInAddStudentForm() {
 		return buttonsInAddStudentForm;
 	}
 	
+	public JTextField getTextFieldAt(int index) {
+		return textFields.get(index);
+	}
+	
+	public JComboBox getComboAt(int index) {
+		return combos.get(index);
+	}
 }

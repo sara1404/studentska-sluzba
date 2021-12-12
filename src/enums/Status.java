@@ -12,7 +12,7 @@ public enum Status {
 	}
 	
 	public static Status getStatusWithString(String status) {
-		if(status.equals("BUDZET")) return Status.B;
+		if(status.equals("B")) return Status.B;
 		else return Status.S;
 	}
 }

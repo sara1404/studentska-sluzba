@@ -3,6 +3,8 @@ package view.dialogs;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -17,6 +19,7 @@ import javax.swing.WindowConstants;
 
 import controller.ListenerController;
 import utils.WindowComponentBuilder;
+import view.listeners.SubjectListener;
 import view.toolbar.Button;
 
 import javax.swing.JFrame;
@@ -26,13 +29,13 @@ public class AddSubjectDialog extends JDialog {
 	ArrayList<JTextField> dataInputs;
 	ArrayList<JComboBox> comboInputs;
 	private String[] labelText = {"Sifra predmeta*", "Naziv predmeta*", "Semestar*", "Godina studija*", "Broj ESPB bodova*"};
-	ArrayList<JButton> buttonsInAddStudentForm;
+	ArrayList<JButton> buttonsInAddSubjectForm;
 	
 	public AddSubjectDialog() {
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		dataInputs = new ArrayList<JTextField>();
 		comboInputs = new ArrayList<JComboBox>();
-		buttonsInAddStudentForm = new ArrayList<>();
+		buttonsInAddSubjectForm = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Dodavanje predmeta");
 		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
@@ -59,12 +62,12 @@ public class AddSubjectDialog extends JDialog {
 			}
 		}
 		
-		buttonsInAddStudentForm.add(new JButton());
-		buttonsInAddStudentForm.add(new JButton());
-		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
+		buttonsInAddSubjectForm.add(new JButton());
+		buttonsInAddSubjectForm.add(new JButton());
+		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddSubjectForm.get(0), buttonsInAddSubjectForm.get(1)));
 		
-		ListenerController.closeWindowOnCancelListener(this, buttonsInAddStudentForm.get(1));
-		
+		ListenerController.closeWindowOnCancelListener(this, buttonsInAddSubjectForm.get(1));
+		buttonsInAddSubjectForm.get(0).addActionListener(SubjectListener.subjectAddingListener(buttonsInAddSubjectForm.get(0)));
 		
 	}
 	

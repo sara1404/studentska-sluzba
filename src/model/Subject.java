@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import javax.management.StringValueExp;
+
 import enums.Semester;
 
 public class Subject {
@@ -77,8 +79,5 @@ public class Subject {
 		return subjectKey +", "+ subjectName + ", " + semester + ", "
 				+ year + ", " + professor +", " + ESPB ;
 	}
-	
-	
-	
 	
 }

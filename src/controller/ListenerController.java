@@ -12,9 +12,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import model.DatabaseReader;
+import model.Student;
 import view.MainFrame;
 import view.statusBar.StatusBar;
-import view.tabs.MainTab;
 
 public class ListenerController {
 	public static void tabListener(JTabbedPane tab, StatusBar bar) {
@@ -92,10 +93,20 @@ public class ListenerController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (tab.getSelectedIndex() == 0)
+				if (tab.getSelectedIndex() == 0) {
+					String index = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
+					if(index == null) return;
+					Student student = DatabaseReader.getInstance().findStudent(index);
+					frame.getChangeStudentDialog().getInformationPanel().fillFormWithStudentInfo(student);
 					frame.getChangeStudentDialog().setVisible(true);
-				else if (tab.getSelectedIndex() == 1)
+
+				}
+				else if (tab.getSelectedIndex() == 1) {
+
 					frame.getChangeProfessorDialog().setVisible(true);
+					
+
+				}
 				else
 					frame.getChangeSubjectDialog().setVisible(true);
 

@@ -18,10 +18,12 @@ public class SubjectListener {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Window window = SwingUtilities.getWindowAncestor(clickedButton);
-				
+				System.out.println("Opalilo 1");
 				if(window instanceof AddSubjectDialog) {
+					System.out.println("Opalilo 2");
 					AddSubjectDialog subjectDialog = (AddSubjectDialog) window;
-					AddSubjectController.addStudent(subjectDialog);
+					AddSubjectController addSubjectController = AddSubjectController.getInstance();
+					addSubjectController.addStudent(subjectDialog);
 				}
 			}
 			

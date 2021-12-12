@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import enums.Semester;
 import enums.Status;
+import enums.Title;
 
 public class DatabaseReader {
 	
@@ -15,17 +16,17 @@ public class DatabaseReader {
 	private ArrayList<Student> students;
 	private ArrayList<Professor> professors;
 	private ArrayList<Subject> subjects;
+	
 	private DatabaseReader() {
 		try 
 		{
 			this.students = readStudentDatabase();
-			this.professors = null;
+			////this.professors = null;
 			this.subjects = readSubjectDatabase();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	public ArrayList<Student> readStudentDatabase() throws Exception{
@@ -39,7 +40,6 @@ public class DatabaseReader {
             
             students.add(new Student(studentData[0], studentData[1], LocalDate.parse(studentData[2]), stringToAddress(studentData[3]), studentData[4], studentData[5], 
             		studentData[6], Integer.parseInt(studentData[7]), Integer.parseInt(studentData[8]), Status.getStatusWithString(studentData[9]), Double.parseDouble(studentData[10])));
-            System.out.println(students.get(students.size() - 1));
         }  
         scanner.close();
 		return students;
@@ -54,7 +54,6 @@ public class DatabaseReader {
             String[] subjectData = trimData(subjectInfo.split(","));
             
             subjects.add(new Subject(subjectData[0], subjectData[1], Semester.getSemesterWithString(subjectData[2]), Integer.parseInt(subjectData[3]), findProfessor(subjectData[4]), Integer.parseInt(subjectData[5])));
-            System.out.println(subjects.get(subjects.size() - 1));
         }  
         scanner.close();
 		return subjects;
@@ -73,11 +72,31 @@ public class DatabaseReader {
 		return text;
 	}
 	
-	private Professor findProfessor(String id) {
-		for(int i = 0; i < professors.size(); i++) {
-			if(professors.get(i).getId().equals(id)) return professors.get(i);
+	public Student findStudent(String index) {
+		for(int i = 0; i < students.size(); i++) {
+			if(students.get(i).getIndex().equals(index)) {
+				return students.get(i);
+			}
 		}
 		return null;
+	}
+	
+	private Professor findProfessor(String id) {
+		return new Professor("Prezime", "Ime", LocalDate.parse("1999-12-12"), stringToAddress("as#5#asd#asd"), "asd", 
+							"asd", stringToAddress("as#5#asd#asd"), "001", Title.ASISTENT, 10);
+//		for(int i = 0; i < professors.size(); i++) {
+//			if(professors.get(i).getId().equals(id)) return professors.get(i);
+//		}
+//		return null;
+	}
+	
+	public void addNewStudent(Student newStudent) {
+		students.add(newStudent);
+		ObserverNotifier.getInstance().studentsDataChanged();
+	}
+	
+	public void addNewSubject(Subject newSubject) {
+		subjects.add(newSubject);
 	}
 	
 	public static DatabaseReader getInstance() {
@@ -98,4 +117,5 @@ public class DatabaseReader {
 	public ArrayList<Subject> getSubjects() {
 		return subjects;
 	}
+	
 }

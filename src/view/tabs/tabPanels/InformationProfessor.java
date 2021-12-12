@@ -11,8 +11,9 @@ import utils.WindowComponentBuilder;
 
 public class InformationProfessor extends JPanel{
 	
-	JPanel panCenter = new JPanel();
-	BoxLayout boxCenter = new BoxLayout(panCenter, BoxLayout.Y_AXIS);
+	//JPanel panCenter = new JPanel();
+	BoxLayout boxCenter = new BoxLayout(this, BoxLayout.Y_AXIS);
+	
 	
 	private void setPanel(String str, int field) {
 		JPanel pan = new JPanel();
@@ -24,22 +25,19 @@ public class InformationProfessor extends JPanel{
         		pan.add(WindowComponentBuilder.createTextField());
         		break;
         	case 1:
-        		String[] data = {};
+        		String[] data = {""};
         		
         		pan.add(WindowComponentBuilder.createComboBoxField(data));
         		break;
         }
-        panCenter.add(pan);
-        
-        
-		
-       
+        add(pan);
+        setLayout(boxCenter);
 	}
 
 	public InformationProfessor() {
 		
-		panCenter.setLayout(boxCenter);
-		panCenter.setBackground(Color.DARK_GRAY);
+		setLayout(boxCenter);
+		setBackground(Color.DARK_GRAY);
 	
 		setPanel("Prezime*", 0);
         setPanel("Ime*", 0);
@@ -52,7 +50,7 @@ public class InformationProfessor extends JPanel{
         setPanel("Zvanje*", 1);
         setPanel("Godine staza*", 0);
         
-        panCenter.add(Box.createVerticalStrut(25));  
-        add(panCenter,BorderLayout.CENTER);
+        //add(Box.createVerticalStrut(25));  
+        //add(this,BorderLayout.CENTER);
 	}
 }

@@ -1,16 +1,21 @@
 package view.tabs.tables;
 
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
+
+import model.ObserverNotifier;
+
+
+
 
 public class StudentTable extends JTable {
 	
-	public StudentTable(String[][] students, String[] columns) {
-		super();
-		DefaultTableModel tableModel = new DefaultTableModel(students, columns);
-		tableModel.setColumnIdentifiers(columns);
-		setModel(tableModel);
-		setAutoCreateRowSorter(true);
+	public StudentTable() {
+		this.setRowSelectionAllowed(true);
+		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setModel(new AbstractTableModelStudent());
+		ObserverNotifier on = ObserverNotifier.getInstance();
+		on.setStudentTable(this);
 	}
 
 }

@@ -52,10 +52,10 @@ public class ChangeSubjectDialog extends JDialog{
 			else if(i == 4) {
 				JTextField field = WindowComponentBuilder.createTextField();
 				field.setEditable(false);
-				Button add = new Button("add professor", "src/menubar_imgs/new.png");
+				JButton add = new JButton();
 				add.setPreferredSize(new Dimension(30, 30));
 				add.setMaximumSize(new Dimension(30, 30));
-				Button remove = new Button("remove professor", "src/menubar_imgs/remove.png");
+				JButton remove = new JButton();
 				remove.setPreferredSize(new Dimension(30, 30));
 				remove.setMaximumSize(new Dimension(30, 30));
 				
@@ -86,7 +86,7 @@ public class ChangeSubjectDialog extends JDialog{
 		return panel;
 	}
 	
-	private JPanel createSpecialPanel(String text, JComponent comp, Button add, Button remove) {
+	private JPanel createSpecialPanel(String text, JComponent comp, JButton add, JButton remove) {
 		JPanel panel = new JPanel();
 		panel.setMaximumSize(new Dimension(600, 200));
 		panel.setBackground(Color.DARK_GRAY);
@@ -101,7 +101,7 @@ public class ChangeSubjectDialog extends JDialog{
 		return panel;
 	}
 	
-	private JPanel tempPanel(JComponent comp, Button addBtn, Button removeBtn) {
+	private JPanel tempPanel(JComponent comp, JButton addBtn, JButton removeBtn) {
 		JPanel panel = new JPanel();
 		panel.setMaximumSize(new Dimension(120, 200));
 		BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);

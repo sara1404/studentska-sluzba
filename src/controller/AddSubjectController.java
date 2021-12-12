@@ -19,14 +19,12 @@ public class AddSubjectController {
 	
 	private AddSubjectController() {};
 	
-	public static void addStudent(AddSubjectDialog subjectDialog) {
+	public void addStudent(AddSubjectDialog subjectDialog) {
 		try {
 			//validateFields(subjectDialog.getDataInputs());
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-			ArrayList<Subject> subjects = databaseReader.getSubjects();
-			String name = subjectDialog.getTextFieldAt(0).getText();
-			String currentYear = subjectDialog.getComboAt(0).getSelectedItem().toString();
-			subjects.add(generateSubjectFromDialogInputs(subjectDialog));
+			Subject newSubject = generateSubjectFromDialogInputs(subjectDialog);
+			databaseReader.addNewSubject(newSubject);
 		} catch(NullPointerException | DateTimeException e) {
 			JOptionPane.showMessageDialog(subjectDialog, e.getMessage(), "Greska u poljima!", JOptionPane.WARNING_MESSAGE);
 		} catch (Exception e) {
@@ -39,20 +37,20 @@ public class AddSubjectController {
 //		
 //	}
 	
-	private static Subject generateSubjectFromDialogInputs(AddSubjectDialog subjectDialog) {
+	private Subject generateSubjectFromDialogInputs(AddSubjectDialog subjectDialog) {
 		String id = subjectDialog.getTextFieldAt(0).getText();
 		String name = subjectDialog.getTextFieldAt(1).getText();
-		String semester = subjectDialog.getComboAt(2).getSelectedItem().toString();
-		int year = Integer.parseInt(subjectDialog.getComboAt(3).getSelectedItem().toString());
+		String semester = subjectDialog.getComboAt(0).getSelectedItem().toString();
+		int year = Integer.parseInt(subjectDialog.getComboAt(1).getSelectedItem().toString());
 		Professor professor = null; //nema profesora kad se tek kreira predmet, tek pri izmeni moze se dodati prof
-		int espb = Integer.parseInt(subjectDialog.getTextFieldAt(5).getText());
+		int espb = Integer.parseInt(subjectDialog.getTextFieldAt(2).getText());
 		
 		Subject subject = new Subject(id, name, Semester.getSemesterWithString(semester), year, professor, espb);
 		return subject;
 	}
 	
 	public static AddSubjectController getInstance() {
-		if(instance != null)
+		if(instance == null)
 			instance = new AddSubjectController();
 		return instance;
 	}

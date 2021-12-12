@@ -2,7 +2,6 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import enums.Status;
 
@@ -116,6 +115,19 @@ public class Student {
 	public void setFailedExams(ArrayList<Grade> failedExams) {
 		this.failedExams = failedExams;
 	}
+	
+	public String getValueAt(int columnIndex) {
+		switch(columnIndex) {
+		case 0 : return index;
+		case 1: return name;
+		case 2: return surname;
+		case 3: return String.valueOf(currentYear);
+		case 4: return status.getValue();
+		case 5: return String.valueOf(averageGrade);
+		default: return "";
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return  surname +", "+ name +", "+ dateOfBirth + ", "+

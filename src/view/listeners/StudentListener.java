@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import controller.AddStudentController;
+import controller.ChangeStudentController;
 import view.dialogs.AddStudentDialog;
+import view.dialogs.ChangeStudentDialog;
 
 public class StudentListener {
 	
@@ -22,8 +24,10 @@ public class StudentListener {
 				
 				if(window instanceof AddStudentDialog) {
 					AddStudentDialog studentDialog = (AddStudentDialog) window;
-					AddStudentController.addStudent(studentDialog);
+					AddStudentController addStudentController = AddStudentController.getInstance();
+					addStudentController.addStudent(studentDialog);
 				}
+
 			}
 			
 		};	

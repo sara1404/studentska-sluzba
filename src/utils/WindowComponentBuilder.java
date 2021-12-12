@@ -30,13 +30,6 @@ public class WindowComponentBuilder {
 		return combo;
 	}
 	
-	public static JList<String> createMultipleSelectionList(){
-		String[] items = { "Item 1", "Item 2", "Item 3", "Item 4" };
-	    JList<String> theList = new JList<String>(items);
-	    //theList.setVisibleRowCount(0);
-	    return theList;
-		
-	}
 	
 	public static JLabel createLabel(String text) {
 		JLabel label = new JLabel();

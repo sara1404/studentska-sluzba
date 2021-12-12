@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 
+import controller.ListenerController;
 import view.tabs.tabPanels.InformationProfessor;
 import view.tabs.tabPanels.SubjectsListProfessor;
 
@@ -29,6 +30,7 @@ public class ChangeProfessorDialog extends JDialog{
 		JTabbedPane tab = new JTabbedPane();
 		InformationProfessor info = new InformationProfessor();
 		SubjectsListProfessor subj = new SubjectsListProfessor(); 
+		ListenerController.closeWindowOnCancelListener(this, info.getButtons().get(1));
 		tab.addTab("Informacije", info);
 		info.setBackground(Color.DARK_GRAY);
 		tab.addTab("Spisak predmeta", subj);

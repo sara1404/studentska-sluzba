@@ -11,7 +11,7 @@ public enum Title {
 		return value;
 	}
 	
-	public static Title getStatusWithString(String status) {
+	public static Title getTitleWithString(String status) {
 		if(status.equals("ASISTENT")) return Title.ASISTENT;
 		else if(status.equals("DOCENT")) return Title.DOCENT;
 		else if(status.equals("VANREDNI")) return Title.VANREDNI;

@@ -54,7 +54,7 @@ public class DatabaseReader {
 			String professorInfo = scanner.nextLine();
 			String[] professorData = trimData(professorInfo.split(","));
         
-			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getStatusWithString(professorData[8]), Integer.parseInt(professorData[9] )));		
+			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), Integer.parseInt(professorData[9] )));		
 		}
 		scanner.close();
         return professors;
@@ -111,8 +111,14 @@ public class DatabaseReader {
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
+	public void addNewProfessor(Professor newProfessor) {
+		professors.add(newProfessor);
+		ObserverNotifier.getInstance().professorDataChanged();
+	}
+	
 	public void addNewSubject(Subject newSubject) {
 		subjects.add(newSubject);
+		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 	
 	public static DatabaseReader getInstance() {

@@ -10,28 +10,28 @@ import enums.Title;
 public class Professor {
 	private String surname;
 	private String name;
-	private LocalDate dateOfBirth;
+	private LocalDate birthDate;
 	private Address homeAdress;
 	private String phone;
 	private String email;
 	private Address officeAdress;
 	private String id;
 	private Title title;
-	private int yearsOfService;
+	private int serviceYears;
 	private ArrayList<Subject> subjectList;
-	public Professor(String surname, String name, LocalDate dateOfBirth, Address homeAdress, String phone, String email,
-			Address officeAdress, String id, Title title, int yearsOfService) {
+	public Professor(String surname, String name, LocalDate birthDate, Address homeAdress, String phone, String email,
+			Address officeAdress, String id, Title title, int serviceYears) {
 		super();
 		this.surname = surname;
 		this.name = name;
-		this.dateOfBirth = dateOfBirth;
+		this.birthDate = birthDate;
 		this.homeAdress = homeAdress;
 		this.phone = phone;
 		this.email = email;
 		this.officeAdress = officeAdress;
 		this.id = id;
 		this.title = title;
-		this.yearsOfService = yearsOfService;
+		this.serviceYears = serviceYears;
 		subjectList = new ArrayList<>();
 	}
 	public String getSurname() {
@@ -47,10 +47,10 @@ public class Professor {
 		this.name = name;
 	}
 	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
+		return birthDate;
 	}
 	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		this.birthDate = dateOfBirth;
 	}
 	public Address getHomeAdress() {
 		return homeAdress;
@@ -89,10 +89,10 @@ public class Professor {
 		this.title = title;
 	}
 	public int getYearsOfService() {
-		return yearsOfService;
+		return serviceYears;
 	}
 	public void setYearsOfService(int yearsOfService) {
-		this.yearsOfService = yearsOfService;
+		this.serviceYears = yearsOfService;
 	}
 	public ArrayList<Subject> getSubjectList() {
 		return subjectList;

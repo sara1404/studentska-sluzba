@@ -2,6 +2,7 @@ package model;
 
 import view.tabs.tables.AbstractTableModelProfessor;
 import view.tabs.tables.AbstractTableModelStudent;
+import view.tabs.tables.AbstractTableModelSubject;
 import view.tabs.tables.ProfessorTable;
 import view.tabs.tables.StudentTable;
 import view.tabs.tables.SubjectTable;
@@ -45,7 +46,7 @@ public class ObserverNotifier {
 	}
 	
 	public void subjectDataChanged() {
-		AbstractTableModelStudent model = (AbstractTableModelStudent) subjectTable.getModel();
+		AbstractTableModelSubject model = (AbstractTableModelSubject) subjectTable.getModel();
 		model.fireTableDataChanged();
 	}
 	

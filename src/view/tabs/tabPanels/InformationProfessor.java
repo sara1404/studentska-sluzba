@@ -30,7 +30,7 @@ public class InformationProfessor extends JPanel{
         		pan.add(WindowComponentBuilder.createTextField());
         		break;
         	case 1:
-        		String[] data = {""};
+        		String[] data = {"ASISTENT", "DOCENT", "REDOVNI", "VANREDNI"};
         		pan.add(WindowComponentBuilder.createComboBoxField(data));
         		break;
         }

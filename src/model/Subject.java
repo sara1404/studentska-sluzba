@@ -74,6 +74,18 @@ public class Subject {
 	public void setStudentsFailed(ArrayList<Student> studentsFailed) {
 		this.studentsFailed = studentsFailed;
 	}
+	
+	public String getValueAt(int index) {
+		switch(index) {
+		case 0: return subjectKey;
+		case 1: return subjectName;
+		case 2: return String.valueOf(year);
+		case 3: return semester.getValue();
+		case 4: return String.valueOf(ESPB);
+		case 5: return "";
+		default: return "";
+		}
+	}
 	@Override
 	public String toString() {
 		return subjectKey +", "+ subjectName + ", " + semester + ", "

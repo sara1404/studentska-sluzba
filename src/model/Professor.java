@@ -101,5 +101,15 @@ public class Professor {
 		this.subjectList = subjectList;
 	}
 	
+	public String getValueAt(int columnIndex) {
+		switch(columnIndex) {
+		case 0: return name;
+		case 1: return surname;
+		case 2: return title.getValue();
+		case 3: return email;
+		default: return "";
+		}
+	}
+	
 	
 }

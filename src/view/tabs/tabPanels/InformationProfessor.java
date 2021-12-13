@@ -16,7 +16,6 @@ import utils.WindowComponentBuilder;
 
 public class InformationProfessor extends JPanel{
 	
-	//JPanel panCenter = new JPanel();
 	BoxLayout boxCenter = new BoxLayout(this, BoxLayout.Y_AXIS);
 	ArrayList<JButton> buttons;
 
@@ -58,8 +57,6 @@ public class InformationProfessor extends JPanel{
         setPanel("Zvanje*", 1);
         setPanel("Godine staza*", 0);
         
-        //add(Box.createVerticalStrut(25));  
-        //add(this,BorderLayout.CENTER);
         add(Box.createVerticalStrut(25));  
         
         JPanel panBottom=new JPanel();

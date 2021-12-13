@@ -5,13 +5,14 @@ import javax.swing.ListSelectionModel;
 
 import model.ObserverNotifier;
 
-public class ProfessorTable extends JTable {
-	public ProfessorTable() {
+public class SubjectTable extends JTable {
+	
+	public SubjectTable() {
 		this.setRowSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelProfessor());
+		this.setModel(new AbstractTableModelSubject());
 		ObserverNotifier on = ObserverNotifier.getInstance();
-		on.setProfessorTable(this);
+		on.setSubjectTable(this);
+		
 	}
-
 }

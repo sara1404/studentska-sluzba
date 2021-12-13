@@ -21,7 +21,7 @@ public class DatabaseReader {
 		try 
 		{
 			this.students = readStudentDatabase();
-			////this.professors = null;
+			this.professors = readProfessorDatabase();
 			this.subjects = readSubjectDatabase();
 			
 		} catch(Exception e) {
@@ -43,6 +43,22 @@ public class DatabaseReader {
         }  
         scanner.close();
 		return students;
+	}
+	
+	public ArrayList<Professor> readProfessorDatabase() throws Exception{
+		File text = new File("src/database_resource/professors.txt");
+		ArrayList<Professor> professors = new ArrayList<>();
+		Scanner scanner;
+		scanner = new Scanner(text);
+		while(scanner.hasNextLine()){
+			String professorInfo = scanner.nextLine();
+			String[] professorData = trimData(professorInfo.split(","));
+        
+			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getStatusWithString(professorData[8]), Integer.parseInt(professorData[9] )));		
+		}
+		scanner.close();
+        return professors;
+		
 	}
 	    
 	public ArrayList<Subject> readSubjectDatabase() throws Exception{

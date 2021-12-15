@@ -15,6 +15,7 @@ public class AbstractTableModelProfessor extends AbstractTableModel {
 		columnNames.add("Prezime");
 		columnNames.add("Zvanje");
 		columnNames.add("E-mail adresa");
+		columnNames.add("hidden");
 		
 	}
 	@Override

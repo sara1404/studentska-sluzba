@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import view.tabs.tables.AbstractTableModelProfessor;
 import view.tabs.tables.AbstractTableModelStudent;
 import view.tabs.tables.ProfessorTable;
 import view.tabs.tables.StudentTable;
@@ -23,6 +24,7 @@ public class MainTab extends JTabbedPane {
 		add("Profesori", new JScrollPane(professorTable));
 		subjectTable = new SubjectTable();
 		add("Predmeti", new JScrollPane(subjectTable));
+		
 	}
 	
 	public String getIndexOfSelectedStudent() {
@@ -35,8 +37,24 @@ public class MainTab extends JTabbedPane {
 		String index = (String) model.getValueAt(row, 0);
 		return index;
 	}
+	
+	public String getIdOfSelectedProfessor() {
+		AbstractTableModelProfessor model = (AbstractTableModelProfessor) professorTable.getModel();
+		int row = professorTable.getSelectedRow();
+		if(row == -1) {
+			JOptionPane.showMessageDialog(null, "Mora se selektovati profesor iz tabele pre izmene!");
+			return null;
+		}
+		String id = (String) model.getValueAt(row, 4);;
+		return id;
+		
+	}
 
 	public int getSelectedRowInStudentTable() {
 		return studentTable.getSelectedRow();
+	}
+	
+	public int getSelectedRowInProfessorTable() {
+		return professorTable.getSelectedRow();
 	}
 }

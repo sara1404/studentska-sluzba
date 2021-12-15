@@ -12,7 +12,6 @@ import enums.Title;
 public class DatabaseReader {
 	
 	private static DatabaseReader instance = null;
-	
 	private ArrayList<Student> students;
 	private ArrayList<Professor> professors;
 	private ArrayList<Subject> subjects;
@@ -97,13 +96,12 @@ public class DatabaseReader {
 		return null;
 	}
 	
-	private Professor findProfessor(String id) {
-		return new Professor("Prezime", "Ime", LocalDate.parse("1999-12-12"), stringToAddress("as#5#asd#asd"), "asd", 
-							"asd", stringToAddress("as#5#asd#asd"), "001", Title.ASISTENT, 10);
-//		for(int i = 0; i < professors.size(); i++) {
-//			if(professors.get(i).getId().equals(id)) return professors.get(i);
-//		}
-//		return null;
+	public Professor findProfessor(String id) {
+		for(int i = 0; i < professors.size(); i++) {
+			if(professors.get(i).getId().equals(id)) 
+				return professors.get(i);
+		}
+		return null;
 	}
 	
 	public void addNewStudent(Student newStudent) {

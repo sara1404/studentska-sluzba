@@ -12,6 +12,8 @@ public class ProfessorTable extends JTable {
 		this.setModel(new AbstractTableModelProfessor());
 		ObserverNotifier on = ObserverNotifier.getInstance();
 		on.setProfessorTable(this);
+		this.getColumnModel().getColumn(4).setMinWidth(0);
+		this.getColumnModel().getColumn(4).setMaxWidth(0);
 	}
 
 }

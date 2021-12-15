@@ -107,7 +107,7 @@ public class AddProfessorDialog extends JDialog {
 		panBottom.add(btnCancel);
 		Utils.setCursor(btnCancel);
 		
-		ListenerController.closeWindowOnCancelListener(this, btnOk);
+		//ListenerController.closeWindowOnCancelListener(this, btnOk);
 		btnOk.addActionListener(ProfessorListener.addingProfessorListener(btnOk));
 		ListenerController.closeWindowOnCancelListener(this, btnCancel);
 		

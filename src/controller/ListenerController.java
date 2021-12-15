@@ -13,6 +13,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.DatabaseReader;
+import model.Professor;
 import model.Student;
 import view.MainFrame;
 import view.statusBar.StatusBar;
@@ -102,7 +103,10 @@ public class ListenerController {
 
 				}
 				else if (tab.getSelectedIndex() == 1) {
-
+					String id = MainFrame.getInstance().getTab().getIdOfSelectedProfessor();
+					if(id == null) return;
+					Professor professor = DatabaseReader.getInstance().findProfessor(id);
+					frame.getChangeProfessorDialog().getInformationPanel().fillingInfo(professor);
 					frame.getChangeProfessorDialog().setVisible(true);
 					
 

@@ -2,8 +2,6 @@ package main;
 
 import java.util.ArrayList;
 
-import model.DatabaseReader;
-import model.DatabaseWriter;
 import model.Student;
 import view.MainFrame;
 

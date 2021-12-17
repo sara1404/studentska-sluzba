@@ -97,13 +97,20 @@ public class DatabaseReader {
 		return null;
 	}
 	
-	private Professor findProfessor(String id) {
-		return new Professor("Prezime", "Ime", LocalDate.parse("1999-12-12"), stringToAddress("as#5#asd#asd"), "asd", 
-							"asd", stringToAddress("as#5#asd#asd"), "001", Title.ASISTENT, 10);
-//		for(int i = 0; i < professors.size(); i++) {
-//			if(professors.get(i).getId().equals(id)) return professors.get(i);
-//		}
-//		return null;
+	private Professor findProfessor(String id) {	
+		for(int i = 0; i < professors.size(); i++) {
+			if(professors.get(i).getId().equals(id)) return professors.get(i);
+		}
+		return null;
+	}
+	
+	public Subject findSubject(String id) {
+		for(int i = 0; i < subjects.size(); i++) {
+			if(subjects.get(i).getSubjectKey().equals(id)) {
+				return subjects.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public void addNewStudent(Student newStudent) {
@@ -119,6 +126,11 @@ public class DatabaseReader {
 	public void addNewSubject(Subject newSubject) {
 		subjects.add(newSubject);
 		ObserverNotifier.getInstance().subjectDataChanged();
+	}
+	
+	public void deleteStudent(String index) {
+		students.remove(findStudent(index));
+		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
 	public static DatabaseReader getInstance() {

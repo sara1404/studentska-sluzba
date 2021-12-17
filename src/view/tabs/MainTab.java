@@ -5,6 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import view.tabs.tables.AbstractTableModelStudent;
+import view.tabs.tables.AbstractTableModelSubject;
 import view.tabs.tables.ProfessorTable;
 import view.tabs.tables.StudentTable;
 import view.tabs.tables.SubjectTable;
@@ -35,8 +36,23 @@ public class MainTab extends JTabbedPane {
 		String index = (String) model.getValueAt(row, 0);
 		return index;
 	}
+	
+	public String getIdOfSelectedSubject() {
+		AbstractTableModelSubject model = (AbstractTableModelSubject) subjectTable.getModel();
+		int row = subjectTable.getSelectedRow();
+		if(row == -1) {
+			JOptionPane.showMessageDialog(null, "Mora se selektovati predmet iz tabele pre izmene!");
+			return null;
+		}
+		String index = (String) model.getValueAt(row, 0);
+		return index;
+	}
 
 	public int getSelectedRowInStudentTable() {
 		return studentTable.getSelectedRow();
+	}
+	
+	public int getSelectedRowInSubjectTable() {
+		return subjectTable.getSelectedRow();
 	}
 }

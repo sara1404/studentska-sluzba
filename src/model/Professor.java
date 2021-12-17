@@ -46,11 +46,11 @@ public class Professor {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDate getDateOfBirth() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
-	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.birthDate = dateOfBirth;
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 	public Address getHomeAdress() {
 		return homeAdress;
@@ -88,11 +88,11 @@ public class Professor {
 	public void setTitle(Title title) {
 		this.title = title;
 	}
-	public int getYearsOfService() {
+	public int getServiceYears() {
 		return serviceYears;
 	}
-	public void setYearsOfService(int yearsOfService) {
-		this.serviceYears = yearsOfService;
+	public void setServiceYears(int serviceYears) {
+		this.serviceYears = serviceYears;
 	}
 	public ArrayList<Subject> getSubjectList() {
 		return subjectList;
@@ -107,6 +107,7 @@ public class Professor {
 		case 1: return surname;
 		case 2: return title.getValue();
 		case 3: return email;
+		case 4: return id;
 		default: return "";
 		}
 	}

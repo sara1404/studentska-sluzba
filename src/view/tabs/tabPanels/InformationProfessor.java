@@ -8,17 +8,22 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import controller.ListenerController;
+import model.Professor;
 import utils.Utils;
 import utils.WindowComponentBuilder;
+import view.listeners.ChangeProfessorListener;
 
 public class InformationProfessor extends JPanel{
 	
 	BoxLayout boxCenter = new BoxLayout(this, BoxLayout.Y_AXIS);
 	ArrayList<JButton> buttons;
-
+	ArrayList<JTextField> textFields;
+	JComboBox combo;
 	
 	private void setPanel(String str, int field) {
 		JPanel pan = new JPanel();
@@ -27,11 +32,15 @@ public class InformationProfessor extends JPanel{
         
         switch (field) {
         	case 0:
-        		pan.add(WindowComponentBuilder.createTextField());
+        		JComponent comp0 = WindowComponentBuilder.createTextField();
+        		pan.add(comp0);
+        		textFields.add((JTextField)comp0);
         		break;
         	case 1:
         		String[] data = {"ASISTENT", "DOCENT", "REDOVNI", "VANREDNI"};
-        		pan.add(WindowComponentBuilder.createComboBoxField(data));
+        		JComponent comp1 = WindowComponentBuilder.createComboBoxField(data);
+        		pan.add(comp1);
+        		combo =(JComboBox)comp1;
         		break;
         }
         add(pan);
@@ -46,6 +55,7 @@ public class InformationProfessor extends JPanel{
 		setLayout(boxCenter);
 		setBackground(Color.DARK_GRAY);
 	
+		textFields = new ArrayList<>();
 		setPanel("Prezime*", 0);
         setPanel("Ime*", 0);
         setPanel("Datum rodjenja*", 0);
@@ -78,6 +88,10 @@ public class InformationProfessor extends JPanel{
 		Utils.setCursor(btnCancel);
 		buttons.add(btnOk);
 		buttons.add(btnCancel);
+		
+		btnOk.addActionListener(ChangeProfessorListener.changingProfessorListener(btnOk));
+		//ListenerController.closeWindowOnCancelListener(this, btnCancel);
+		
 		panBottom.add(Box.createHorizontalStrut(10));
 		panBottom.add(Box.createVerticalStrut(50));
 		
@@ -85,7 +99,46 @@ public class InformationProfessor extends JPanel{
 		add(panBottom,BorderLayout.SOUTH);
 	}
 	
+	public void fillingInfo(Professor professor) {
+		textFields.get(0).setText(professor.getSurname());
+		textFields.get(1).setText(professor.getName());
+		textFields.get(2).setText(professor.getBirthDate().toString());
+		textFields.get(3).setText(professor.getHomeAdress().toString());
+		textFields.get(4).setText(professor.getPhone());
+		textFields.get(5).setText(professor.getEmail());
+		textFields.get(6).setText(professor.getOfficeAdress().toString());
+		textFields.get(7).setText(professor.getId());
+		switch(professor.getTitle().getValue()) {
+		case "ASISTENT":
+			combo.setSelectedIndex(0);
+			break;
+		case "DOCENT":
+			combo.setSelectedIndex(1);
+			break;
+		case "VANREDNI":
+			combo.setSelectedIndex(2);
+			break;
+		default:
+			combo.setSelectedIndex(3);
+			break;
+			
+		}
+		
+		textFields.get(8).setText(String.valueOf(professor.getServiceYears()));
+		
+	}
+	
 	public ArrayList<JButton> getButtons() {
 		return buttons;
 	}
+	
+	public JTextField getTextField(int index) {
+		return textFields.get(index);
+	}
+
+
+	public JComboBox getCombo() {
+		return combo;
+	}
+	
 }

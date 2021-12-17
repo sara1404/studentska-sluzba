@@ -3,7 +3,9 @@ package controller;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import enums.Title;
 import model.Address;
@@ -23,14 +25,14 @@ public class AddProfessorController {
 		return instance;
 	}
 	
-	public void addProfessor(AddProfessorDialog pd) {
+	public void addProfessor(AddProfessorDialog apd) {
 		try {
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-			Professor newProfessor = generateProfessor(pd);
+			Professor newProfessor = generateProfessor(apd);
 			databaseReader.addNewProfessor(newProfessor);
 			
 		} catch(NullPointerException | DateTimeException e) {
-			JOptionPane.showMessageDialog(pd, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(apd, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
@@ -54,4 +56,6 @@ public class AddProfessorController {
 		Address address = new Address(addressData[0], Integer.parseInt(addressData[1]), addressData[2], addressData[3]);
 		return address;
 	} 
+	
+	
 }

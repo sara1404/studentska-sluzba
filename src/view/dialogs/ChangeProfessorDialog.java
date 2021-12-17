@@ -4,14 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 import controller.ListenerController;
 import view.tabs.tabPanels.InformationProfessor;
+import view.tabs.tabPanels.InformationStudent;
 import view.tabs.tabPanels.SubjectsListProfessor;
 
 public class ChangeProfessorDialog extends JDialog{
+	
+	private InformationProfessor info;
 	
 	public ChangeProfessorDialog() {
 		
@@ -28,7 +33,7 @@ public class ChangeProfessorDialog extends JDialog{
 		setLocationRelativeTo(null);
 		
 		JTabbedPane tab = new JTabbedPane();
-		InformationProfessor info = new InformationProfessor();
+		info = new InformationProfessor();
 		SubjectsListProfessor subj = new SubjectsListProfessor(); 
 		ListenerController.closeWindowOnCancelListener(this, info.getButtons().get(1));
 		tab.addTab("Informacije", info);
@@ -38,5 +43,16 @@ public class ChangeProfessorDialog extends JDialog{
 		add(tab);
 		
 	}
-
+	
+	public JComboBox getCombo() {
+		return info.getCombo();
+	}
+	
+	public JTextField getTextField(int index) {
+		return info.getTextField(index);
+	}
+	
+	public InformationProfessor getInformationPanel() {
+		return info;
+	}
 }

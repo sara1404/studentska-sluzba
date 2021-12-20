@@ -3,9 +3,11 @@ package view.tabs.tabPanels;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import utils.Utils;
 import utils.WindowComponentBuilder;
+import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class SubjectsNotPassedStudent extends JPanel{
 	public SubjectsNotPassedStudent() {

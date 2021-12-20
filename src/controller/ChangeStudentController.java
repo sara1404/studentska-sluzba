@@ -16,7 +16,7 @@ public class ChangeStudentController {
 	
 	private ChangeStudentController() {};
 	
-	public  void changeStudent(ChangeStudentDialog changeStudentDialog) {
+	public void changeStudent(ChangeStudentDialog changeStudentDialog) {
 		try {
 			swapStudent(changeStudentDialog);
 			changeStudentDialog.dispose();

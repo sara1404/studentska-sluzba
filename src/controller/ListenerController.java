@@ -15,6 +15,7 @@ import javax.swing.event.ChangeListener;
 import model.DatabaseReader;
 import model.Professor;
 import model.Student;
+import model.Subject;
 import view.MainFrame;
 import view.statusBar.StatusBar;
 import view.menuBar.MenuBar;
@@ -117,6 +118,7 @@ public class ListenerController {
 
 				}
 				else if (tab.getSelectedIndex() == 1) {
+
 					String id = MainFrame.getInstance().getTab().getIdOfSelectedProfessor();
 					if(id == null) return;
 					Professor professor = DatabaseReader.getInstance().findProfessor(id);
@@ -125,8 +127,14 @@ public class ListenerController {
 					
 
 				}
-				else
+				else {
+					String index = MainFrame.getInstance().getTab().getIdOfSelectedSubject();
+					if(index == null) return;
+					Subject subject = DatabaseReader.getInstance().findSubject(index);
+					frame.getChangeSubjectDialog().fillFormWithSubjectInfo(subject);
 					frame.getChangeSubjectDialog().setVisible(true);
+				}
+					
 
 			}
 
@@ -144,10 +152,21 @@ public class ListenerController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int resp;
+				
+				if(MainFrame.getInstance().getTab().getSelectedRowInStudentTable() == -1) {
+					JOptionPane.showMessageDialog(null, "Mora se selektovati student iz tabele pre brisanja!");
+					return;
+				}
+					
+			
 				// TODO Auto-generated method stub
 				if (tab.getSelectedIndex() == 0) {
 					resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this entity?",
 							"Brisanje studenta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if(resp == 0) {
+						String index = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
+						DeleteStudentController.getInstance().deleteStudent(index);
+					}
 				}
 				
 				else if (tab.getSelectedIndex() == 1 ) {

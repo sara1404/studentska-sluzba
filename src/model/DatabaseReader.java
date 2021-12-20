@@ -53,7 +53,7 @@ public class DatabaseReader {
 			String professorInfo = scanner.nextLine();
 			String[] professorData = trimData(professorInfo.split(","));
         
-			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), Integer.parseInt(professorData[9] )));		
+			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), Integer.parseInt(professorData[9] )));
 		}
 		scanner.close();
         return professors;
@@ -95,7 +95,17 @@ public class DatabaseReader {
 		}
 		return null;
 	}
+
 	
+	public Subject findSubject(String id) {
+		for(int i = 0; i < subjects.size(); i++) {
+			if (subjects.get(i).getSubjectKey().equals(id)) {
+				return subjects.get(i);
+			}
+		}
+		return null;
+	}
+
 	public Professor findProfessor(String id) {
 		for(int i = 0; i < professors.size(); i++) {
 			if(professors.get(i).getId().equals(id)) 
@@ -117,6 +127,11 @@ public class DatabaseReader {
 	public void addNewSubject(Subject newSubject) {
 		subjects.add(newSubject);
 		ObserverNotifier.getInstance().subjectDataChanged();
+	}
+	
+	public void deleteStudent(String index) {
+		students.remove(findStudent(index));
+		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
 	public static DatabaseReader getInstance() {

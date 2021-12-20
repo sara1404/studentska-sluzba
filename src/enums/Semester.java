@@ -12,7 +12,7 @@ public enum Semester {
 	}
 	
 	public static Semester getSemesterWithString(String semester) {
-		if(semester.equals("summer")) return Semester.LETNJI;
+		if(semester.equals("LETNJI")) return Semester.LETNJI;
 		else return Semester.ZIMSKI;
 	}
 }

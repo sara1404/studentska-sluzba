@@ -82,7 +82,7 @@ public class Subject {
 		case 2: return String.valueOf(year);
 		case 3: return semester.getValue();
 		case 4: return String.valueOf(ESPB);
-		case 5: return "";
+		case 5: return professor == null? "" : professor.getName() + " " + professor.getSurname();
 		default: return "";
 		}
 	}

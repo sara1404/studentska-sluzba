@@ -53,7 +53,7 @@ public class DatabaseReader {
 			String professorInfo = scanner.nextLine();
 			String[] professorData = trimData(professorInfo.split(","));
         
-			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), Integer.parseInt(professorData[9] )));		
+			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), Integer.parseInt(professorData[9] )));
 		}
 		scanner.close();
         return professors;
@@ -95,26 +95,21 @@ public class DatabaseReader {
 		}
 		return null;
 	}
-	
-<<<<<<< HEAD
-	private Professor findProfessor(String id) {	
-		for(int i = 0; i < professors.size(); i++) {
-			if(professors.get(i).getId().equals(id)) return professors.get(i);
-		}
-		return null;
-	}
+
 	
 	public Subject findSubject(String id) {
 		for(int i = 0; i < subjects.size(); i++) {
-			if(subjects.get(i).getSubjectKey().equals(id)) {
+			if (subjects.get(i).getSubjectKey().equals(id)) {
 				return subjects.get(i);
 			}
-=======
+		}
+		return null;
+	}
+
 	public Professor findProfessor(String id) {
 		for(int i = 0; i < professors.size(); i++) {
 			if(professors.get(i).getId().equals(id)) 
 				return professors.get(i);
->>>>>>> 56f9a0458cee9d246fbe416eb4ef4928b0f88c48
 		}
 		return null;
 	}

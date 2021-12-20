@@ -1,5 +1,4 @@
 Rapaic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 001, PROFESSOR, 10
-<<<<<<< HEAD
 bajic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 002, PROFESSOR, 10
 Kljajic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 003, PROFESSOR, 10
 Pajic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 004, PROFESSOR, 10
@@ -15,6 +14,5 @@ Rapaic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@
 bajic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 014, PROFESSOR, 10
 Kljajic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 015, PROFESSOR, 10
 Pajic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 016, PROFESSOR, 10
-=======
 Rapaic, Milan, 1982-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, rapaja@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 005, PROFESSOR, 10
->>>>>>> 56f9a0458cee9d246fbe416eb4ef4928b0f88c48
+

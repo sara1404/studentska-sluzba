@@ -39,17 +39,18 @@ public class MainTab extends JTabbedPane {
 		return index;
 	}
 	
-<<<<<<< HEAD
+
 	public String getIdOfSelectedSubject() {
 		AbstractTableModelSubject model = (AbstractTableModelSubject) subjectTable.getModel();
 		int row = subjectTable.getSelectedRow();
-		if(row == -1) {
+		if (row == -1) {
 			JOptionPane.showMessageDialog(null, "Mora se selektovati predmet iz tabele pre izmene!");
 			return null;
 		}
 		String index = (String) model.getValueAt(row, 0);
 		return index;
-=======
+	}
+
 	public String getIdOfSelectedProfessor() {
 		AbstractTableModelProfessor model = (AbstractTableModelProfessor) professorTable.getModel();
 		int row = professorTable.getSelectedRow();
@@ -59,20 +60,18 @@ public class MainTab extends JTabbedPane {
 		}
 		String id = (String) model.getValueAt(row, 4);;
 		return id;
-		
->>>>>>> 56f9a0458cee9d246fbe416eb4ef4928b0f88c48
+
 	}
 
 	public int getSelectedRowInStudentTable() {
 		return studentTable.getSelectedRow();
 	}
-	
-<<<<<<< HEAD
+
 	public int getSelectedRowInSubjectTable() {
 		return subjectTable.getSelectedRow();
-=======
+	}
+
 	public int getSelectedRowInProfessorTable() {
 		return professorTable.getSelectedRow();
->>>>>>> 56f9a0458cee9d246fbe416eb4ef4928b0f88c48
 	}
 }

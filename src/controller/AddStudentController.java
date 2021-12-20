@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class AddStudentController {
 			JTextField field = fields.get(i);
 			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
 			if(i == 2) 
-				if(!validDateFormat(field.getText().trim())) throw new DateTimeException("Datum mora biti ispravno formatiran");  
+				if(!validDateFormat(field.getText().trim())) throw new DateTimeException("Datum mora biti ispravno formatiran");
 			if(i == 3 && !validAddressFormat(field.getText())) throw new NullPointerException("Adresa nije pravilno uneta!"); 
 		}
 	}

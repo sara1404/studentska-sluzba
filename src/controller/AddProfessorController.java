@@ -1,7 +1,9 @@
 package controller;
 
+import java.awt.Color;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -27,6 +29,7 @@ public class AddProfessorController {
 	
 	public void addProfessor(AddProfessorDialog apd) {
 		try {
+			validateFields(apd.getDataInputs());
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			Professor newProfessor = generateProfessor(apd);
 			databaseReader.addNewProfessor(newProfessor);
@@ -34,6 +37,55 @@ public class AddProfessorController {
 		} catch(NullPointerException | DateTimeException e) {
 			JOptionPane.showMessageDialog(apd, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
 		}
+	}
+	
+private void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+	
+	for(int j = 0; j < fields.size(); j++) {
+		fields.get(j).setForeground(Color.BLACK);
+	}
+		for(int i = 0; i < fields.size(); i++) {
+			JTextField field = fields.get(i);
+			if(field.getText().trim().equals("")) {
+				fields.get(i).setForeground(Color.RED);
+				throw new NullPointerException("Polja moraju biti popunjena!");
+			}
+			if(i == 2) 
+				if(!validDateFormat(field.getText().trim())) {
+					fields.get(i).setForeground(Color.RED);
+					throw new DateTimeException("Datum mora biti ispravno formatiran!");
+				}
+			
+			if((i == 3 || i == 6) && !validAddressFormat(field.getText())) {
+				fields.get(i).setForeground(Color.RED);
+				throw new NullPointerException("Adresa nije pravilno uneta!"); 
+			}
+			
+		}
+		
+		
+	}
+	
+	private boolean validDateFormat(String date) {
+		try {
+			LocalDate.parse(date);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+	
+	private boolean validAddressFormat(String address) {
+		try {
+			String[] data = address.split("#");
+			if(data[0] == " " || data[1] == " " || data[2] == " " || data[3] == " ") {
+				return false;
+			}
+			Integer.parseInt(data[1]);
+		}catch(Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	private Professor generateProfessor(AddProfessorDialog apd) {

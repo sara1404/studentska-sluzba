@@ -1,7 +1,12 @@
 package controller;
 
+import java.awt.Color;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import enums.Title;
 import model.Address;
@@ -23,16 +28,64 @@ public class ChangeProfessorController {
 	
 	public void changeProfessor(ChangeProfessorDialog cpd) {
 		try {
+			validateFields(cpd.getDataInputs());
 			Professor newProfessor = generateProfessor(cpd);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.getProfessors().set(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable(), newProfessor);
 			ObserverNotifier.getInstance().professorDataChanged();
 			cpd.dispose();
 		} catch(NullPointerException | DateTimeException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(cpd, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
+	private void validateFields(ArrayList<JTextField> fields) {
+		for(int j = 0; j < fields.size(); j++) {
+			fields.get(j).setForeground(Color.BLACK);
+		}
+			for(int i = 0; i < fields.size(); i++) {
+				JTextField field = fields.get(i);
+				if(field.getText().trim().equals("")) {
+					fields.get(i).setForeground(Color.RED);
+					throw new NullPointerException("Polja moraju biti popunjena!");
+				}
+				if(i == 2) 
+					if(!validDateFormat(field.getText().trim())) {
+						fields.get(i).setForeground(Color.RED);
+						throw new DateTimeException("Datum mora biti ispravno formatiran!");
+					}
+				
+				if((i == 3 || i == 6) && !validAddressFormat(field.getText())) {
+					fields.get(i).setForeground(Color.RED);
+					throw new NullPointerException("Adresa nije pravilno uneta!"); 
+				}
+				
+			}
+		
+	}
+	
+	private boolean validDateFormat(String date) {
+		try {
+			LocalDate.parse(date);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+	
+	private boolean validAddressFormat(String address) {
+		try {
+			String[] data = address.split("#");
+			if(data[0] == " " || data[1] == " " || data[2] == " " || data[3] == " ") {
+				return false;
+			}
+			Integer.parseInt(data[1]);
+		}catch(Exception e) {
+			return false;
+		}
+		return true;
+	}
+
 	private Professor generateProfessor(ChangeProfessorDialog cpd) {
 		String surname = cpd.getTextField(0).getText().trim();
 		String name = cpd.getTextField(1).getText().trim();

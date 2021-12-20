@@ -128,8 +128,13 @@ public class InformationProfessor extends JPanel{
 		
 	}
 	
+	
 	public ArrayList<JButton> getButtons() {
 		return buttons;
+	}
+	
+	public ArrayList<JTextField> getDataInputs() {
+		return textFields;
 	}
 	
 	public JTextField getTextField(int index) {

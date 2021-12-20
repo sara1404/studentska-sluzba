@@ -17,6 +17,7 @@ import model.Professor;
 import model.Student;
 import view.MainFrame;
 import view.statusBar.StatusBar;
+import view.menuBar.MenuBar;
 
 public class ListenerController {
 	public static void tabListener(JTabbedPane tab, StatusBar bar) {
@@ -85,6 +86,19 @@ public class ListenerController {
 			((JButton) comp).addActionListener(listener);
 		else if (comp instanceof JMenuItem)
 			((JMenuItem) comp).addActionListener(listener);
+	}
+	
+	public static void switchTabsfromMenu(MainFrame frame, JTabbedPane tab, JMenuItem itm, int index) {
+		
+		ActionListener listener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tab.setSelectedIndex(index);
+				
+			}
+		};
+		itm.addActionListener(listener);
 	}
 
 	public static void setDisplayChangeDialogAction(MainFrame frame, JTabbedPane tab, JComponent comp) {

@@ -37,7 +37,6 @@ public class DatabaseReader {
         while(scanner.hasNextLine()){
             String studentInfo = scanner.nextLine();
             String[] studentData = trimData(studentInfo.split(","));
-            System.out.printf(studentData[0]);
             students.add(new Student(studentData[0], studentData[1], LocalDate.parse(studentData[2]), stringToAddress(studentData[3]), studentData[4], studentData[5], 
             		studentData[6], Integer.parseInt(studentData[7]), Integer.parseInt(studentData[8]), Status.getStatusWithString(studentData[9]), Double.parseDouble(studentData[10])));
         }  
@@ -135,6 +134,16 @@ public class DatabaseReader {
 	public void deleteStudent(String index) {
 		students.remove(findStudent(index));
 		ObserverNotifier.getInstance().studentsDataChanged();
+	}
+	
+	public void deleteProfessor(String index) {
+		professors.remove(findProfessor(index));
+		ObserverNotifier.getInstance().professorDataChanged();
+	}
+	
+	public void deleteSubject(String index) {
+		subjects.remove(findSubject(index));
+		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 	
 	public static DatabaseReader getInstance() {

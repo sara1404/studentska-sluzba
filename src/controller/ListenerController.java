@@ -152,15 +152,14 @@ public class ListenerController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int resp;
-				
-				if(MainFrame.getInstance().getTab().getSelectedRowInStudentTable() == -1) {
-					JOptionPane.showMessageDialog(null, "Mora se selektovati student iz tabele pre brisanja!");
-					return;
-				}
-					
 			
 				// TODO Auto-generated method stub
 				if (tab.getSelectedIndex() == 0) {
+					
+					if(MainFrame.getInstance().getTab().getSelectedRowInStudentTable() == -1) {
+						JOptionPane.showMessageDialog(null, "Mora se selektovati student iz tabele pre brisanja!");
+						return;
+					}
 					resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this entity?",
 							"Brisanje studenta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if(resp == 0) {
@@ -170,13 +169,30 @@ public class ListenerController {
 				}
 				
 				else if (tab.getSelectedIndex() == 1 ) {
+					
+					if(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable() == -1) {
+						JOptionPane.showMessageDialog(null, "Mora se selektovati professor iz tabele pre brisanja!");
+						return;
+					}
 					resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this entity?",
 							"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if(resp == 0) {
+						String index = MainFrame.getInstance().getTab().getIdOfSelectedProfessor();
+						DeleteProfessorController.getInstance().deleteProfessor(index);
+					}
 				}
 				
 				else {
+					if(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable() == -1) {
+						JOptionPane.showMessageDialog(null, "Mora se selektovati predmet iz tabele pre brisanja!");
+						return;
+					}
 					resp = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this entity?",
 							"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if(resp == 0) {
+						String index = MainFrame.getInstance().getTab().getIdOfSelectedSubject();
+						DeleteSubjectController.getInstance().deleteSubject(index);
+					}
 				}
 			}
 

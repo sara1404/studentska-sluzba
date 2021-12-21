@@ -107,7 +107,6 @@ public class AddProfessorDialog extends JDialog {
 		panBottom.add(btnCancel);
 		Utils.setCursor(btnCancel);
 		
-		//ListenerController.closeWindowOnCancelListener(this, btnOk);
 		btnOk.addActionListener(ProfessorListener.addingProfessorListener(btnOk));
 		ListenerController.closeWindowOnCancelListener(this, btnCancel);
 		
@@ -117,6 +116,10 @@ public class AddProfessorDialog extends JDialog {
 
 		add(panBottom,BorderLayout.SOUTH);
 		
+	}
+	
+	public ArrayList<JTextField> getDataInputs() {
+		return textInputs;
 	}
 	
 	public JTextField getTextFieldAt(int index) {

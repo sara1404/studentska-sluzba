@@ -50,8 +50,8 @@ public class MenuBar extends JMenuBar{
 		department = new JMenuItem("Departments", KeyEvent.VK_R);
 		department.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
 		subject = new JMenuItem("Subjects", KeyEvent.VK_B);
-
 		subject.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
+		
 		open.add(student);
 		Utils.setCursor(student);
 		open.add(subject);

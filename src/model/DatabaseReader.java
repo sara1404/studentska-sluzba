@@ -3,6 +3,7 @@ package model;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import enums.Semester;
@@ -36,7 +37,7 @@ public class DatabaseReader {
         while(scanner.hasNextLine()){
             String studentInfo = scanner.nextLine();
             String[] studentData = trimData(studentInfo.split(","));
-            
+            System.out.printf(studentData[0]);
             students.add(new Student(studentData[0], studentData[1], LocalDate.parse(studentData[2]), stringToAddress(studentData[3]), studentData[4], studentData[5], 
             		studentData[6], Integer.parseInt(studentData[7]), Integer.parseInt(studentData[8]), Status.getStatusWithString(studentData[9]), Double.parseDouble(studentData[10])));
         }  
@@ -47,18 +48,20 @@ public class DatabaseReader {
 	public ArrayList<Professor> readProfessorDatabase() throws Exception{
 		File text = new File("src/database_resource/professors.txt");
 		ArrayList<Professor> professors = new ArrayList<>();
-		Scanner scanner;
+        Scanner scanner;
 		scanner = new Scanner(text);
-		while(scanner.hasNextLine()){
-			String professorInfo = scanner.nextLine();
-			String[] professorData = trimData(professorInfo.split(","));
-        
-			professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), stringToAddress(professorData[3]), professorData[4], professorData[5], stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), Integer.parseInt(professorData[9] )));
-		}
-		scanner.close();
-        return professors;
-		
+        while(scanner.hasNextLine()){
+            String professorInfo = scanner.nextLine();
+            String[] professorData = trimData(professorInfo.split(","));
+            professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), 
+            		stringToAddress(professorData[3]), professorData[4], professorData[5], 
+            		stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), 
+            		Integer.parseInt(professorData[9] )));
+        }  
+        scanner.close();
+		return professors;
 	}
+	
 	    
 	public ArrayList<Subject> readSubjectDatabase() throws Exception{
 		File text = new File("src/database_resource/subjects.txt");

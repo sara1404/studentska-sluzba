@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import model.DatabaseReader;
 import view.tabs.tables.AbstractTableModelProfessor;
 import view.tabs.tables.AbstractTableModelStudent;
 import view.tabs.tables.AbstractTableModelSubject;

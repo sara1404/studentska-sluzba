@@ -3,6 +3,7 @@ package view.dialogs;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -42,6 +43,10 @@ public class ChangeProfessorDialog extends JDialog{
 		subj.setBackground(Color.DARK_GRAY);
 		add(tab);
 		
+	}
+	
+	public ArrayList<JTextField> getDataInputs() {
+		return info.getDataInputs();
 	}
 	
 	public JComboBox getCombo() {

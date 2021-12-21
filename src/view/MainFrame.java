@@ -83,6 +83,11 @@ public class MainFrame extends JFrame {
 		ListenerController.setDisplayChangeDialogAction(this, tab, menu.geteEdit());
 		ListenerController.setDisplayDeleteDialogAction(this, tab, menu.getDelete());
 		
+		//menu item listeners for tabs switch
+		ListenerController.switchTabsfromMenu(this, tab, menu.getStudent(), 0);
+		ListenerController.switchTabsfromMenu(this, tab, menu.getProfessor(), 1);
+		ListenerController.switchTabsfromMenu(this, tab, menu.getSubject(), 2);
+		
 		setVisible(true);
 
 	}

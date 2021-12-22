@@ -2,6 +2,7 @@ package controller;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import enums.Status;
 import model.Address;
@@ -11,6 +12,8 @@ import model.Student;
 import view.MainFrame;
 import view.dialogs.ChangeStudentDialog;
 
+import javax.swing.*;
+
 public class ChangeStudentController {
 	private static ChangeStudentController instance = null;
 	
@@ -18,11 +21,13 @@ public class ChangeStudentController {
 	
 	public void changeStudent(ChangeStudentDialog changeStudentDialog) {
 		try {
+			validateFields(changeStudentDialog.getTextFields());
 			swapStudent(changeStudentDialog);
 			changeStudentDialog.dispose();
 			
 		} catch(NullPointerException | DateTimeException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(changeStudentDialog, e.getMessage(), "Greska u poljima!", JOptionPane.WARNING_MESSAGE);
+
 		}
 			
 	}
@@ -49,6 +54,39 @@ public class ChangeStudentController {
 		Student student = new Student(surname, name, birthDate, homeAddress, phoneNumber, email,
 				index, startYear, currentYear, Status.getStatusWithString(status), 0.0);
 		return student;
+	}
+
+	private void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+
+		for(int i = 0; i < fields.size(); i++) {
+			JTextField field = fields.get(i);
+			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
+			if(i == 2)
+				if(!validDateFormat(field.getText().trim())) throw new DateTimeException("Datum mora biti ispravno formatiran");
+			if(i == 3 && !validAddressFormat(field.getText())) throw new NullPointerException("Adresa nije pravilno uneta!");
+		}
+	}
+
+	private boolean validDateFormat(String date) {
+		try {
+			LocalDate.parse(date);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+
+	private boolean validAddressFormat(String address) {
+		try {
+			String[] data = address.split("#");
+			if(data[0] == " " || data[1] == " " || data[2] == " " || data[3] == " ") {
+				return false;
+			}
+			Integer.parseInt(data[1]);
+		}catch(Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	private Address stringToAddress(String text) {

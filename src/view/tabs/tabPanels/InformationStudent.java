@@ -105,4 +105,8 @@ public class InformationStudent extends JPanel{
 	public JComboBox getComboAt(int index) {
 		return combos.get(index);
 	}
+
+	public ArrayList<JTextField> getTextFields(){
+		return textFields;
+	}
 }

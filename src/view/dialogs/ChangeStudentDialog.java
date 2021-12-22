@@ -3,6 +3,7 @@ package view.dialogs;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -75,5 +76,9 @@ public class ChangeStudentDialog extends JDialog{
 	
 	public InformationStudent getInformationPanel() {
 		return info;
+	}
+
+	public ArrayList<JTextField> getTextFields(){
+		return info.getTextFields();
 	}
 }

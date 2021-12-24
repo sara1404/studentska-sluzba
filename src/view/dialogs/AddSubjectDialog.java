@@ -68,6 +68,7 @@ public class AddSubjectDialog extends JDialog {
 		
 		ListenerController.closeWindowOnCancelListener(this, buttonsInAddSubjectForm.get(1));
 		buttonsInAddSubjectForm.get(0).addActionListener(SubjectListener.subjectAddingListener(buttonsInAddSubjectForm.get(0)));
+		buttonsInAddSubjectForm.get(0).setEnabled(false);
 		
 	}
 	
@@ -105,5 +106,9 @@ public class AddSubjectDialog extends JDialog {
 	
 	public JComboBox getComboAt(int index) {
 		return comboInputs.get(index);
+	}
+
+	public ArrayList<JButton> getButtonsInAddSubjectForm() {
+		return buttonsInAddSubjectForm;
 	}
 }

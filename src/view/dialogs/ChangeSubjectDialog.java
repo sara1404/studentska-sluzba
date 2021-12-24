@@ -19,11 +19,9 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controller.ListenerController;
-import model.Student;
 import model.Subject;
 import utils.WindowComponentBuilder;
 import view.listeners.ChangeSubjectListener;
-import view.toolbar.Button;
 
 public class ChangeSubjectDialog extends JDialog{
 	ArrayList<JTextField> dataInputs;
@@ -172,7 +170,7 @@ public class ChangeSubjectDialog extends JDialog{
 		}
 	}
 	
-	public ArrayList<JButton> getButtonsInAddSubjectForm() {
+	public ArrayList<JButton> getButtonsInChangeSubjectForm() {
 		return buttonsInChangeSubjectForm;
 	}
 	

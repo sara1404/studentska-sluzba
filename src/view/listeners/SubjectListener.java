@@ -21,7 +21,7 @@ public class SubjectListener {
 				if(window instanceof AddSubjectDialog) {
 					AddSubjectDialog subjectDialog = (AddSubjectDialog) window;
 					AddSubjectController addSubjectController = AddSubjectController.getInstance();
-					addSubjectController.addStudent(subjectDialog);
+					addSubjectController.addSubject(subjectDialog);
 				}
 			}
 			

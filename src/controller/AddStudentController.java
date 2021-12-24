@@ -26,20 +26,20 @@ public class AddStudentController {
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			Student newStudent = generateStudentFromDialogInputs(studentDialog);
 			databaseReader.addNewStudent(newStudent);
-		} catch(NullPointerException | DateTimeException e) {
+		} catch(Exception e) {
 			JOptionPane.showMessageDialog(studentDialog, e.getMessage(), "Greska u poljima!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
 	
-	private void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
-		
+	public void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+
 		for(int i = 0; i < fields.size(); i++) {
 			JTextField field = fields.get(i);
 			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
-			if(i == 2) 
+			if(i == 2)
 				if(!validDateFormat(field.getText().trim())) throw new DateTimeException("Datum mora biti ispravno formatiran");
-			if(i == 3 && !validAddressFormat(field.getText())) throw new NullPointerException("Adresa nije pravilno uneta!"); 
+			if(i == 3 && !validAddressFormat(field.getText())) throw new NullPointerException("Adresa nije pravilno uneta!");
 		}
 	}
 	

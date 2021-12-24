@@ -25,7 +25,7 @@ public class ChangeStudentController {
 			swapStudent(changeStudentDialog);
 			changeStudentDialog.dispose();
 			
-		} catch(NullPointerException | DateTimeException e) {
+		} catch(Exception e) {
 			JOptionPane.showMessageDialog(changeStudentDialog, e.getMessage(), "Greska u poljima!", JOptionPane.WARNING_MESSAGE);
 
 		}
@@ -56,7 +56,7 @@ public class ChangeStudentController {
 		return student;
 	}
 
-	private void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+	public void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
 
 		for(int i = 0; i < fields.size(); i++) {
 			JTextField field = fields.get(i);

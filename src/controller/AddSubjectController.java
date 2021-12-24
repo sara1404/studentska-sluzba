@@ -3,7 +3,7 @@ package controller;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import enums.Semester;
 import model.DatabaseReader;
@@ -19,7 +19,7 @@ public class AddSubjectController {
 	
 	private AddSubjectController() {};
 	
-	public void addStudent(AddSubjectDialog subjectDialog) {
+	public void addSubject(AddSubjectDialog subjectDialog) {
 		try {
 			//validateFields(subjectDialog.getDataInputs());
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
@@ -32,11 +32,15 @@ public class AddSubjectController {
 			e.printStackTrace();
 		}
 	}
-	
-//	private static boolean validateFields() {
-//		
-//	}
-	
+
+	public void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+
+		for(int i = 0; i < fields.size(); i++) {
+			JTextField field = fields.get(i);
+			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
+		}
+	}
+
 	private Subject generateSubjectFromDialogInputs(AddSubjectDialog subjectDialog) {
 		String id = subjectDialog.getTextFieldAt(0).getText();
 		String name = subjectDialog.getTextFieldAt(1).getText();

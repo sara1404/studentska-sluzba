@@ -71,6 +71,7 @@ public class AddStudentDialog extends JDialog{
 		buttonsInAddStudentForm.add(new JButton());
 		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInAddStudentForm.get(0), buttonsInAddStudentForm.get(1)));
 		buttonsInAddStudentForm.get(0).addActionListener(StudentListener.studentAddingListener(buttonsInAddStudentForm.get(0)));
+		buttonsInAddStudentForm.get(0).setEnabled(false);
 		ListenerController.closeWindowOnCancelListener(this, buttonsInAddStudentForm.get(1));
 		
 	}
@@ -109,5 +110,9 @@ public class AddStudentDialog extends JDialog{
 	
 	public JComboBox getComboAt(int index) {
 		return comboInputs.get(index);
+	}
+
+	public ArrayList<JButton> getButtonsInAddStudentForm() {
+		return buttonsInAddStudentForm;
 	}
 }

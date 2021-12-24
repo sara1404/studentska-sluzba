@@ -10,6 +10,10 @@ import model.Subject;
 import view.MainFrame;
 import view.dialogs.ChangeSubjectDialog;
 
+import javax.swing.*;
+import java.time.DateTimeException;
+import java.util.ArrayList;
+
 public class ChangeSubjectController {
 	private static ChangeSubjectController instance = null;
 	
@@ -30,7 +34,14 @@ public class ChangeSubjectController {
 		DatabaseReader.getInstance().getSubjects().set(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable(), newSubject);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
-	
+
+	public void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+
+		for(int i = 0; i < fields.size(); i++) {
+			JTextField field = fields.get(i);
+			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
+		}
+	}
 	
 	private Subject generateSubjectFromDialogInputs(ChangeSubjectDialog changeSubjectDialog) {
 		String id = changeSubjectDialog.getTextFieldAt(0).getText();

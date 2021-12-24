@@ -1,25 +1,69 @@
 package utils;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import controller.AddStudentController;
+import controller.AddSubjectController;
+import controller.ChangeStudentController;
+import controller.ChangeSubjectController;
+import view.dialogs.*;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-import javax.swing.JPanel;
-
-import javax.swing.JList;
-
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class WindowComponentBuilder {
 	public static JTextField createTextField() {
 		JTextField input = new JTextField();
 		setContainerSize(input, 120, 30);
+		input.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				Window window = SwingUtilities.getWindowAncestor(input);
+				if(window instanceof AddStudentDialog) {
+					try {
+						AddStudentDialog dialog = (AddStudentDialog) window;
+						AddStudentController.getInstance().validateFields(dialog.getDataInputs());
+						dialog.getButtonsInAddStudentForm().get(0).setEnabled(true);
+					} catch(Exception ex) {
+						AddStudentDialog dialog = (AddStudentDialog) window;
+						dialog.getButtonsInAddStudentForm().get(0).setEnabled(false);
+					}
+				} else if(window instanceof ChangeStudentDialog) {
+					try {
+						ChangeStudentDialog dialog = (ChangeStudentDialog) window;
+						ChangeStudentController.getInstance().validateFields(dialog.getTextFields());
+						dialog.getInformationPanel().getButtonsInAddStudentForm().get(0).setEnabled(true);
+					} catch (Exception ex) {
+						ChangeStudentDialog dialog = (ChangeStudentDialog) window;
+						dialog.getInformationPanel().getButtonsInAddStudentForm().get(0).setEnabled(false);
+					}
+				}else if(window instanceof AddSubjectDialog) {
+					try {
+						AddSubjectDialog dialog = (AddSubjectDialog) window;
+						AddSubjectController.getInstance().validateFields(dialog.getDataInputs());
+						dialog.getButtonsInAddSubjectForm().get(0).setEnabled(true);
+					} catch (Exception ex) {
+						AddSubjectDialog dialog = (AddSubjectDialog) window;
+						dialog.getButtonsInAddSubjectForm().get(0).setEnabled(false);
+					}
+				}else if(window instanceof ChangeSubjectDialog){
+					try{
+						ChangeSubjectDialog dialog = (ChangeSubjectDialog) window;
+						ChangeSubjectController.getInstance().validateFields(dialog.getDataInputs());
+						dialog.getButtonsInChangeSubjectForm().get(0).setEnabled(true);
+					}catch (Exception ex){
+						ChangeSubjectDialog dialog = (ChangeSubjectDialog) window;
+						dialog.getButtonsInChangeSubjectForm().get(0).setEnabled(false);
+					}
+				}
+			}
+		});
 		return input;
 	}
 	

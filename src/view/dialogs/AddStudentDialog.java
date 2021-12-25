@@ -4,15 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import controller.ListenerController;
 import utils.WindowComponentBuilder;
@@ -28,7 +20,7 @@ public class AddStudentDialog extends JDialog{
 
 	private ArrayList<JTextField> dataInputs;
 	private ArrayList<JComboBox> comboInputs;
-	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
+	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Ulica i broj*", "Grad*", "Drzava*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
 
 	ArrayList<JButton> buttonsInAddStudentForm;
@@ -50,14 +42,26 @@ public class AddStudentDialog extends JDialog{
 		int height = dim.height;
 		setSize(width * 3/8, height * 3/4);
 		setLocationRelativeTo(null);
-		
+
 		for(int i = 0; i < namesSerbian.length; i++) {
 
-			if(i == 8) {
+			if(i == 2){
+				JPanel temp = new JPanel();
+				temp.setBackground(Color.DARK_GRAY);
+				temp.setPreferredSize(new Dimension(100, 20));
+				JLabel addressFormat = new JLabel("yy-mm-dd");
+				addressFormat.setForeground(Color.WHITE);
+				temp.add(Box.createHorizontalStrut(190));
+				temp.add(addressFormat);
+				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createTextField()));
+				getContentPane().add(temp);
+			}
+
+			else if(i == 10) {
 				String[] data = {"1", "2", "3", "4", "5", "6"};
 				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
 			}
-			else if(i == 9) {
+			else if(i == 11) {
 				String[] data = {"B", "S"};
 				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
 			}

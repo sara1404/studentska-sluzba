@@ -4,15 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import controller.ListenerController;
 import model.Student;
@@ -23,7 +15,7 @@ public class InformationStudent extends JPanel{
 	
 	ArrayList<JTextField> textFields;
 	ArrayList<JComboBox> combos;
-	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
+	String[] namesSerbian = { "Ime*", "Prezime*", "Datum rodjenja*", "Ulica i broj*", "Grad*", "Drzava*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
 	ArrayList<JButton> buttonsInAddStudentForm;
 	public InformationStudent() {
@@ -34,11 +26,23 @@ public class InformationStudent extends JPanel{
 		
 		for(int i = 0; i < namesSerbian.length; i++) {
 
-			if(i == 8) {
+			if(i == 2){
+				JPanel temp = new JPanel();
+				temp.setBackground(Color.DARK_GRAY);
+				temp.setPreferredSize(new Dimension(100, 20));
+				JLabel addressFormat = new JLabel("yy-mm-dd");
+				addressFormat.setForeground(Color.WHITE);
+				temp.add(Box.createHorizontalStrut(190));
+				temp.add(addressFormat);
+				add(createPanel(namesSerbian[i], WindowComponentBuilder.createTextField()));
+				add(temp);
+			}
+
+			else if(i == 10) {
 				String[] data = {"1", "2", "3", "4", "5", "6"};
 				add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
 			}
-			else if(i == 9) {
+			else if(i == 11) {
 				String[] data = {"B", "S"};
 				add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
 			}
@@ -82,11 +86,13 @@ public class InformationStudent extends JPanel{
 		textFields.get(0).setText(student.getName());
 		textFields.get(1).setText(student.getSurname());
 		textFields.get(2).setText(student.getDateOfBirth().toString());
-		textFields.get(3).setText(student.getHomeAdress().toString());
-		textFields.get(4).setText(student.getPhone());
-		textFields.get(5).setText(student.getEmail());
-		textFields.get(6).setText(student.getIndex());
-		textFields.get(7).setText(String.valueOf(student.getStartYear()));
+		textFields.get(3).setText(student.getHomeAdress().getStreet()+" "+student.getHomeAdress().getNumber());
+		textFields.get(4).setText(student.getHomeAdress().getTown());
+		textFields.get(5).setText(student.getHomeAdress().getCountry());
+		textFields.get(6).setText(student.getPhone());
+		textFields.get(7).setText(student.getEmail());
+		textFields.get(8).setText(student.getIndex());
+		textFields.get(9).setText(String.valueOf(student.getStartYear()));
 		combos.get(0).setSelectedIndex(student.getCurrentYear() - 1);
 		if(student.getStatus().getValue().equals("BUDZET"))
 			combos.get(1).setSelectedIndex(0);

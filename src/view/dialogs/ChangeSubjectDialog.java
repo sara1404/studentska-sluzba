@@ -137,9 +137,7 @@ public class ChangeSubjectDialog extends JDialog{
 		panel.add(Box.createHorizontalStrut(40));
 		addComponentToArray(comp);
 		panel.add(tempPanel(comp, add, remove));
-//		BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
-//		panel.setLayout(box);
-		
+
 		return panel;
 	}
 	

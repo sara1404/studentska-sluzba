@@ -60,9 +60,23 @@ public class ChangeProfessorController {
 					throw new NullPointerException("Adresa nije pravilno uneta!"); 
 				}
 				
+				if((i == 8) && !validType(field.getText())) {
+					fields.get(i).setForeground(Color.RED);
+					throw new NumberFormatException("Godina staza mora biti ceo broj!");
+				}
+				
 			}
 		
 	}
+	
+	private boolean validType(String text) {
+		try {
+	        Integer.parseInt(text);
+	        return true;
+	    } catch (Exception e) {
+	    	return false;
+	    }
+}
 	
 	private boolean validDateFormat(String date) {
 		try {

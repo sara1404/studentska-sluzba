@@ -101,7 +101,7 @@ public class AddProfessorDialog extends JDialog {
 		JButton btnCancel=new JButton("Odustani");
 		btnCancel.setPreferredSize(new Dimension(100,25));
 		
-		panBottom.add(Box.createHorizontalStrut(200));
+		panBottom.add(Box.createHorizontalStrut(150));
 		panBottom.add(btnOk);
 		Utils.setCursor(btnOk);
 		

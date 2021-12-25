@@ -1,16 +1,33 @@
 package utils;
 
-import controller.AddStudentController;
-import controller.AddSubjectController;
-import controller.ChangeStudentController;
-import controller.ChangeSubjectController;
-import view.dialogs.*;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import controller.AddProfessorController;
+import controller.AddStudentController;
+import controller.AddSubjectController;
+import controller.ChangeProfessorController;
+import controller.ChangeStudentController;
+import controller.ChangeSubjectController;
+import view.dialogs.AddProfessorDialog;
+import view.dialogs.AddStudentDialog;
+import view.dialogs.AddSubjectDialog;
+import view.dialogs.ChangeProfessorDialog;
+import view.dialogs.ChangeStudentDialog;
+import view.dialogs.ChangeSubjectDialog;
 
 public class WindowComponentBuilder {
 	public static JTextField createTextField() {
@@ -60,6 +77,26 @@ public class WindowComponentBuilder {
 					}catch (Exception ex){
 						ChangeSubjectDialog dialog = (ChangeSubjectDialog) window;
 						dialog.getButtonsInChangeSubjectForm().get(0).setEnabled(false);
+					}
+				}
+				else if(window instanceof AddProfessorDialog){
+					try{
+						AddProfessorDialog dialog = (AddProfessorDialog) window;
+						AddProfessorController.getInstance().validateFields(dialog.getDataInputs());
+						dialog.getButtons().get(0).setEnabled(true);
+					}catch (Exception ex){
+						AddProfessorDialog dialog = (AddProfessorDialog) window;
+						dialog.getButtons().get(0).setEnabled(false);
+					}
+				}
+				else if(window instanceof ChangeProfessorDialog){
+					try{
+						ChangeProfessorDialog dialog = (ChangeProfessorDialog) window;
+						ChangeProfessorController.getInstance().validateFields(dialog.getDataInputs());
+						dialog.getInformationPanel().getButtons().get(0).setEnabled(true);
+					}catch (Exception ex){
+						ChangeProfessorDialog dialog = (ChangeProfessorDialog) window;
+						dialog.getInformationPanel().getButtons().get(0).setEnabled(false);
 					}
 				}
 			}

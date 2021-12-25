@@ -24,6 +24,7 @@ public class ProfessorListener {
 					AddProfessorDialog pd = (AddProfessorDialog) window;
 					AddProfessorController apc = AddProfessorController.getInstance();
 					apc.addProfessor(pd);
+					pd.dispose();
 				}
 			}
 		};

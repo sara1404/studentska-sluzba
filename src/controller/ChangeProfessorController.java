@@ -15,8 +15,10 @@ import model.ObserverNotifier;
 import model.Professor;
 import view.MainFrame;
 import view.dialogs.ChangeProfessorDialog;
+import view.tabs.tabPanels.InformationProfessor;
 
 public class ChangeProfessorController {
+	//private static InformationProfessor ip = new InformationProfessor();
 	private static ChangeProfessorController instance = null;
 	private ChangeProfessorController() {};
 	
@@ -33,13 +35,14 @@ public class ChangeProfessorController {
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.getProfessors().set(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable(), newProfessor);
 			ObserverNotifier.getInstance().professorDataChanged();
+			//ip.getButtons().get(0).setEnabled(true);
 			cpd.dispose();
 		} catch(NullPointerException | DateTimeException e) {
 			JOptionPane.showMessageDialog(cpd, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
-	private void validateFields(ArrayList<JTextField> fields) {
+	public void validateFields(ArrayList<JTextField> fields) {
 		for(int j = 0; j < fields.size(); j++) {
 			fields.get(j).setForeground(Color.BLACK);
 		}

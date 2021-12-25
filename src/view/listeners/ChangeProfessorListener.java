@@ -25,7 +25,7 @@ public class ChangeProfessorListener {
 					ChangeProfessorDialog professorDialog = (ChangeProfessorDialog) window;
 					ChangeProfessorController changeProfessorController = ChangeProfessorController.getInstance();
 					changeProfessorController.changeProfessor(professorDialog);
-
+					professorDialog.dispose();
 				}
 			}
 			

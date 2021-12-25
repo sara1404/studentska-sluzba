@@ -88,9 +88,8 @@ public class InformationProfessor extends JPanel{
 		Utils.setCursor(btnCancel);
 		buttons.add(btnOk);
 		buttons.add(btnCancel);
-		
+		btnOk.setEnabled(false);
 		btnOk.addActionListener(ChangeProfessorListener.changingProfessorListener(btnOk));
-		//ListenerController.closeWindowOnCancelListener(this, btnCancel);
 		
 		panBottom.add(Box.createHorizontalStrut(10));
 		panBottom.add(Box.createVerticalStrut(50));

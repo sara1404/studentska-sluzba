@@ -39,7 +39,7 @@ public class AddProfessorController {
 		}
 	}
 	
-private void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+public void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
 	
 	for(int j = 0; j < fields.size(); j++) {
 		fields.get(j).setForeground(Color.BLACK);
@@ -47,7 +47,6 @@ private void validateFields(ArrayList<JTextField> fields) throws NullPointerExce
 		for(int i = 0; i < fields.size(); i++) {
 			JTextField field = fields.get(i);
 			if(field.getText().trim().equals("")) {
-				fields.get(i).setForeground(Color.RED);
 				throw new NullPointerException("Polja moraju biti popunjena!");
 			}
 			if(i == 2) 

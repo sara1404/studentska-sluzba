@@ -26,6 +26,7 @@ public class AddProfessorDialog extends JDialog {
 	BoxLayout boxCenter = new BoxLayout(panCenter, BoxLayout.Y_AXIS);
 	private ArrayList<JTextField> textInputs;
 	private JComboBox comboInput;
+	ArrayList<JButton> buttons;
 
 	private void setPanel(String str, int field) {
 		JPanel pan = new JPanel();
@@ -70,6 +71,7 @@ public class AddProfessorDialog extends JDialog {
 		panCenter.setBackground(Color.DARK_GRAY);
 
 		textInputs = new ArrayList<>();
+		buttons= new ArrayList<>();
 		
 		
 		setPanel("Prezime*", 0);
@@ -107,6 +109,9 @@ public class AddProfessorDialog extends JDialog {
 		panBottom.add(btnCancel);
 		Utils.setCursor(btnCancel);
 		
+		buttons.add(btnOk);
+		buttons.add(btnCancel);
+		
 		btnOk.addActionListener(ProfessorListener.addingProfessorListener(btnOk));
 		ListenerController.closeWindowOnCancelListener(this, btnCancel);
 		
@@ -116,6 +121,10 @@ public class AddProfessorDialog extends JDialog {
 
 		add(panBottom,BorderLayout.SOUTH);
 		
+	}
+	
+	public ArrayList<JButton> getButtons() {
+		return buttons;
 	}
 	
 	public ArrayList<JTextField> getDataInputs() {

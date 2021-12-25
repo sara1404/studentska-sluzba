@@ -18,7 +18,6 @@ import view.dialogs.ChangeProfessorDialog;
 import view.tabs.tabPanels.InformationProfessor;
 
 public class ChangeProfessorController {
-	//private static InformationProfessor ip = new InformationProfessor();
 	private static ChangeProfessorController instance = null;
 	private ChangeProfessorController() {};
 	
@@ -35,7 +34,6 @@ public class ChangeProfessorController {
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.getProfessors().set(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable(), newProfessor);
 			ObserverNotifier.getInstance().professorDataChanged();
-			//ip.getButtons().get(0).setEnabled(true);
 			cpd.dispose();
 		} catch(NullPointerException | DateTimeException e) {
 			JOptionPane.showMessageDialog(cpd, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
@@ -49,7 +47,6 @@ public class ChangeProfessorController {
 			for(int i = 0; i < fields.size(); i++) {
 				JTextField field = fields.get(i);
 				if(field.getText().trim().equals("")) {
-					fields.get(i).setForeground(Color.RED);
 					throw new NullPointerException("Polja moraju biti popunjena!");
 				}
 				if(i == 2) 

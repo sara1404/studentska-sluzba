@@ -26,6 +26,7 @@ public class StudentListener {
 					AddStudentDialog studentDialog = (AddStudentDialog) window;
 					AddStudentController addStudentController = AddStudentController.getInstance();
 					addStudentController.addStudent(studentDialog);
+					studentDialog.dispose();
 				}
 
 			}

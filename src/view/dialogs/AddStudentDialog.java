@@ -27,6 +27,7 @@ public class AddStudentDialog extends JDialog{
 
 	public AddStudentDialog() {
 
+		setModalityType(DEFAULT_MODALITY_TYPE);
 		dataInputs = new ArrayList<>();
 		comboInputs = new ArrayList<>();
 		buttonsInAddStudentForm = new ArrayList<>();

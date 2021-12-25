@@ -26,6 +26,8 @@ public class AddStudentController {
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			Student newStudent = generateStudentFromDialogInputs(studentDialog);
 			databaseReader.addNewStudent(newStudent);
+			System.out.println(studentDialog);
+			studentDialog.dispose();
 		} catch(Exception e) {
 			JOptionPane.showMessageDialog(studentDialog, e.getMessage(), "Greska u poljima!", JOptionPane.WARNING_MESSAGE);
 		}

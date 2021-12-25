@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
 
 import controller.ListenerController;
@@ -27,7 +28,8 @@ public class AddStudentDialog extends JDialog{
 
 	public AddStudentDialog() {
 
-		setModalityType(DEFAULT_MODALITY_TYPE);
+		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dataInputs = new ArrayList<>();
 		comboInputs = new ArrayList<>();
 		buttonsInAddStudentForm = new ArrayList<>();
@@ -37,7 +39,6 @@ public class AddStudentDialog extends JDialog{
 		setLayout(box);
 		getContentPane().setBackground(Color.DARK_GRAY);
 
-		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;
 		int height = dim.height;
@@ -50,7 +51,7 @@ public class AddStudentDialog extends JDialog{
 				JPanel temp = new JPanel();
 				temp.setBackground(Color.DARK_GRAY);
 				temp.setPreferredSize(new Dimension(100, 20));
-				JLabel addressFormat = new JLabel("yy-mm-dd");
+				JLabel addressFormat = new JLabel("yyyy-mm-dd");
 				addressFormat.setForeground(Color.WHITE);
 				temp.add(Box.createHorizontalStrut(190));
 				temp.add(addressFormat);
@@ -120,4 +121,6 @@ public class AddStudentDialog extends JDialog{
 	public ArrayList<JButton> getButtonsInAddStudentForm() {
 		return buttonsInAddStudentForm;
 	}
+
+
 }

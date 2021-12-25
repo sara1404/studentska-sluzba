@@ -30,7 +30,7 @@ public class InformationStudent extends JPanel{
 				JPanel temp = new JPanel();
 				temp.setBackground(Color.DARK_GRAY);
 				temp.setPreferredSize(new Dimension(100, 20));
-				JLabel addressFormat = new JLabel("yy-mm-dd");
+				JLabel addressFormat = new JLabel("yyyy-mm-dd");
 				addressFormat.setForeground(Color.WHITE);
 				temp.add(Box.createHorizontalStrut(190));
 				temp.add(addressFormat);

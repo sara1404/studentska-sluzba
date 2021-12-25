@@ -26,7 +26,8 @@ public class StudentListener {
 					AddStudentDialog studentDialog = (AddStudentDialog) window;
 					AddStudentController addStudentController = AddStudentController.getInstance();
 					addStudentController.addStudent(studentDialog);
-					studentDialog.dispose();
+					System.out.println("Nesto se desava ");
+					//studentDialog.dispose();
 				}
 
 			}

@@ -72,8 +72,7 @@ public class ListenerController {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (tab.getSelectedIndex() == 0)
-					frame.getAddStudentDialog().setVisible(true);
-
+					frame.setNewAddStudentDialog();
 				else if (tab.getSelectedIndex() == 1)
 					frame.getAddProfessorDialog().setVisible(true);
 

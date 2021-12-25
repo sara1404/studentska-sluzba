@@ -55,12 +55,12 @@ public void validateFields(ArrayList<JTextField> fields) throws NullPointerExcep
 					throw new DateTimeException("Datum mora biti ispravno formatiran!");
 				}
 			
-			if((i == 3 || i == 6) && !validAddressFormat(field.getText())) {
+			if((i == 3 || i == 8) && !validAddressFormat(field.getText())) {
 				fields.get(i).setForeground(Color.RED);
 				throw new NullPointerException("Adresa nije pravilno uneta!"); 
 			}
 			
-			if((i == 8) && !validType(field.getText())) {
+			if((i == 12) && !validType(field.getText())) {
 				fields.get(i).setForeground(Color.RED);
 				throw new NumberFormatException("Godina staza mora biti ceo broj!");
 			}
@@ -91,11 +91,11 @@ public void validateFields(ArrayList<JTextField> fields) throws NullPointerExcep
 	
 	private boolean validAddressFormat(String address) {
 		try {
-			String[] data = address.split("#");
-			if(data[0] == " " || data[1] == " " || data[2] == " " || data[3] == " ") {
+			String[] data = address.split(" ");
+			if(address == " ") {
 				return false;
 			}
-			Integer.parseInt(data[1]);
+			Integer.parseInt(data[data.length - 1]);
 		}catch(Exception e) {
 			return false;
 		}
@@ -106,20 +106,26 @@ public void validateFields(ArrayList<JTextField> fields) throws NullPointerExcep
 		String surname = apd.getTextFieldAt(0).getText().trim();
 		String name = apd.getTextFieldAt(1).getText().trim();
 		LocalDate birthDate = LocalDate.parse(apd.getTextFieldAt(2).getText().trim());
-		Address homeAddress = stringToAddress(apd.getTextFieldAt(3).getText().trim());
-		String phone = apd.getTextFieldAt(4).getText().trim();
-		String email = apd.getTextFieldAt(5).getText().trim();
-		Address officeAddress = stringToAddress(apd.getTextFieldAt(6).getText().trim());
-		String id = apd.getTextFieldAt(7).getText().trim();
+		String street = apd.getTextFieldAt(3).getText().trim();
+		String town = apd.getTextFieldAt(4).getText().trim();
+		String country = apd.getTextFieldAt(5).getText().trim();
+		String phone = apd.getTextFieldAt(6).getText().trim();
+		String email = apd.getTextFieldAt(7).getText().trim();
+		String street1 = apd.getTextFieldAt(8).getText().trim();
+		String town1 = apd.getTextFieldAt(9).getText().trim();
+		String country1 = apd.getTextFieldAt(10).getText().trim();
+		String id = apd.getTextFieldAt(11).getText().trim();
 		String title = apd.getComboInput().getSelectedItem().toString();
-		int serviceYears = Integer.parseInt(apd.getTextFieldAt(8).getText().trim());
+		int serviceYears = Integer.parseInt(apd.getTextFieldAt(12).getText().trim());
+		Address homeAddress = stringToAddress(street, town, country);
+		Address officeAddress = stringToAddress(street1, town1, country1);
 		Professor professor = new Professor(surname, name, birthDate, homeAddress, phone, email, officeAddress, id, Title.getTitleWithString(title), serviceYears);
 		return professor;
 	}
 	
-	private Address stringToAddress(String text) {
-		String[] addressData = text.split("#");
-		Address address = new Address(addressData[0], Integer.parseInt(addressData[1]), addressData[2], addressData[3]);
+	private Address stringToAddress(String street, String town, String country) {
+		String[] streetData = street.split(" ");
+		Address address = new Address(streetData[0], Integer.parseInt(streetData[1]), town, country);
 		return address;
 	} 
 	

@@ -59,10 +59,14 @@ public class InformationProfessor extends JPanel{
 		setPanel("Prezime*", 0);
         setPanel("Ime*", 0);
         setPanel("Datum rodjenja*", 0);
-        setPanel("Adresa stanovanja*", 0);
+        setPanel("Ulica i broj stanovanja*", 0);
+        setPanel("Grad stanovanja*",0);
+        setPanel("Drzava stanovanja*",0);
         setPanel("Kontakt telefon", 0);
         setPanel("E-mail*", 0);
-        setPanel("Adresa kancelarije*", 0);
+        setPanel("Ulica i broj kancelarije*", 0);
+        setPanel("Grad kancelarije*",0);
+        setPanel("Drzava kancelarije*",0);
         setPanel("Broj licne karte*", 0);
         setPanel("Zvanje*", 1);
         setPanel("Godine staza*", 0);
@@ -102,11 +106,15 @@ public class InformationProfessor extends JPanel{
 		textFields.get(0).setText(professor.getSurname());
 		textFields.get(1).setText(professor.getName());
 		textFields.get(2).setText(professor.getBirthDate().toString());
-		textFields.get(3).setText(professor.getHomeAdress().toString());
-		textFields.get(4).setText(professor.getPhone());
-		textFields.get(5).setText(professor.getEmail());
-		textFields.get(6).setText(professor.getOfficeAdress().toString());
-		textFields.get(7).setText(professor.getId());
+		textFields.get(3).setText(professor.getHomeAdress().getStreet()+" "+professor.getHomeAdress().getNumber());
+		textFields.get(4).setText(professor.getHomeAdress().getTown());
+		textFields.get(5).setText(professor.getHomeAdress().getCountry());
+		textFields.get(6).setText(professor.getPhone());
+		textFields.get(7).setText(professor.getEmail());
+		textFields.get(8).setText(professor.getHomeAdress().getStreet()+" "+professor.getHomeAdress().getNumber());
+		textFields.get(9).setText(professor.getHomeAdress().getTown());
+		textFields.get(10).setText(professor.getHomeAdress().getCountry());
+		textFields.get(11).setText(professor.getId());
 		switch(professor.getTitle().getValue()) {
 		case "ASISTENT":
 			combo.setSelectedIndex(0);
@@ -123,7 +131,7 @@ public class InformationProfessor extends JPanel{
 			
 		}
 		
-		textFields.get(8).setText(String.valueOf(professor.getServiceYears()));
+		textFields.get(12).setText(String.valueOf(professor.getServiceYears()));
 		
 	}
 	

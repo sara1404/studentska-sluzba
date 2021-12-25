@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -76,11 +77,18 @@ public class AddProfessorDialog extends JDialog {
 		
 		setPanel("Prezime*", 0);
         setPanel("Ime*", 0);
+        JLabel format = new JLabel("    Format: yyyy-MM-dd");
+        format.setForeground(Color.GRAY);
+        panCenter.add(format);
         setPanel("Datum rodjenja*", 0);
-        setPanel("Adresa stanovanja*", 0);
+        setPanel("Ulica i broj stanovanja*", 0);
+        setPanel("Grad stanovanja*",0);
+        setPanel("Drzava stanovanja*",0);
         setPanel("Kontakt telefon", 0);
         setPanel("E-mail*", 0);
-        setPanel("Adresa kancelarije*", 0);
+        setPanel("Ulica i broj kancelarije*", 0);
+        setPanel("Grad kancelarije*",0);
+        setPanel("Drzava kancelarije*",0);
         setPanel("Broj licne karte*", 0);
         setPanel("Zvanje*", 1);
         setPanel("Godine staza*", 0);
@@ -101,7 +109,7 @@ public class AddProfessorDialog extends JDialog {
 		JButton btnCancel=new JButton("Odustani");
 		btnCancel.setPreferredSize(new Dimension(100,25));
 		
-		panBottom.add(Box.createHorizontalStrut(150));
+		panBottom.add(Box.createHorizontalStrut(200));
 		panBottom.add(btnOk);
 		Utils.setCursor(btnOk);
 		

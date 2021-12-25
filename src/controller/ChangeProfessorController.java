@@ -14,6 +14,7 @@ import model.DatabaseReader;
 import model.ObserverNotifier;
 import model.Professor;
 import view.MainFrame;
+import view.dialogs.AddProfessorDialog;
 import view.dialogs.ChangeProfessorDialog;
 import view.tabs.tabPanels.InformationProfessor;
 
@@ -55,12 +56,12 @@ public class ChangeProfessorController {
 						throw new DateTimeException("Datum mora biti ispravno formatiran!");
 					}
 				
-				if((i == 3 || i == 6) && !validAddressFormat(field.getText())) {
+				if((i == 3 || i == 8) && !validAddressFormat(field.getText())) {
 					fields.get(i).setForeground(Color.RED);
 					throw new NullPointerException("Adresa nije pravilno uneta!"); 
 				}
 				
-				if((i == 8) && !validType(field.getText())) {
+				if((i == 12) && !validType(field.getText())) {
 					fields.get(i).setForeground(Color.RED);
 					throw new NumberFormatException("Godina staza mora biti ceo broj!");
 				}
@@ -89,11 +90,11 @@ public class ChangeProfessorController {
 	
 	private boolean validAddressFormat(String address) {
 		try {
-			String[] data = address.split("#");
-			if(data[0] == " " || data[1] == " " || data[2] == " " || data[3] == " ") {
+			String[] data = address.split(" ");
+			if(address == " ") {
 				return false;
 			}
-			Integer.parseInt(data[1]);
+			Integer.parseInt(data[data.length - 1]);
 		}catch(Exception e) {
 			return false;
 		}
@@ -104,20 +105,30 @@ public class ChangeProfessorController {
 		String surname = cpd.getTextField(0).getText().trim();
 		String name = cpd.getTextField(1).getText().trim();
 		LocalDate birthDate = LocalDate.parse(cpd.getTextField(2).getText().trim());
-		Address homeAddress = stringToAddress(cpd.getTextField(3).getText().trim());
-		String phone = cpd.getTextField(4).getText().trim();
-		String email = cpd.getTextField(5).getText().trim();
-		Address officeAddress = stringToAddress(cpd.getTextField(6).getText().trim());
-		String id = cpd.getTextField(7).getText().trim();
+		String street = cpd.getTextField(3).getText().trim();
+		String town = cpd.getTextField(4).getText().trim();
+		String country = cpd.getTextField(5).getText().trim();
+		String phone = cpd.getTextField(6).getText().trim();
+		String email = cpd.getTextField(7).getText().trim();
+		String street1 = cpd.getTextField(8).getText().trim();
+		String town1 = cpd.getTextField(9).getText().trim();
+		String country1 = cpd.getTextField(10).getText().trim();
+		String id = cpd.getTextField(11).getText().trim();
 		String title = cpd.getCombo().getSelectedItem().toString();
-		int serviceYears = Integer.parseInt(cpd.getTextField(8).getText().trim());
+		int serviceYears = Integer.parseInt(cpd.getTextField(12).getText().trim());
+		Address homeAddress = stringToAddress(street, town, country);
+		Address officeAddress = stringToAddress(street1, town1, country1);
 		Professor professor = new Professor(surname, name, birthDate, homeAddress, phone, email, officeAddress, id, Title.getTitleWithString(title), serviceYears);
 		return professor;
 	}
 	
-	private Address stringToAddress(String text) {
-		String[] addressData = text.split("#");
-		Address address = new Address(addressData[0], Integer.parseInt(addressData[1]), addressData[2], addressData[3]);
+	private Address stringToAddress(String street, String town, String country) {
+		String[] streetData = street.split(" ");
+		String streetName = "";
+		for(int i = 0; i < streetData.length - 1; i++){
+			streetName += streetData[i];
+		}
+		Address address = new Address(streetName, Integer.parseInt(streetData[streetData.length - 1]), town, country);
 		return address;
 	} 
 	

@@ -74,12 +74,11 @@ public class ListenerController {
 				if (tab.getSelectedIndex() == 0)
 					frame.setNewAddStudentDialog();
 				else if (tab.getSelectedIndex() == 1)
-					frame.getAddProfessorDialog().setVisible(true);
+					frame.setNewAddProfessorDialog();
 
 				else
 					frame.getAddSubjectDialog().setVisible(true);
 			}
-
 		};
 
 		if (comp instanceof JButton)

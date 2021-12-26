@@ -126,6 +126,11 @@ public class MainFrame extends JFrame {
 		addStudentDialog = new AddStudentDialog();
 		addStudentDialog.setVisible(true);
 	}
+	
+	public void setNewAddProfessorDialog() {
+		addProfessorDialog = new AddProfessorDialog();
+		addProfessorDialog.setVisible(true);
+	}
 
 	public MainTab getTab() {
 		return tab;

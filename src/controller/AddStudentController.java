@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.awt.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,13 +39,34 @@ public class AddStudentController {
 
 		for(int i = 0; i < fields.size(); i++) {
 			JTextField field = fields.get(i);
-			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
+			if(field.getText().trim().equals("")){
+				field.setForeground(Color.RED);
+				throw new NullPointerException("Polja moraju biti popunjena!");
+			}
 			if(i == 2)
-				if(!validDateFormat(field.getText().trim())) throw new DateTimeException("Datum mora biti ispravno formatiran");
-			if(i == 3 && !validAddressFormat(field.getText())) throw new NullPointerException("Adresa nije pravilno uneta!");
-			if(i == 9 && !validateYear(field.getText())) throw new Exception("Godina mora biti broj!");
+				if(!validDateFormat(field.getText().trim())){
+					field.setForeground(Color.RED);
+					throw new DateTimeException("Datum mora biti ispravno formatiran");
+				}
+			if(i == 3 && !validAddressFormat(field.getText())){
+				field.setForeground(Color.RED);
+				throw new NullPointerException("Adresa nije pravilno uneta!");
+			}
+			if(i == 8) {
+				Student student = DatabaseReader.getInstance().findStudent(field.getText());
+				if(student != null) {
+					field.setForeground(Color.RED);
+					throw new Exception("Unet je vec postojeci broj indeksa!");
+				}
+			}
+			if(i == 9 && !validateYear(field.getText())){
+				field.setForeground(Color.RED);
+				throw new Exception("Godina mora biti broj!");
+			}
+			field.setForeground(Color.black);
 		}
 	}
+
 	
 	private boolean validDateFormat(String date) {
 		try {

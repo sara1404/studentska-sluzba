@@ -36,12 +36,12 @@ public class ChangeProfessorController {
 			databaseReader.getProfessors().set(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable(), newProfessor);
 			ObserverNotifier.getInstance().professorDataChanged();
 			cpd.dispose();
-		} catch(NullPointerException | DateTimeException e) {
+		} catch(Exception e) {
 			JOptionPane.showMessageDialog(cpd, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
-	public void validateFields(ArrayList<JTextField> fields) {
+	public void validateFields(ArrayList<JTextField> fields) throws Exception {
 		for(int j = 0; j < fields.size(); j++) {
 			fields.get(j).setForeground(Color.BLACK);
 		}
@@ -61,6 +61,12 @@ public class ChangeProfessorController {
 					throw new NullPointerException("Adresa nije pravilno uneta!"); 
 				}
 				
+				if(i == 11 && idExists(field.getText())) {
+					fields.get(i).setForeground(Color.RED);
+					throw new Exception("Vec postoji profesor sa unetim brojem licne karte!");
+					
+				}
+				
 				if((i == 12) && !validType(field.getText())) {
 					fields.get(i).setForeground(Color.RED);
 					throw new NumberFormatException("Godina staza mora biti ceo broj!");
@@ -69,6 +75,15 @@ public class ChangeProfessorController {
 			}
 		
 	}
+	
+	private boolean idExists(String id) {
+		Professor professor  = DatabaseReader.getInstance().findProfessor(id);
+		if(professor == null) {
+			return false;
+		} else {
+			return true;
+		}
+}
 	
 	private boolean validType(String text) {
 		try {

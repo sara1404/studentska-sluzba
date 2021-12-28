@@ -14,8 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controller.ListenerController;
+import controller.ShowPassedExamsForStudentController;
 import view.listeners.ChangeStudentListener;
 import view.tabs.tabPanels.InformationStudent;
 import view.tabs.tabPanels.SubjectsNotPassedStudent;
@@ -23,13 +26,14 @@ import view.tabs.tabPanels.SubjectsPassedStudent;
 
 public class ChangeStudentDialog extends JDialog{
 	private InformationStudent info;
+	SubjectsPassedStudent subPassed;
 	public ChangeStudentDialog() {
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Izmena studenta");
 		getContentPane().setBackground(Color.DARK_GRAY);
 
-		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;
 		int height = dim.height;
@@ -51,7 +55,7 @@ public class ChangeStudentDialog extends JDialog{
 		JButton confirmBtn = info.getButtonsInAddStudentForm().get(0);
 		confirmBtn.addActionListener(ChangeStudentListener.studentChangingListener(confirmBtn));
 		
-		SubjectsPassedStudent subPassed = new SubjectsPassedStudent();
+		subPassed = new SubjectsPassedStudent();
 		subPassed.setPreferredSize(new Dimension(200, 200));
 		subPassed.setBackground(Color.DARK_GRAY);
 		tab1.addTab("Polozeni", subPassed);
@@ -63,7 +67,15 @@ public class ChangeStudentDialog extends JDialog{
 		subNotPassed.setBackground(Color.DARK_GRAY);
 		tab1.addTab("Nepolozeni", subNotPassed);
 		add(tab1);
-		
+
+		tab1.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				if(tab1.getSelectedIndex() == 1) {
+					ShowPassedExamsForStudentController.getInstance().setAverageGrade(subPassed);
+				}
+			}
+		});
 	}
 	
 	public JTextField getTextFieldAt(int index) {
@@ -80,5 +92,9 @@ public class ChangeStudentDialog extends JDialog{
 
 	public ArrayList<JTextField> getTextFields(){
 		return info.getTextFields();
+	}
+
+	public SubjectsPassedStudent getSubjectPassedStudent(){
+		return subPassed;
 	}
 }

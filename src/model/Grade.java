@@ -1,5 +1,7 @@
 package model;
 
+import enums.Semester;
+
 import java.time.LocalDate;
 
 public class Grade {
@@ -63,5 +65,16 @@ public class Grade {
 			return;
 		}
 		throw new Exception("Ocena je van ranga!");
+	}
+
+	public String getValueAt(int columnIndex) {
+		switch (columnIndex){
+			case 0: return subject.getSubjectKey();
+			case 1: return subject.getSubjectName();
+			case 2: return String.valueOf(subject.getESPB());
+			case 3: return String.valueOf(grade);
+			case 4: return examDate.toString();
+			default: return " ";
+		}
 	}
 }	

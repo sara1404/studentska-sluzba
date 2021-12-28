@@ -112,6 +112,8 @@ public class ListenerController {
 					if(index == null) return;
 					Student student = DatabaseReader.getInstance().findStudent(index);
 					frame.getChangeStudentDialog().getInformationPanel().fillFormWithStudentInfo(student);
+					ShowPassedExamsForStudentController.getInstance().setAverageGrade(frame.getChangeStudentDialog().getSubjectPassedStudent());
+					ShowPassedExamsForStudentController.getInstance().setEspbPoints(frame.getChangeStudentDialog().getSubjectPassedStudent());
 					frame.getChangeStudentDialog().setVisible(true);
 
 				}

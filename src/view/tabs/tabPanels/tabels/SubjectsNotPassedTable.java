@@ -9,7 +9,7 @@ public class SubjectsNotPassedTable extends JTable{
 	public SubjectsNotPassedTable() {
 		this.setRowSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelSubjectsPassed());
+		this.setModel(new AbstractTableModelSubjectsNotPassed());
 		ObserverNotifier on = ObserverNotifier.getInstance();
 		on.setSubjectsNotPassedTable(this);
 	}

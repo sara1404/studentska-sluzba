@@ -40,7 +40,6 @@ public class MainFrame extends JFrame {
 	MenuBar menu = new MenuBar();
 
 	private MainFrame() {
-
 		Toolkit kit = Toolkit.getDefaultToolkit();
 
 		setTitle("Studentska služba");
@@ -130,6 +129,11 @@ public class MainFrame extends JFrame {
 	public void setNewAddProfessorDialog() {
 		addProfessorDialog = new AddProfessorDialog();
 		addProfessorDialog.setVisible(true);
+	}
+
+	public void setNewChangeStudentDialog() {
+		changeStudentDialog = new ChangeStudentDialog();
+		changeStudentDialog.setVisible(true);
 	}
 
 	public MainTab getTab() {

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,8 +20,6 @@ public class DatabaseReader {
 	private ArrayList<Professor> professors;
 	private ArrayList<Subject> subjects;
 	private ArrayList<Grade> grades;
-	private ArrayList<Subject> subjectsPassedForStudent;
-
 
 	private DatabaseReader() {
 		try 
@@ -28,28 +27,22 @@ public class DatabaseReader {
 			this.students = readStudentDatabase();
 			this.professors = readProfessorDatabase();
 			this.subjects = readSubjectDatabase();
-			this.grades = addTempSubjects();
-			this.students.get(0).setPassedExams(grades);
+			this.grades = readGradesForStudent();
+			linkGradesToStudent();
 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	//privremena fja za polozene predmete
-	private ArrayList<Grade> addTempSubjects(){
-//		ArrayList<Subject> temp = new ArrayList<>();
-//		Subject sub1 = new Subject("miss", "modeliranje", Semester.LETNJI, 2, findProfessor("001"), 8 );
-//		Subject sub2 = new Subject("miss", "modeliranje", Semester.LETNJI, 2, findProfessor("002"), 8 );
-//		temp.add(sub1);
-//		temp.add(sub2);
-//		return temp;
-
-		ArrayList<Grade> grades = new ArrayList<>();
-		grades.add(new Grade(students.get(0), subjects.get(0),9, LocalDate.parse("2000-12-12")));
-		grades.add(new Grade(students.get(0), subjects.get(1),10, LocalDate.parse("2000-12-12")));
-
-		return grades;
+	private void linkGradesToStudent(){
+		for(Student student : students){
+			for(int i = 0; i < grades.size(); i++){
+				if(student.getIndex().equals(grades.get(i).getStudent().getIndex())) {
+					student.getPassedExams().add(grades.get(i));
+				}
+			}
+		}
 	}
 
 	public ArrayList<Student> readStudentDatabase() throws Exception{
@@ -97,6 +90,22 @@ public class DatabaseReader {
         }  
         scanner.close();
 		return subjects;
+	}
+
+
+	private ArrayList<Grade> readGradesForStudent() throws Exception {
+		File text = new File("src/database_resource/subjects_student_passed.txt");
+		ArrayList<Grade> grades = new ArrayList<>();
+		Scanner scanner;
+		scanner = new Scanner(text);
+		while(scanner.hasNextLine()){
+			String gradeInfo = scanner.nextLine();
+			String[] gradeData = trimData(gradeInfo.split(","));
+			Grade grade = new Grade(findStudent(gradeData[0]), findSubject(gradeData[1]), Integer.parseInt(gradeData[2]), LocalDate.parse(gradeData[3]));
+			grades.add(grade);
+		}
+		scanner.close();
+		return grades;
 	}
 	
 	private Address stringToAddress(String text) {
@@ -188,6 +197,4 @@ public class DatabaseReader {
 		return subjects;
 	}
 
-	public ArrayList<Subject> getSubjectsPassedForStudent() {return subjectsPassedForStudent;}
-	
 }

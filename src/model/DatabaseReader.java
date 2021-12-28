@@ -1,11 +1,13 @@
 package model;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import controller.ShowPassedExamsForStudentController;
 import enums.Semester;
 import enums.Status;
 import enums.Title;
@@ -16,19 +18,40 @@ public class DatabaseReader {
 	private ArrayList<Student> students;
 	private ArrayList<Professor> professors;
 	private ArrayList<Subject> subjects;
-	
+	private ArrayList<Grade> grades;
+	private ArrayList<Subject> subjectsPassedForStudent;
+
+
 	private DatabaseReader() {
 		try 
 		{
 			this.students = readStudentDatabase();
 			this.professors = readProfessorDatabase();
 			this.subjects = readSubjectDatabase();
-			
+			this.grades = addTempSubjects();
+			this.students.get(0).setPassedExams(grades);
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	//privremena fja za polozene predmete
+	private ArrayList<Grade> addTempSubjects(){
+//		ArrayList<Subject> temp = new ArrayList<>();
+//		Subject sub1 = new Subject("miss", "modeliranje", Semester.LETNJI, 2, findProfessor("001"), 8 );
+//		Subject sub2 = new Subject("miss", "modeliranje", Semester.LETNJI, 2, findProfessor("002"), 8 );
+//		temp.add(sub1);
+//		temp.add(sub2);
+//		return temp;
+
+		ArrayList<Grade> grades = new ArrayList<>();
+		grades.add(new Grade(students.get(0), subjects.get(0),9, LocalDate.parse("2000-12-12")));
+		grades.add(new Grade(students.get(0), subjects.get(1),10, LocalDate.parse("2000-12-12")));
+
+		return grades;
+	}
+
 	public ArrayList<Student> readStudentDatabase() throws Exception{
 		File text = new File("src/database_resource/students.txt");
 		ArrayList<Student> students = new ArrayList<>();
@@ -145,7 +168,7 @@ public class DatabaseReader {
 		subjects.remove(findSubject(index));
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
-	
+
 	public static DatabaseReader getInstance() {
 		if(instance == null){
 			instance = new DatabaseReader();
@@ -164,5 +187,7 @@ public class DatabaseReader {
 	public ArrayList<Subject> getSubjects() {
 		return subjects;
 	}
+
+	public ArrayList<Subject> getSubjectsPassedForStudent() {return subjectsPassedForStudent;}
 	
 }

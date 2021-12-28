@@ -1,5 +1,7 @@
 package view.tabs.tabPanels.tabels;
 
+import model.DatabaseReader;
+
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -21,7 +23,7 @@ public class AbstractTableModelSubjectsPassed extends AbstractTableModel{
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return DatabaseReader.getInstance().getSubjectsPassedForStudent().size();
 	}
 
 	@Override
@@ -32,8 +34,7 @@ public class AbstractTableModelSubjectsPassed extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		return DatabaseReader.getInstance().getSubjectsPassedForStudent().get(rowIndex).getValueAt(columnIndex);
 	}
 	@Override
 	public String getColumnName(int column) {

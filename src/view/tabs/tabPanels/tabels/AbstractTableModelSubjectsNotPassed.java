@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import model.DatabaseReader;
+
 public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	private ArrayList<String> columnNames;
 	public AbstractTableModelSubjectsNotPassed() {

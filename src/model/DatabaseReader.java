@@ -45,6 +45,34 @@ public class DatabaseReader {
 		}
 	}
 
+	public ArrayList<Subject> filterSubjectsForStudent(Student student){
+		ArrayList<Subject> filteredSubjects = new ArrayList<>();
+		for(Subject subject : subjects){
+			if(!listContainsSubject(convertGradeListToSubjectList(student.getPassedExams()), subject)
+			&& !listContainsSubject(student.getFailedExams(), subject)
+			&& student.getCurrentYear() == subject.getYear()){
+				filteredSubjects.add(subject);
+			}
+		}
+		return filteredSubjects;
+	}
+
+	private ArrayList<Subject> convertGradeListToSubjectList(ArrayList<Grade> gradeList){
+		ArrayList<Subject> subjectList = new ArrayList<>();
+ 		for(Grade grade : gradeList){
+			subjectList.add(grade.getSubject());
+		}
+		 return subjectList;
+	}
+
+	private boolean listContainsSubject(ArrayList<Subject> list, Subject subject){
+		for(Subject sub : list){
+			if(sub.getSubjectKey().equals(subject.getSubjectKey()))
+				return true;
+		}
+		return false;
+	}
+
 	public ArrayList<Student> readStudentDatabase() throws Exception{
 		File text = new File("src/database_resource/students.txt");
 		ArrayList<Student> students = new ArrayList<>();

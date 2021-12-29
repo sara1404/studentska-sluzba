@@ -67,15 +67,7 @@ public class ChangeStudentDialog extends JDialog{
 		subNotPassed.setBackground(Color.DARK_GRAY);
 		tab1.addTab("Nepolozeni", subNotPassed);
 		add(tab1);
-
-		tab1.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				if(tab1.getSelectedIndex() == 1) {
-					ShowPassedExamsForStudentController.getInstance().setAverageGrade(subPassed);
-				}
-			}
-		});
+		
 	}
 	
 	public JTextField getTextFieldAt(int index) {

@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import model.DatabaseReader;
+import model.Student;
+import view.MainFrame;
 
 public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	private ArrayList<String> columnNames;
+	private Student student;
 	public AbstractTableModelSubjectsNotPassed() {
 		columnNames = new ArrayList<String>();
-		
-		
+
 		columnNames.add("Sifra predmeta");
 		columnNames.add("Naziv predmeta");
 		columnNames.add("ESPB");
@@ -20,8 +22,9 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	}
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		int selectedIndex = MainFrame.getInstance().getTab().getSelectedRowInStudentTable();
+		this.student = DatabaseReader.getInstance().getStudents().get(selectedIndex);
+		return student.getFailedExams().size();
 	}
 
 	@Override
@@ -32,8 +35,7 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		return student.getFailedExams().get(rowIndex).getValueAt(columnIndex);
 	}
 	@Override
 	public String getColumnName(int column) {

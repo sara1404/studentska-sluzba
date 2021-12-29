@@ -18,7 +18,7 @@ public class Student {
 	private Status status;
 	private double averageGrade;
 	private ArrayList<Grade> passedExams;
-	private ArrayList<Grade> failedExams;
+	private ArrayList<Subject> failedExams;
 
 	public Student(String surname, String name, LocalDate dateOfBirth, Address homeAdress, String phone, String email,
 			String index, int startYear, int currentYear, Status status, double averageGrade) {
@@ -109,10 +109,10 @@ public class Student {
 	public void setPassedExams(ArrayList<Grade> passedExams) {
 		this.passedExams = passedExams;
 	}
-	public ArrayList<Grade> getFailedExams() {
+	public ArrayList<Subject> getFailedExams() {
 		return failedExams;
 	}
-	public void setFailedExams(ArrayList<Grade> failedExams) {
+	public void setFailedExams(ArrayList<Subject> failedExams) {
 		this.failedExams = failedExams;
 	}
 	

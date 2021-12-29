@@ -110,6 +110,7 @@ public class ListenerController {
 				if (tab.getSelectedIndex() == 0) {
 					String index = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
 					if(index == null) return;
+					frame.setNewChangeStudentDialog();
 					Student student = DatabaseReader.getInstance().findStudent(index);
 					frame.getChangeStudentDialog().getInformationPanel().fillFormWithStudentInfo(student);
 					ShowPassedExamsForStudentController.getInstance().setAverageGrade(frame.getChangeStudentDialog().getSubjectPassedStudent());

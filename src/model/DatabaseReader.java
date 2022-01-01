@@ -20,6 +20,7 @@ public class DatabaseReader {
 	private ArrayList<Professor> professors;
 	private ArrayList<Subject> subjects;
 	private ArrayList<Grade> grades;
+	private ArrayList<ProfessorTeachSubject> professorTeachSubjects;
 
 	private DatabaseReader() {
 		try 
@@ -29,6 +30,8 @@ public class DatabaseReader {
 			this.subjects = readSubjectDatabase();
 			this.grades = readGradesForStudent();
 			linkGradesToStudent();
+			this.professorTeachSubjects = readSubjectsForProfessor();
+			linkSubjectsToProfessor();
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -40,6 +43,16 @@ public class DatabaseReader {
 			for(int i = 0; i < grades.size(); i++){
 				if(student.getIndex().equals(grades.get(i).getStudent().getIndex())) {
 					student.getPassedExams().add(grades.get(i));
+				}
+			}
+		}
+	}
+
+	private void linkSubjectsToProfessor(){
+		for(Professor professor : professors){
+			for(int i = 0; i < professorTeachSubjects.size(); i++){
+				if(professor.getId().equals(professorTeachSubjects.get(i).getProfessor().getId())){
+					professor.getSubjectList().add(professorTeachSubjects.get(i).getSubject());
 				}
 			}
 		}
@@ -134,6 +147,31 @@ public class DatabaseReader {
 		}
 		scanner.close();
 		return grades;
+	}
+
+	private ArrayList<ProfessorTeachSubject> readSubjectsForProfessor() throws Exception {
+		File text = new File("src/database_resource/professor_teach_subjects.txt");
+		ArrayList<ProfessorTeachSubject> professorTeachSubjectsList = new ArrayList<>();
+		Scanner scanner;
+		scanner = new Scanner(text);
+		while(scanner.hasNextLine()){
+			String professorTeachSubjectsInfo = scanner.nextLine();
+			String[] professorTeachSubjectData = trimData(professorTeachSubjectsInfo.split(","));
+			ProfessorTeachSubject professorTeachSubjects = new ProfessorTeachSubject(findProfessor(professorTeachSubjectData[0]), findSubject(professorTeachSubjectData[1]));
+			professorTeachSubjectsList.add(professorTeachSubjects);
+		}
+		scanner.close();
+		return professorTeachSubjectsList;
+	}
+
+	public ArrayList<Subject> filterSubjectsForProfessor(Professor professor){
+		ArrayList<Subject> filteredSubjects = new ArrayList<>();
+		for(int i = 0; i < professorTeachSubjects.size(); i++){
+			if(professorTeachSubjects.get(i).getProfessor().getId().equals(professor.getId())){
+				filteredSubjects.add(professorTeachSubjects.get(i).getSubject());
+			}
+		}
+		return filteredSubjects;
 	}
 	
 	private Address stringToAddress(String text) {

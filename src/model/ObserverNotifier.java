@@ -1,9 +1,6 @@
 package model;
 
-import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
-import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsPassed;
-import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
-import view.tabs.tabPanels.tabels.SubjectsPassedTable;
+import view.tabs.tabPanels.tabels.*;
 import view.tabs.tables.AbstractTableModelProfessor;
 import view.tabs.tables.AbstractTableModelStudent;
 import view.tabs.tables.AbstractTableModelSubject;
@@ -19,6 +16,8 @@ public class ObserverNotifier {
 	
 	private SubjectsPassedTable subjectsPassedTable;
 	private SubjectsNotPassedTable subjectsNotPassedTable;
+
+	private ProfessorTeachSubjectsTable professorTeachSubjectsTable;
 	
 	private static ObserverNotifier instance;
 	
@@ -49,7 +48,8 @@ public class ObserverNotifier {
 	public void setSubjectsNotPassedTable(SubjectsNotPassedTable table) {
 		subjectsNotPassedTable = table;
 	}
-	
+
+	public void setProfessorTeachSubjectsTable(ProfessorTeachSubjectsTable table) {professorTeachSubjectsTable = table;}
 	
 	public void studentsDataChanged() {
 		AbstractTableModelStudent model = (AbstractTableModelStudent) studentTable.getModel();
@@ -73,6 +73,11 @@ public class ObserverNotifier {
 	
 	public void subjectsNotPassedDataChanged() {
 		AbstractTableModelSubjectsNotPassed model = (AbstractTableModelSubjectsNotPassed) subjectsNotPassedTable.getModel();
+		model.fireTableDataChanged();
+	}
+
+	public void professorTeachSubjectsDataChanged(){
+		AbstractTableModelProfessorTeachSubjects model = (AbstractTableModelProfessorTeachSubjects)  professorTeachSubjectsTable.getModel();
 		model.fireTableDataChanged();
 	}
 }

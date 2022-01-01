@@ -133,7 +133,10 @@ public class MainFrame extends JFrame {
 
 	public void setNewChangeStudentDialog() {
 		changeStudentDialog = new ChangeStudentDialog();
+	}
 
+	public void setNewChangeProfessorDialog() {
+		changeProfessorDialog = new ChangeProfessorDialog();
 	}
 
 	public MainTab getTab() {

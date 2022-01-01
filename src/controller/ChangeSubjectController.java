@@ -52,6 +52,7 @@ public class ChangeSubjectController {
 		int espb = Integer.parseInt(changeSubjectDialog.getTextFieldAt(3).getText());
 		
 		Subject subject = new Subject(id, name, Semester.getSemesterWithString(semestar), year, professor, espb);
+		professor.getSubjectList().add(subject);
 		return subject;
 	}
 	

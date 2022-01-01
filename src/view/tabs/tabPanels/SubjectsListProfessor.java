@@ -1,11 +1,9 @@
 package view.tabs.tabPanels;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import utils.Utils;
+import view.tabs.tabPanels.tabels.ProfessorTeachSubjectsTable;
 
 public class SubjectsListProfessor extends JPanel{
 	
@@ -15,20 +13,21 @@ public class SubjectsListProfessor extends JPanel{
 			pan.setLayout(box);
 			
 			JButton addBtn  = new JButton();
-			addBtn.setText("Dodaj");
+			addBtn.setText("Dodaj predmet");
 			Utils.setCursor(addBtn);
 			pan.add(addBtn);
 			
 			
 			
 			JButton removeBtn = new JButton();
-			removeBtn.setText("Obrisi");
+			removeBtn.setText("Obrisi predmet");
 			pan.add(removeBtn);
 			Utils.setCursor(removeBtn);
-			
-			
-			
+
 			add(pan);
+
+			ProfessorTeachSubjectsTable table = new ProfessorTeachSubjectsTable();
+			add(new JScrollPane(table));
 		}
 
 }

@@ -123,6 +123,7 @@ public class ListenerController {
 					String id = MainFrame.getInstance().getTab().getIdOfSelectedProfessor();
 					if(id == null) return;
 					Professor professor = DatabaseReader.getInstance().findProfessor(id);
+					frame.setNewChangeProfessorDialog();
 					frame.getChangeProfessorDialog().getInformationPanel().fillingInfo(professor);
 					frame.getChangeProfessorDialog().setVisible(true);
 					

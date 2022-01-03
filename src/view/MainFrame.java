@@ -22,7 +22,7 @@ import view.toolbar.ToolBar;
 public class MainFrame extends JFrame {
 	
 	private static MainFrame instance = null;
-
+	private ToolBar tb;
 	AddStudentDialog addStudentDialog = new AddStudentDialog();
 	AddProfessorDialog addProfessorDialog = new AddProfessorDialog();
 	AddSubjectDialog addSubjectDialog = new AddSubjectDialog();
@@ -54,14 +54,14 @@ public class MainFrame extends JFrame {
 		MenuBar menu = new MenuBar();
 		this.setJMenuBar(menu);
 
-		ToolBar tb = new ToolBar();
+		tb = new ToolBar();
 		getContentPane().add(tb, BorderLayout.NORTH);
 
 		StatusBar status = new StatusBar();
 		status.setPreferredSize(new Dimension(this.getWidth(), 30));
 		add(status, BorderLayout.SOUTH);
 
-		tab = new MainTab();
+		tab = new MainTab(this);
 		add(tab);
 		
 		ListenerController.tabListener(tab, status);
@@ -150,6 +150,7 @@ public class MainFrame extends JFrame {
 		addDepartmentDirectorDialog = new AddDepartmentDirectorDialog();
 	}
 
+	public ToolBar getToolbar() { return tb; }
 	public MainTab getTab() {
 		return tab;
 	}

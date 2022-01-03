@@ -12,12 +12,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import controller.ListenerController;
-import view.dialogs.AddProfessorDialog;
-import view.dialogs.AddStudentDialog;
-import view.dialogs.AddSubjectDialog;
-import view.dialogs.ChangeProfessorDialog;
-import view.dialogs.ChangeStudentDialog;
-import view.dialogs.ChangeSubjectDialog;
+import view.dialogs.*;
 import view.menuBar.MenuBar;
 import view.statusBar.StatusBar;
 import view.tabs.MainTab;
@@ -35,6 +30,8 @@ public class MainFrame extends JFrame {
 	ChangeStudentDialog changeStudentDialog = new ChangeStudentDialog();
 	ChangeProfessorDialog changeProfessorDialog = new ChangeProfessorDialog();
 	ChangeSubjectDialog changeSubjectDialog = new ChangeSubjectDialog();
+
+	AddDepartmentDirectorDialog addDepartmentDirectorDialog = new AddDepartmentDirectorDialog();
 	
 	MainTab tab;
 	MenuBar menu = new MenuBar();
@@ -81,6 +78,7 @@ public class MainFrame extends JFrame {
 		ListenerController.setDisplayAddDialogAction(this, tab, menu.getfNew());
 		ListenerController.setDisplayChangeDialogAction(this, tab, menu.geteEdit());
 		ListenerController.setDisplayDeleteDialogAction(this, tab, menu.getDelete());
+		ListenerController.setDisplayAddDepartmentDirectorDialog(this, menu.getDepartment());
 		
 		//menu item listeners for tabs switch
 		ListenerController.switchTabsfromMenu(this, tab, menu.getStudent(), 0);
@@ -121,6 +119,8 @@ public class MainFrame extends JFrame {
 		return changeSubjectDialog;
 	}
 
+	public AddDepartmentDirectorDialog getAddDepartmentDirectorDialog() { return addDepartmentDirectorDialog; }
+
 	public void setNewAddStudentDialog() {
 		addStudentDialog = new AddStudentDialog();
 		addStudentDialog.setVisible(true);
@@ -145,6 +145,10 @@ public class MainFrame extends JFrame {
 	}
 
 	public void setNewChangeSubjectDialog() { changeSubjectDialog = new ChangeSubjectDialog(); }
+
+	public void setNewAddDepartmentDirectorDialog(){
+		addDepartmentDirectorDialog = new AddDepartmentDirectorDialog();
+	}
 
 	public MainTab getTab() {
 		return tab;

@@ -173,6 +173,16 @@ public class DatabaseReader {
 		}
 		return filteredSubjects;
 	}
+
+	public ArrayList<Professor> filterProfessorsForDepartmentDirector(){
+		ArrayList<Professor> filteredProfessors = new ArrayList<>();
+		for(Professor professor : professors){
+			if(professor.getServiceYears() >= 5 && (professor.getTitle() == Title.REDOVNI || professor.getTitle() == Title.VANREDNI)){
+				filteredProfessors.add(professor);
+			}
+		}
+		return filteredProfessors;
+	}
 	
 	private Address stringToAddress(String text) {
 		String[] addressData = text.split("#");

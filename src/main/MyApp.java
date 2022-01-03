@@ -10,15 +10,6 @@ public class MyApp {
 	public static void main(String[] args) {
 
 		MainFrame mf = MainFrame.getInstance();
-		ArrayList<Student> students;
-		try {
-			//students = dr.readStudentDatabase();
-			//DatabaseWriter wr = new DatabaseWriter();
-			//wr.writeInStudentDatabase(students);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 }

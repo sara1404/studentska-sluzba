@@ -206,4 +206,19 @@ public class ListenerController {
 		else if (comp instanceof JMenuItem)
 			((JMenuItem) comp).addActionListener(listener);
 	}
+
+	public static void setDisplayAddDepartmentDirectorDialog(MainFrame frame, JComponent comp){
+		ActionListener listener = new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setNewAddDepartmentDirectorDialog();
+				frame.getAddDepartmentDirectorDialog().setVisible(true);
+			}
+		};
+		if (comp instanceof JButton)
+			((JButton) comp).addActionListener(listener);
+		else if (comp instanceof JMenuItem)
+			((JMenuItem) comp).addActionListener(listener);
+	}
 }

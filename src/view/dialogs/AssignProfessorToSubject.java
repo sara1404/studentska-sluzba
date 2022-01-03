@@ -47,7 +47,6 @@ public class AssignProfessorToSubject extends JDialog {
 		applyBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Klkinut apply");
 				dialog.getDataInputs().get(2).setText(professorList.getSelectedValue());
 				dispose();
 				dialog.determineButtonActivity();
@@ -57,7 +56,6 @@ public class AssignProfessorToSubject extends JDialog {
 		cancelBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Kliknut delete");
 				dialog.dispose();
 			}
 		});

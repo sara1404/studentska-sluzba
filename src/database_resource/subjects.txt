@@ -1,2 +1,2 @@
-mo, metode optimizacije, LETNJI, 3, 001, 8
+mo, metode optimizacije, LETNJI, 3,  , 8
 mo2, metode optimizacije, LETNJI, 3, 001, 8

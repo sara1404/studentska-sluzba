@@ -131,6 +131,11 @@ public class MainFrame extends JFrame {
 		addProfessorDialog.setVisible(true);
 	}
 
+	public void setNewAddSubjectDialog(){
+		addSubjectDialog = new AddSubjectDialog();
+		addSubjectDialog.setVisible(true);
+	}
+
 	public void setNewChangeStudentDialog() {
 		changeStudentDialog = new ChangeStudentDialog();
 	}
@@ -138,6 +143,8 @@ public class MainFrame extends JFrame {
 	public void setNewChangeProfessorDialog() {
 		changeProfessorDialog = new ChangeProfessorDialog();
 	}
+
+	public void setNewChangeSubjectDialog() { changeSubjectDialog = new ChangeSubjectDialog(); }
 
 	public MainTab getTab() {
 		return tab;

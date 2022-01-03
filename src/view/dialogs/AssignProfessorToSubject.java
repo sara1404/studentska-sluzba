@@ -22,7 +22,7 @@ public class AssignProfessorToSubject extends JDialog {
 	JList<String> professorList;
 	JButton applyBtn;
 	JButton cancelBtn;
-	public AssignProfessorToSubject() {
+	public AssignProfessorToSubject(ChangeSubjectDialog dialog) {
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Odaberi profesora");
@@ -41,8 +41,26 @@ public class AssignProfessorToSubject extends JDialog {
 		professorList.setPreferredSize(new Dimension(width * 1/10, height));
 		professorList.setMaximumSize(new Dimension(width * 1/10, height));
 		
-		JButton applyBtn = new JButton();
-		JButton cancelBtn = new JButton();
+		applyBtn = new JButton();
+		cancelBtn = new JButton();
+
+		applyBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Klkinut apply");
+				dialog.getDataInputs().get(2).setText(professorList.getSelectedValue());
+				dispose();
+				dialog.determineButtonActivity();
+			}
+		});
+
+		cancelBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Kliknut delete");
+				dialog.dispose();
+			}
+		});
 		applyBtn.setText("Potvrdi");
 		cancelBtn.setText("Odustani");
 		JScrollPane pane = new JScrollPane();
@@ -59,8 +77,6 @@ public class AssignProfessorToSubject extends JDialog {
 		JPanel btnPanel = new JPanel();
 		BoxLayout box = new BoxLayout(btnPanel, BoxLayout.X_AXIS);
 		btnPanel.setLayout(box);
-		applyBtn = new JButton();
-		cancelBtn = new JButton();
 		applyBtn.setText("Potvrdi");
 		cancelBtn.setText("Odustani");
 		btnPanel.add(applyBtn);

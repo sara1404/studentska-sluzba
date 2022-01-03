@@ -75,9 +75,8 @@ public class ListenerController {
 					frame.setNewAddStudentDialog();
 				else if (tab.getSelectedIndex() == 1)
 					frame.setNewAddProfessorDialog();
-
 				else
-					frame.getAddSubjectDialog().setVisible(true);
+					frame.setNewAddSubjectDialog();
 			}
 		};
 
@@ -132,8 +131,10 @@ public class ListenerController {
 				else {
 					String index = MainFrame.getInstance().getTab().getIdOfSelectedSubject();
 					if(index == null) return;
+					frame.setNewChangeSubjectDialog();
 					Subject subject = DatabaseReader.getInstance().findSubject(index);
 					frame.getChangeSubjectDialog().fillFormWithSubjectInfo(subject);
+					frame.getChangeSubjectDialog().determineButtonActivity();
 					frame.getChangeSubjectDialog().setVisible(true);
 				}
 					

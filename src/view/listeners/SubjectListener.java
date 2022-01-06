@@ -22,6 +22,7 @@ public class SubjectListener {
 					AddSubjectDialog subjectDialog = (AddSubjectDialog) window;
 					AddSubjectController addSubjectController = AddSubjectController.getInstance();
 					addSubjectController.addSubject(subjectDialog);
+					subjectDialog.dispose();
 				}
 			}
 			

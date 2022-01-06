@@ -1,21 +1,22 @@
 package view.toolbar;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.Box;
-import javax.swing.JButton;
-import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 import controller.ListenerController;
+import controller.SearchController;
 import view.listeners.ToolbarListener;
 
 public class ToolBar extends JToolBar {
-	Button createEntityBtn;
-	Button changeEntityBtn;
-	Button removeEntityBtn;
-	Button searchBtn;
+	private Button createEntityBtn;
+	private Button changeEntityBtn;
+	private Button removeEntityBtn;
+	private Button searchBtn;
+	private JTextField searchField;
 	
 	public ToolBar() {
 		super(SwingConstants.HORIZONTAL);
@@ -42,13 +43,20 @@ public class ToolBar extends JToolBar {
 
 		add(Box.createHorizontalGlue());
 		
-		TextField searchInput = new TextField();
-		add(searchInput);
+		searchField = new TextField();
+		add(searchField);
 		
 		addSeparator();
 		
 		searchBtn = new Button("Search", "src/toolbar_imgs/search_icon.png", tlSearch);
 		add(searchBtn);
+
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SearchController.getInstance().search();
+			}
+		});
 		
 		setFloatable(false);
 		setBackground(new Color(48, 51, 49));
@@ -69,5 +77,8 @@ public class ToolBar extends JToolBar {
 	
 	public Button getSearchBtn() {
 		return searchBtn;
+	}
+	public JTextField getSearchField() {
+		return searchField;
 	}
 }

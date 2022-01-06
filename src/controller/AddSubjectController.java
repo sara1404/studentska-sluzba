@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.*;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 
@@ -33,11 +34,18 @@ public class AddSubjectController {
 		}
 	}
 
-	public void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
+	public void validateFields(ArrayList<JTextField> fields) throws Exception {
 
 		for(int i = 0; i < fields.size(); i++) {
 			JTextField field = fields.get(i);
 			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
+			if(i == 0) {
+				Subject subject = DatabaseReader.getInstance().findSubject(field.getText());
+				if(subject != null) {
+					field.setForeground(Color.RED);
+					throw new Exception("Unet je predmet sa postojecom sifrom!");
+				}
+			}
 		}
 	}
 

@@ -7,16 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import controller.ListenerController;
 import model.Subject;
@@ -25,13 +16,15 @@ import view.listeners.ChangeSubjectListener;
 import view.tabs.tabPanels.SubjectsNotPassedStudent;
 
 public class ChangeSubjectDialog extends JDialog{
-	ArrayList<JTextField> dataInputs;
-	ArrayList<JComboBox> comboInputs;
+	private ArrayList<JTextField> dataInputs;
+	private ArrayList<JComboBox> comboInputs;
 	private String[] labelText = {"Sifra predmeta*", "Naziv predmeta*", "Semestar*", "Godina studija*", "Predmetni profesor*", "Broj ESPB bodova*"};
-	ArrayList<JButton> buttonsInChangeSubjectForm;
 	
-	AssignProfessorToSubject assignProfessorToSubject =  new AssignProfessorToSubject();
 	SubjectsNotPassedStudent snps = new SubjectsNotPassedStudent();
+	private ArrayList<JButton> buttonsInChangeSubjectForm;
+	private JButton add;
+	private JButton remove;
+	private AssignProfessorToSubject assignProfessorToSubject =  new AssignProfessorToSubject(this);
 	
 	public ChangeSubjectDialog() {
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -62,47 +55,25 @@ public class ChangeSubjectDialog extends JDialog{
 			else if(i == 4) {
 				JTextField field = WindowComponentBuilder.createTextField();
 				field.setEditable(false);
-				JButton add = new JButton();
+				add = new JButton();
+				add.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/new.png")));
 				add.setPreferredSize(new Dimension(30, 30));
 				add.setMaximumSize(new Dimension(30, 30));
-				JButton remove = new JButton();
+				remove = new JButton();
+				remove.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/remove.png")));
 				remove.setPreferredSize(new Dimension(30, 30));
 				remove.setMaximumSize(new Dimension(30, 30));
 				
 				getContentPane().add(createSpecialPanel(labelText[i], field, add, remove));
-				
-				add.addActionListener(new ActionListener() {
 
+				add.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						assignProfessorToSubject.getApplyBtn().addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								// TODO Auto-generated method stub
-								dataInputs.get(2).setText(assignProfessorToSubject.getProfessorList().getSelectedValue());
-								assignProfessorToSubject.dispose();
-							}
-							
-						});
-						
-						assignProfessorToSubject.getCancelBtn().addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								// TODO Auto-generated method stub
-								assignProfessorToSubject.dispose();
-							}
-							
-						});
 						assignProfessorToSubject.setVisible(true);
 					}
-					
 				});
-				
-			}
-			else {
+
+			} else {
 				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createTextField()));
 			}
 		}
@@ -110,11 +81,19 @@ public class ChangeSubjectDialog extends JDialog{
 		buttonsInChangeSubjectForm.add(new JButton());
 		buttonsInChangeSubjectForm.add(new JButton());
 		getContentPane().add(WindowComponentBuilder.createButtons(buttonsInChangeSubjectForm.get(0), buttonsInChangeSubjectForm.get(1)));
-		
-		
-		
 		ListenerController.closeWindowOnCancelListener(this, buttonsInChangeSubjectForm.get(1));
 		buttonsInChangeSubjectForm.get(0).addActionListener(ChangeSubjectListener.subjectChangingListener(buttonsInChangeSubjectForm.get(0)));
+	}
+
+	public void determineButtonActivity() {
+		if(dataInputs.get(2).getText().equals("")) {
+			remove.setEnabled(false);
+			add.setEnabled(true);
+		}
+		else{
+			add.setEnabled(false);
+			remove.setEnabled(true);
+		}
 	}
 	
 	private JPanel createPanel(String text, JComponent comp) {
@@ -207,11 +186,14 @@ public class ChangeSubjectDialog extends JDialog{
 			comboInputs.get(0).setSelectedIndex(1);
 		for(int i = 1; i <= 6; i++) {
 			if(subject.getYear() == i)
-				comboInputs.get(1).setSelectedIndex(i);
+				comboInputs.get(1).setSelectedIndex(i - 1);
 		}
 		comboInputs.get(0).setSelectedItem(subject.getSemester());
 		comboInputs.get(1).setSelectedItem(subject.getYear());
-		dataInputs.get(2).setText(String.valueOf(subject.getProfessor()));
+		if(subject.getProfessor() == null)
+			dataInputs.get(2).setText("");
+		else
+			dataInputs.get(2).setText(subject.getProfessor().getName() + " " + subject.getProfessor().getSurname());
 		dataInputs.get(3).setText(String.valueOf(subject.getESPB()));
 	}
 }

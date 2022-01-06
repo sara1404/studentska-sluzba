@@ -3,14 +3,12 @@ package controller;
 
 
 import enums.Semester;
-import model.DatabaseReader;
-import model.ObserverNotifier;
-import model.Professor;
-import model.Subject;
+import model.*;
 import view.MainFrame;
 import view.dialogs.ChangeSubjectDialog;
 
 import javax.swing.*;
+import java.awt.*;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 
@@ -35,11 +33,18 @@ public class ChangeSubjectController {
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 
-	public void validateFields(ArrayList<JTextField> fields) throws NullPointerException, DateTimeException {
-
+	public void validateFields(ArrayList<JTextField> fields) throws Exception {
+		System.out.println("Validiramo");
 		for(int i = 0; i < fields.size(); i++) {
 			JTextField field = fields.get(i);
 			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
+			if(i == 0) {
+				Subject subject = DatabaseReader.getInstance().findSubject(field.getText());
+				if(subject != null && !field.getText().equals(DatabaseReader.getInstance().getSubjects().get(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable()).getSubjectKey())) {
+					field.setForeground(Color.RED);
+					throw new Exception("Unet je predmet sa postojecom sifrom!");
+				}
+			}
 		}
 	}
 	

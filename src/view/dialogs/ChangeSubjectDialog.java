@@ -22,6 +22,7 @@ import controller.ListenerController;
 import model.Subject;
 import utils.WindowComponentBuilder;
 import view.listeners.ChangeSubjectListener;
+import view.tabs.tabPanels.SubjectsNotPassedStudent;
 
 public class ChangeSubjectDialog extends JDialog{
 	ArrayList<JTextField> dataInputs;
@@ -30,6 +31,7 @@ public class ChangeSubjectDialog extends JDialog{
 	ArrayList<JButton> buttonsInChangeSubjectForm;
 	
 	AssignProfessorToSubject assignProfessorToSubject =  new AssignProfessorToSubject();
+	SubjectsNotPassedStudent snps = new SubjectsNotPassedStudent();
 	
 	public ChangeSubjectDialog() {
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -189,6 +191,12 @@ public class ChangeSubjectDialog extends JDialog{
 		return assignProfessorToSubject.getProfessorList();
 	}
 	
+	
+	
+	public SubjectsNotPassedStudent getSnps() {
+		return snps;
+	}
+
 	public void fillFormWithSubjectInfo(Subject subject) {
 		dataInputs.get(0).setText(subject.getSubjectKey());
 		dataInputs.get(1).setText(subject.getSubjectName());

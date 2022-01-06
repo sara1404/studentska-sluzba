@@ -78,10 +78,10 @@ public class ChangeProfessorController {
 	
 	private boolean idExists(String id) {
 		Professor professor  = DatabaseReader.getInstance().findProfessor(id);
-		if(professor == null) {
-			return false;
-		} else {
+		if(professor != null && !id.equals(DatabaseReader.getInstance().getProfessors().get(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable()).getId())) {
 			return true;
+		} else {
+			return false;
 		}
 }
 	

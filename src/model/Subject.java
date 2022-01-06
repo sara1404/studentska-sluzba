@@ -26,6 +26,7 @@ public class Subject {
 		studentsPassed = new ArrayList<>();
 		studentsFailed = new ArrayList<>();
 	}
+
 	public String getSubjectKey() {
 		return subjectKey;
 	}

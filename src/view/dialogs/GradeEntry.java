@@ -4,14 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import model.DatabaseReader;
+import model.Professor;
+import model.Subject;
 import utils.WindowComponentBuilder;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
+import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class GradeEntry extends JDialog{
 	
@@ -19,8 +27,10 @@ public class GradeEntry extends JDialog{
 	BoxLayout boxCenter = new BoxLayout(panCenter, BoxLayout.Y_AXIS);
 	JButton applyBtn;
 	JButton cancelBtn;
-	
+	ArrayList<JTextField> textFields;
+	SubjectsNotPassedTable notPassedTable;
 	public GradeEntry() {
+		notPassedTable = new SubjectsNotPassedTable();
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Unos ocene");
@@ -29,26 +39,29 @@ public class GradeEntry extends JDialog{
 		int height = dim.height;
 		setSize(width * 1/4, height * 1/3);
 		setLocationRelativeTo(null);
-		
+		textFields = new ArrayList<>();
 		panCenter.setLayout(boxCenter);
 		panCenter.setBackground(Color.DARK_GRAY);
 		
 		JPanel keyPan = new JPanel();
 		keyPan.add(WindowComponentBuilder.createLabel("Sifra*"));
 		keyPan.setBackground(Color.DARK_GRAY);
-		JComponent keyComp = WindowComponentBuilder.createTextField();
-		keyComp.setEnabled(false);
+		JTextField keyComp = WindowComponentBuilder.createTextField();
 		keyComp.setBackground(Color.GRAY);
+		keyComp.setEnabled(false);
+		textFields.add(keyComp);
 		keyPan.add(keyComp);
 		panCenter.add(keyPan);
 		
 		JPanel namePan = new JPanel();
 		namePan.add(WindowComponentBuilder.createLabel("Naziv*"));
 		namePan.setBackground(Color.DARK_GRAY);
-		JComponent nameComp = WindowComponentBuilder.createTextField();
-		nameComp.setEnabled(false);
+		JTextField nameComp = WindowComponentBuilder.createTextField();
 		nameComp.setBackground(Color.GRAY);
+		nameComp.setEnabled(false);
+		textFields.add(nameComp);
 		namePan.add(nameComp);
+		
 		panCenter.add(namePan);
 		
 		JPanel gradePan = new JPanel();
@@ -84,6 +97,24 @@ public class GradeEntry extends JDialog{
 		
 	}
 	
+	
+	public String getIdOfSelectedNotPassedSubject() {
+		AbstractTableModelSubjectsNotPassed model = (AbstractTableModelSubjectsNotPassed) notPassedTable.getModel();
+		int row = notPassedTable.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showMessageDialog(null, "Mora se selektovati predmet iz tabele pre unosa ocene!");
+			return null;
+		}
+		String id = (String) model.getValueAt(row, 0);
+		return id;
+	}
+	
+	
+	public void fillingInfo(Subject subject) {
+		textFields.get(0).setText(subject.getSubjectKey());
+		textFields.get(1).setText(subject.getSubjectName());
+	}
+	
 	public JButton getApplyBtn() {
 		return applyBtn;
 	}
@@ -91,4 +122,13 @@ public class GradeEntry extends JDialog{
 	public JButton getCancelBtn() {
 		return cancelBtn;
 	}
+	
+	public ArrayList<JTextField> getDataInputs() {
+		return textFields;
+	}
+	
+	public JTextField getTextField(int index) {
+		return textFields.get(index);
+	}
+
 }

@@ -4,7 +4,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-import model.DatabaseReader;
+import view.tabs.tabPanels.SubjectsNotPassedStudent;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
+import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 import view.tabs.tables.AbstractTableModelProfessor;
 import view.tabs.tables.AbstractTableModelStudent;
 import view.tabs.tables.AbstractTableModelSubject;
@@ -19,7 +21,6 @@ public class MainTab extends JTabbedPane {
 	
 	public MainTab() {
 		super();
-
 		studentTable = new StudentTable();
 		add("Studenti", new JScrollPane(studentTable));
 		professorTable = new ProfessorTable();
@@ -28,6 +29,7 @@ public class MainTab extends JTabbedPane {
 		add("Predmeti", new JScrollPane(subjectTable));
 		
 	}
+
 	
 	public String getIndexOfSelectedStudent() {
 		AbstractTableModelStudent model = (AbstractTableModelStudent) studentTable.getModel();
@@ -39,6 +41,8 @@ public class MainTab extends JTabbedPane {
 		String index = (String) model.getValueAt(row, 0);
 		return index;
 	}
+	
+
 	
 
 	public String getIdOfSelectedSubject() {

@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -23,11 +23,15 @@ import view.listeners.ChangeStudentListener;
 import view.tabs.tabPanels.InformationStudent;
 import view.tabs.tabPanels.SubjectsNotPassedStudent;
 import view.tabs.tabPanels.SubjectsPassedStudent;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
+import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class ChangeStudentDialog extends JDialog{
 	private InformationStudent info;
 	SubjectsPassedStudent subPassed;
+	SubjectsNotPassedStudent subNotPassed;
 	public ChangeStudentDialog() {
+		
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Izmena studenta");
@@ -62,14 +66,14 @@ public class ChangeStudentDialog extends JDialog{
 		
 		
 		
-		SubjectsNotPassedStudent subNotPassed = new SubjectsNotPassedStudent();
+		subNotPassed = new SubjectsNotPassedStudent();
 		subNotPassed.setPreferredSize(new Dimension(200, 200));
 		subNotPassed.setBackground(Color.DARK_GRAY);
 		tab1.addTab("Nepolozeni", subNotPassed);
 		add(tab1);
 		
 	}
-	
+
 	public JTextField getTextFieldAt(int index) {
 		return info.getTextFieldAt(index);
 	}
@@ -88,5 +92,9 @@ public class ChangeStudentDialog extends JDialog{
 
 	public SubjectsPassedStudent getSubjectPassedStudent(){
 		return subPassed;
+	}
+	
+	public SubjectsNotPassedStudent getSubjectNotPassedStudent(){
+		return subNotPassed;
 	}
 }

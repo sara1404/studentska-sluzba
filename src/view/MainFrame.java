@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
 	ChangeProfessorDialog changeProfessorDialog = new ChangeProfessorDialog();
 	ChangeSubjectDialog changeSubjectDialog = new ChangeSubjectDialog();
 
-	AddDepartmentDirectorDialog addDepartmentDirectorDialog = new AddDepartmentDirectorDialog();
+	DepartmentsDialog departmentsDialog = new DepartmentsDialog();
 	
 	MainTab tab;
 	MenuBar menu = new MenuBar();
@@ -78,7 +78,7 @@ public class MainFrame extends JFrame {
 		ListenerController.setDisplayAddDialogAction(this, tab, menu.getfNew());
 		ListenerController.setDisplayChangeDialogAction(this, tab, menu.geteEdit());
 		ListenerController.setDisplayDeleteDialogAction(this, tab, menu.getDelete());
-		ListenerController.setDisplayAddDepartmentDirectorDialog(this, menu.getDepartment());
+		ListenerController.setDisplayDepartmentDialog(this, menu.getDepartment());
 		
 		//menu item listeners for tabs switch
 		ListenerController.switchTabsfromMenu(this, tab, menu.getStudent(), 0);
@@ -119,7 +119,7 @@ public class MainFrame extends JFrame {
 		return changeSubjectDialog;
 	}
 
-	public AddDepartmentDirectorDialog getAddDepartmentDirectorDialog() { return addDepartmentDirectorDialog; }
+	public DepartmentsDialog getDepartmentsDialog() { return departmentsDialog; }
 
 	public void setNewAddStudentDialog() {
 		addStudentDialog = new AddStudentDialog();
@@ -147,7 +147,7 @@ public class MainFrame extends JFrame {
 	public void setNewChangeSubjectDialog() { changeSubjectDialog = new ChangeSubjectDialog(); }
 
 	public void setNewAddDepartmentDirectorDialog(){
-		addDepartmentDirectorDialog = new AddDepartmentDirectorDialog();
+		departmentsDialog = new DepartmentsDialog();
 	}
 
 	public ToolBar getToolbar() { return tb; }

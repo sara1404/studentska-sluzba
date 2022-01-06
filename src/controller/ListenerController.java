@@ -18,7 +18,6 @@ import model.Student;
 import model.Subject;
 import view.MainFrame;
 import view.statusBar.StatusBar;
-import view.menuBar.MenuBar;
 
 public class ListenerController {
 	public static void tabListener(JTabbedPane tab, StatusBar bar) {
@@ -207,13 +206,13 @@ public class ListenerController {
 			((JMenuItem) comp).addActionListener(listener);
 	}
 
-	public static void setDisplayAddDepartmentDirectorDialog(MainFrame frame, JComponent comp){
+	public static void setDisplayDepartmentDialog(MainFrame frame, JComponent comp){
 		ActionListener listener = new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setNewAddDepartmentDirectorDialog();
-				frame.getAddDepartmentDirectorDialog().setVisible(true);
+				frame.getDepartmentsDialog().setVisible(true);
 			}
 		};
 		if (comp instanceof JButton)

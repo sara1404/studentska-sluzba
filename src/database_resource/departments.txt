@@ -1,0 +1,2 @@
+mat,katedra za matematiku,001
+aut,katedra za autimatiku,null

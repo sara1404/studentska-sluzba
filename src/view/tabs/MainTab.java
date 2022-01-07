@@ -31,9 +31,9 @@ public class MainTab extends JTabbedPane {
 
 		studentTable = new StudentTable(frame);
 		add("Studenti", new JScrollPane(studentTable));
-		professorTable = new ProfessorTable();
+		professorTable = new ProfessorTable(frame);
 		add("Profesori", new JScrollPane(professorTable));
-		subjectTable = new SubjectTable();
+		subjectTable = new SubjectTable(frame);
 		add("Predmeti", new JScrollPane(subjectTable));
 		
 	}

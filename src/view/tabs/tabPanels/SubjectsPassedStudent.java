@@ -7,21 +7,25 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
 import model.ObserverNotifier;
 import model.Student;
 import utils.Utils;
 import view.MainFrame;
+import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 import view.tabs.tabPanels.tabels.SubjectsPassedTable;
 
 public class SubjectsPassedStudent extends JPanel{
 	JLabel averageGradeLabel;
 	JLabel espbSumLabel;
 	SubjectsPassedTable passed;
+	SubjectsNotPassedTable notPassed;
 	SubjectsPassedStudent sps = this;
 	public SubjectsPassedStudent() {
 		
@@ -41,7 +45,11 @@ public class SubjectsPassedStudent extends JPanel{
 					if(resp == 0) {
 						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 						student.getPassedExams().remove(student.getPassedExams().get(passed.getSelectedRow()));
-;						ObserverNotifier.getInstance().subjectsPassedDataChanged();
+						CustomListModelForNotPassedSubjects customListModelForNotPassedSubjects = new CustomListModelForNotPassedSubjects(student);
+						student.getFailedExams().add(customListModelForNotPassedSubjects.getSubjects().get(0));
+						ObserverNotifier.getInstance().subjectsPassedDataChanged();
+						ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
+
 				}
 				
 			}
@@ -49,7 +57,9 @@ public class SubjectsPassedStudent extends JPanel{
 		});
 		passed = new SubjectsPassedTable();
 		add(new JScrollPane(passed));
-
+		
+		notPassed = new SubjectsNotPassedTable();
+		
 		JPanel wrapper = new JPanel();
 		BoxLayout box2 = new BoxLayout(wrapper, BoxLayout.Y_AXIS);
 		wrapper.setLayout(box2);

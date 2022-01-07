@@ -1,18 +1,14 @@
 package model;
 
 import view.tabs.tabPanels.tabels.*;
-import view.tabs.tables.AbstractTableModelProfessor;
-import view.tabs.tables.AbstractTableModelStudent;
-import view.tabs.tables.AbstractTableModelSubject;
-import view.tabs.tables.ProfessorTable;
-import view.tabs.tables.StudentTable;
-import view.tabs.tables.SubjectTable;
+import view.tabs.tables.*;
 
 public class ObserverNotifier {
 	
 	private StudentTable studentTable;
 	private SubjectTable subjectTable;
 	private ProfessorTable professorTable;
+	private DepartmentTable departmentTable;
 	
 	private SubjectsPassedTable subjectsPassedTable;
 	private SubjectsNotPassedTable subjectsNotPassedTable;
@@ -50,6 +46,10 @@ public class ObserverNotifier {
 	}
 
 	public void setProfessorTeachSubjectsTable(ProfessorTeachSubjectsTable table) {professorTeachSubjectsTable = table;}
+
+	public void setDepartmentTable(DepartmentTable table){
+		departmentTable = table;
+	}
 	
 	public void studentsDataChanged() {
 		AbstractTableModelStudent model = (AbstractTableModelStudent) studentTable.getModel();
@@ -63,6 +63,11 @@ public class ObserverNotifier {
 	
 	public void subjectDataChanged() {
 		AbstractTableModelSubject model = (AbstractTableModelSubject) subjectTable.getModel();
+		model.fireTableDataChanged();
+	}
+
+	public void departmentDataChanged(){
+		AbstractTableModelDepartment model = (AbstractTableModelDepartment) departmentTable.getModel();
 		model.fireTableDataChanged();
 	}
 	

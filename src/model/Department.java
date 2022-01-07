@@ -7,12 +7,12 @@ public class Department {
 	private String name;
 	private Professor head;
 	ArrayList<Professor> professors;
-	public Department(String key, String name, Professor head, ArrayList<Professor> professors) {
+	public Department(String key, String name, Professor head) {
 		super();
 		this.key = key;
 		this.name = name;
 		this.head = head;
-		this.professors = professors;
+		this.professors = new ArrayList<>();
 	}
 	public String getKey() {
 		return key;
@@ -38,8 +38,17 @@ public class Department {
 	public void setProfessors(ArrayList<Professor> professors) {
 		this.professors = professors;
 	}
-	
-	
-	
-	
+
+	public String getValueAt(int index){
+		switch(index){
+			case 0: return key;
+			case 1: return name;
+			case 2:
+				if(head != null)
+					return head.getName() + " " + head.getSurname();
+				else
+					return " ";
+			default: return "";
+		}
+	}
 }

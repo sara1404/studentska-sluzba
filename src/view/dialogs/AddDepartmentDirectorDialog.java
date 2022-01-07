@@ -1,6 +1,10 @@
 package view.dialogs;
 
+import controller.SetDepartmentDirectorController;
 import model.DatabaseReader;
+import model.Department;
+import model.ObserverNotifier;
+import model.Professor;
 import utils.WindowComponentBuilder;
 
 import javax.swing.*;
@@ -17,8 +21,10 @@ public class AddDepartmentDirectorDialog extends JDialog{
     JButton addBtn;
     JButton removeBtn;
     AssignProfessorToDepartmentDirectorDialog assignProfessorToDepartmentDirectorDialog = new AssignProfessorToDepartmentDirectorDialog(this);
-
-    public AddDepartmentDirectorDialog(){
+    private DepartmentsDialog departmentsDialog;
+    private AddDepartmentDirectorDialog ctx = this;
+    public AddDepartmentDirectorDialog(DepartmentsDialog departmentsDialog){
+        this.departmentsDialog = departmentsDialog;
         setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -71,10 +77,19 @@ public class AddDepartmentDirectorDialog extends JDialog{
             }
         });
 
+        removeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                departmentDirectorField.setText("");
+                determineButtonActivity();
+            }
+        });
+
         buttonsInAddDepartmentDirector.get(0).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SetDepartmentDirectorController.getInstance().addDepartmentDirectorController(departmentsDialog, assignProfessorToDepartmentDirectorDialog, ctx);
+                dispose();
             }
         });
 
@@ -88,8 +103,8 @@ public class AddDepartmentDirectorDialog extends JDialog{
 
     public void determineButtonActivity() {
         if(departmentDirectorField.getText().equals("")) {
-            addBtn.setEnabled(false);
-            removeBtn.setEnabled(true);
+            addBtn.setEnabled(true);
+            removeBtn.setEnabled(false);
         }
         else{
             addBtn.setEnabled(false);

@@ -21,6 +21,7 @@ public class DatabaseReader {
 	private ArrayList<Subject> subjects;
 	private ArrayList<Grade> grades;
 	private ArrayList<ProfessorTeachSubject> professorTeachSubjects;
+	private ArrayList<Department> departments;
 
 	private DatabaseReader() {
 		try 
@@ -32,6 +33,7 @@ public class DatabaseReader {
 			linkGradesToStudent();
 			this.professorTeachSubjects = readSubjectsForProfessor();
 			linkSubjectsToProfessor();
+			this.departments = readDepartmentDatabase();
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -133,6 +135,19 @@ public class DatabaseReader {
 		return subjects;
 	}
 
+	public ArrayList<Department> readDepartmentDatabase() throws Exception{
+		File text = new File("src/database_resource/departments.txt");
+		ArrayList<Department> departments = new ArrayList<>();
+		Scanner scanner = new Scanner(text);
+		while(scanner.hasNextLine()){
+			String departmentInfo = scanner.nextLine();
+			String[] departmentData = trimData(departmentInfo.split(","));
+
+			departments.add(new Department(departmentData[0], departmentData[1], findProfessor(departmentData[2])));
+		}
+		scanner.close();
+		return departments;
+	}
 
 	private ArrayList<Grade> readGradesForStudent() throws Exception {
 		File text = new File("src/database_resource/subjects_student_passed.txt");
@@ -271,6 +286,10 @@ public class DatabaseReader {
 	
 	public ArrayList<Subject> getSubjects() {
 		return subjects;
+	}
+
+	public ArrayList<Department> getDepartments(){
+		return departments;
 	}
 
 }

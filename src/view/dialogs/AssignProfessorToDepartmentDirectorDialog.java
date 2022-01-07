@@ -13,7 +13,9 @@ public class AssignProfessorToDepartmentDirectorDialog extends JDialog {
     JList<String> professorList;
     JButton applyBtn;
     JButton cancelBtn;
+    AddDepartmentDirectorDialog addDepartmentDirectorDialog;
     public AssignProfessorToDepartmentDirectorDialog(AddDepartmentDirectorDialog dialog){
+        addDepartmentDirectorDialog = dialog;
         setModalityType(DEFAULT_MODALITY_TYPE);
         Toolkit kit = Toolkit.getDefaultToolkit();
         setTitle("Odaberi sefa katedre");
@@ -38,6 +40,7 @@ public class AssignProfessorToDepartmentDirectorDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.getDepartmentDirectorField().setText(professorList.getSelectedValue());
+                dialog.determineButtonActivity();
                 dispose();
 
             }
@@ -46,6 +49,7 @@ public class AssignProfessorToDepartmentDirectorDialog extends JDialog {
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dialog.determineButtonActivity();
                 dispose();
             }
         });

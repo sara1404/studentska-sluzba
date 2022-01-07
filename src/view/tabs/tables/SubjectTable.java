@@ -2,15 +2,22 @@ package view.tabs.tables;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableRowSorter;
 
+import RowFilters.RowFilterProfessor;
 import model.ObserverNotifier;
+import view.MainFrame;
 
 public class SubjectTable extends JTable {
 	
-	public SubjectTable() {
+	public SubjectTable(MainFrame frame) {
 		this.setRowSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelSubject());
+		AbstractTableModelSubject model = new AbstractTableModelSubject();
+		this.setModel(model);
+		TableRowSorter<AbstractTableModelSubject> sorter = new TableRowSorter<>(model);
+		sorter.setRowFilter(new RowFilterProfessor(frame));
+		setRowSorter(sorter);
 		ObserverNotifier on = ObserverNotifier.getInstance();
 		on.setSubjectTable(this);
 		

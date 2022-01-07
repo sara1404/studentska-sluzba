@@ -3,11 +3,18 @@ package view.tabs.tabPanels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
+import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
 import model.ObserverNotifier;
 import model.Student;
+import model.Subject;
 import utils.Utils;
 import utils.WindowComponentBuilder;
 import view.MainFrame;
@@ -16,15 +23,16 @@ import view.dialogs.GradeEntry;
 import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class SubjectsNotPassedStudent extends JPanel{
-	
-	GradeEntry gradeEntry = new GradeEntry();
+	private JList<String> subjectList;
+	GradeEntry gradeEntry; 
 	SubjectsNotPassedTable notPassed;
 	SubjectsNotPassedStudent cxt = this;
 	public SubjectsNotPassedStudent() {
 		JPanel buttonPanel = new JPanel();
 		BoxLayout box = new BoxLayout(buttonPanel, BoxLayout.X_AXIS);
 		buttonPanel.setLayout(box);
-		
+		gradeEntry = new GradeEntry();
+	   
 		JButton addBtn = new JButton();
 		JButton removeBtn = new JButton();
 		JButton passBtn = new JButton();
@@ -81,7 +89,15 @@ public class SubjectsNotPassedStudent extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gradeEntry.getApplyBtn().addActionListener( new ActionListener() {
+				setGradeEntry();
+				String index = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
+				Student student = DatabaseReader.getInstance().findStudent(index);
+				try {
+					int id = MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow();
+					String key = student.getFailedExams().get(id).getSubjectKey();
+					Subject subject = DatabaseReader.getInstance().findSubject(key);
+					gradeEntry.fillingInfo(subject);
+				gradeEntry.getApplyBtn().addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -98,12 +114,28 @@ public class SubjectsNotPassedStudent extends JPanel{
 						gradeEntry.dispose();					}
 				});
 				gradeEntry.setVisible(true);
+				
+				} catch (Exception ex){
+					JOptionPane.showMessageDialog(notPassed, "Mora se selektovati predmet iz tabele pre unosa ocene!");;
+				}
+				
 			}
 		});
 		
 		notPassed = new SubjectsNotPassedTable();
 		add(new JScrollPane(notPassed));
 	}
+	public GradeEntry getGradeEntry() {
+		return gradeEntry;
+	}
+	public SubjectsNotPassedTable getNotPassed() {
+		return notPassed;
+	}
+	
+	public void  setGradeEntry() {
+		gradeEntry = new GradeEntry();
+	}
+	
 	
 	
 }

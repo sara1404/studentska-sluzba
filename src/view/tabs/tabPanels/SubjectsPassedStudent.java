@@ -1,23 +1,65 @@
 package view.tabs.tabPanels;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import model.CustomListModelForNotPassedSubjects;
+import model.DatabaseReader;
+import model.ObserverNotifier;
+import model.Student;
 import utils.Utils;
+import view.MainFrame;
+import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 import view.tabs.tabPanels.tabels.SubjectsPassedTable;
-
-import java.awt.*;
 
 public class SubjectsPassedStudent extends JPanel{
 	JLabel averageGradeLabel;
 	JLabel espbSumLabel;
+	SubjectsPassedTable passed;
+	SubjectsNotPassedTable notPassed;
+	SubjectsPassedStudent sps = this;
 	public SubjectsPassedStudent() {
+		
 		JButton removeGrade = new JButton();
 		removeGrade.setText("Ponisti ocenu");
 		Utils.setCursor(removeGrade);
 		add(removeGrade);
-		SubjectsPassedTable subjectsPassedTable = new SubjectsPassedTable();
-		add(new JScrollPane(subjectsPassedTable));
+		removeGrade.addActionListener(new ActionListener() {
+			int resp = 0;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(passed.getSelectedRow() == -1)
+					JOptionPane.showMessageDialog(sps, "Mora se selektovati predmet kojem se ponistava ocena! ");
+				else {
+					resp = JOptionPane.showConfirmDialog(sps, "Da li ste sigurni da zelite da ponistite ocenu?",
+							"Ponistavanje ocene", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if(resp == 0) {
+						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+						student.getPassedExams().remove(student.getPassedExams().get(passed.getSelectedRow()));
+						CustomListModelForNotPassedSubjects customListModelForNotPassedSubjects = new CustomListModelForNotPassedSubjects(student);
+						student.getFailedExams().add(customListModelForNotPassedSubjects.getSubjects().get(0));
+						ObserverNotifier.getInstance().subjectsPassedDataChanged();
+						ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 
+				}
+				
+			}
+			}
+		});
+		passed = new SubjectsPassedTable();
+		add(new JScrollPane(passed));
+		
+		notPassed = new SubjectsNotPassedTable();
+		
 		JPanel wrapper = new JPanel();
 		BoxLayout box2 = new BoxLayout(wrapper, BoxLayout.Y_AXIS);
 		wrapper.setLayout(box2);
@@ -45,6 +87,7 @@ public class SubjectsPassedStudent extends JPanel{
 		wrapper.add(espb);
 		wrapper.setBackground(Color.DARK_GRAY);
 		add(wrapper);
+		
 	}
 
 	public JLabel getAverageGradeLabel(){return averageGradeLabel;}

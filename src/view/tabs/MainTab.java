@@ -5,7 +5,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.TableRowSorter;
 import javax.swing.text.TableView;
-
+import view.tabs.tabPanels.SubjectsNotPassedStudent;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
+import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 import RowFilters.RowFilterStudent;
 import model.DatabaseReader;
 import view.MainFrame;
@@ -29,12 +31,13 @@ public class MainTab extends JTabbedPane {
 
 		studentTable = new StudentTable(frame);
 		add("Studenti", new JScrollPane(studentTable));
-		professorTable = new ProfessorTable();
+		professorTable = new ProfessorTable(frame);
 		add("Profesori", new JScrollPane(professorTable));
-		subjectTable = new SubjectTable();
+		subjectTable = new SubjectTable(frame);
 		add("Predmeti", new JScrollPane(subjectTable));
 		
 	}
+
 	
 	public String getIndexOfSelectedStudent() {
 		int row = studentTable.getSelectedRow();
@@ -45,6 +48,8 @@ public class MainTab extends JTabbedPane {
 		String index = (String) studentTable.getValueAt(row, 0);
 		return index;
 	}
+	
+
 	
 
 	public String getIdOfSelectedSubject() {

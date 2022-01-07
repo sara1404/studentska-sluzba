@@ -17,8 +17,8 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 		columnNames.add("Sifra predmeta");
 		columnNames.add("Naziv predmeta");
 		columnNames.add("ESPB");
-		columnNames.add("Ocena");
-		columnNames.add("Datum");
+		columnNames.add("Godina studija");
+		columnNames.add("Semestar");
 	}
 	@Override
 	public int getRowCount() {

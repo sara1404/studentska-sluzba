@@ -1,2 +1,3 @@
-mo, metode optimizacije, LETNJI, 3,  , 8
-mo2, metode optimizacije, LETNJI, 3, 001, 8
+mo, metode optimizacije, LETNJI, 3, 001 , 8
+mo2, metode optimizacije, ZIMSKI, 3, 001, 8
+ma1, matematicka analiza 1, ZIMSKI, 1, 004, 8

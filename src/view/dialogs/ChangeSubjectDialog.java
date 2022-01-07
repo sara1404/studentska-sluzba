@@ -13,11 +13,14 @@ import controller.ListenerController;
 import model.Subject;
 import utils.WindowComponentBuilder;
 import view.listeners.ChangeSubjectListener;
+import view.tabs.tabPanels.SubjectsNotPassedStudent;
 
 public class ChangeSubjectDialog extends JDialog{
 	private ArrayList<JTextField> dataInputs;
 	private ArrayList<JComboBox> comboInputs;
 	private String[] labelText = {"Sifra predmeta*", "Naziv predmeta*", "Semestar*", "Godina studija*", "Predmetni profesor*", "Broj ESPB bodova*"};
+	
+	SubjectsNotPassedStudent snps = new SubjectsNotPassedStudent();
 	private ArrayList<JButton> buttonsInChangeSubjectForm;
 	private JButton add;
 	private JButton remove;
@@ -167,6 +170,12 @@ public class ChangeSubjectDialog extends JDialog{
 		return assignProfessorToSubject.getProfessorList();
 	}
 	
+	
+	
+	public SubjectsNotPassedStudent getSnps() {
+		return snps;
+	}
+
 	public void fillFormWithSubjectInfo(Subject subject) {
 		dataInputs.get(0).setText(subject.getSubjectKey());
 		dataInputs.get(1).setText(subject.getSubjectName());

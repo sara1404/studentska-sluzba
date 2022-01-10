@@ -1,14 +1,10 @@
 package model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import controller.ShowPassedExamsForStudentController;
 import enums.Semester;
 import enums.Status;
 import enums.Title;
@@ -59,7 +55,26 @@ public class DatabaseReader {
 			}
 		}
 	}
-
+	
+	public ArrayList<Subject> filterSubjectsListForProfessor(Professor professor){
+		ArrayList<Subject> filteredSubjects = new ArrayList<>();
+		for(Subject subject : subjects) {
+			if(!inSubjectList(professor.getSubjectList(), subject)) {
+				filteredSubjects.add(subject);
+			}
+		}
+		return filteredSubjects;
+	}
+	
+	private boolean inSubjectList(ArrayList<Subject> list, Subject subject) {
+		for(Subject sub : list){
+			if(sub.getSubjectKey().equals(subject.getSubjectKey()))
+				return true;
+		}
+		return false;
+		
+	}
+	
 	public ArrayList<Subject> filterSubjectsForStudent(Student student){
 		ArrayList<Subject> filteredSubjects = new ArrayList<>();
 		for(Subject subject : subjects){

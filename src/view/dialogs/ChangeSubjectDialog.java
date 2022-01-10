@@ -7,11 +7,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 import controller.ListenerController;
+import model.DatabaseReader;
+import model.Professor;
 import model.Subject;
 import utils.WindowComponentBuilder;
+import view.MainFrame;
 import view.listeners.ChangeSubjectListener;
 import view.tabs.tabPanels.SubjectsNotPassedStudent;
 
@@ -66,6 +80,20 @@ public class ChangeSubjectDialog extends JDialog{
 				
 				getContentPane().add(createSpecialPanel(labelText[i], field, add, remove));
 
+				remove.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int resp = 0;
+						resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni?",
+				                    "Ukloni profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+						if(resp == 0) {
+							Subject subject = DatabaseReader.getInstance().getSubjects().get(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable());
+							subject.setProfessor(null);
+							getDataInputs().get(2).setText("");
+						}
+					}
+				});
 				add.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -190,10 +218,11 @@ public class ChangeSubjectDialog extends JDialog{
 		}
 		comboInputs.get(0).setSelectedItem(subject.getSemester());
 		comboInputs.get(1).setSelectedItem(subject.getYear());
+		dataInputs.get(3).setText(String.valueOf(subject.getESPB()));
 		if(subject.getProfessor() == null)
 			dataInputs.get(2).setText("");
 		else
 			dataInputs.get(2).setText(subject.getProfessor().getName() + " " + subject.getProfessor().getSurname());
-		dataInputs.get(3).setText(String.valueOf(subject.getESPB()));
+		
 	}
 }

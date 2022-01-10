@@ -25,6 +25,23 @@ public class DatabaseWriter {
 		}   
 	}
 	
+	public void writeInProfessorDatabase(ArrayList<Professor> professors) {
+			 FileWriter writer;
+			try {
+				writer = new FileWriter("src/database_resource/professors.txt");
+				BufferedWriter buffer = new BufferedWriter(writer);  
+				for(int i = 0; i < professors.size(); i++) {
+					buffer.write(professors.get(i).toString());
+					if(i != professors.size() - 1) buffer.newLine();
+				} 
+				buffer.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	}
+	
 	public void writeInSubjectDatabase(ArrayList<Subject> subjects) {
 		FileWriter writer;
 		try {

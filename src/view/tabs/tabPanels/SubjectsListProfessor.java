@@ -1,16 +1,20 @@
 package view.tabs.tabPanels;
 
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import controller.ShowProfessorTeachSubjectsController;
 import model.DatabaseReader;
 import model.Professor;
 import utils.Utils;
 import view.MainFrame;
+import view.dialogs.AssignSubjectToProfessor;
 import view.tabs.tabPanels.tabels.ProfessorTeachSubjectsTable;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SubjectsListProfessor extends JPanel{
 
@@ -25,7 +29,13 @@ public class SubjectsListProfessor extends JPanel{
 			Utils.setCursor(addBtn);
 			pan.add(addBtn);
 			
-			
+			addBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					AssignSubjectToProfessor dialog = new AssignSubjectToProfessor();
+					dialog.setVisible(true);
+				}
+			});
 			
 			JButton removeBtn = new JButton();
 			removeBtn.setText("Obrisi predmet");

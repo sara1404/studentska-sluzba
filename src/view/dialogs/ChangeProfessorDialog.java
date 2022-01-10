@@ -37,9 +37,9 @@ public class ChangeProfessorDialog extends JDialog{
 		info = new InformationProfessor();
 		SubjectsListProfessor subj = new SubjectsListProfessor(); 
 		ListenerController.closeWindowOnCancelListener(this, info.getButtons().get(1));
-		tab.addTab("Informacije", info);
+		tab.addTab("Info", info);
 		info.setBackground(Color.DARK_GRAY);
-		tab.addTab("Spisak predmeta", subj);
+		tab.addTab("Predmeti", subj);
 		subj.setBackground(Color.DARK_GRAY);
 		add(tab);
 		

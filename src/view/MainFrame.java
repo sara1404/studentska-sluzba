@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -12,6 +13,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 import controller.ListenerController;
+import model.DatabaseWriter;
+import model.Student;
 import view.dialogs.*;
 import view.menuBar.MenuBar;
 import view.statusBar.StatusBar;

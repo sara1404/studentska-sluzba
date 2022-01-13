@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import enums.Semester;
 import model.DatabaseReader;
+import model.DatabaseWriter;
 import model.ObserverNotifier;
 import model.Professor;
 import model.Subject;
@@ -17,6 +18,7 @@ import view.dialogs.ChangeSubjectDialog;
 
 public class ChangeSubjectController {
 	private static ChangeSubjectController instance = null;
+	DatabaseWriter wr = new DatabaseWriter();
 	
 	private ChangeSubjectController() {}
 	
@@ -33,6 +35,7 @@ public class ChangeSubjectController {
 	public void swapSubjects(ChangeSubjectDialog changeSubjectDialog) {
 		Subject newSubject = generateSubjectFromDialogInputs(changeSubjectDialog);
 		DatabaseReader.getInstance().getSubjects().set(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable(), newSubject);
+		wr.writeInSubjectDatabase(DatabaseReader.getInstance().getSubjects());
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 

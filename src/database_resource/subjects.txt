@@ -1,3 +1,4 @@
+bp, baze podataka, ZIMSKI, 3, 003, 8
 mo, metode optimizacije, LETNJI, 3, null, 8
 mo2, metode optimizacije, ZIMSKI, 3, null, 8
 ma1, matematicka analiza 1, ZIMSKI, 1, null, 8

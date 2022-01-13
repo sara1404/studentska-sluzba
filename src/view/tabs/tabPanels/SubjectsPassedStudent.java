@@ -24,6 +24,7 @@ import view.tabs.tabPanels.tabels.SubjectsPassedTable;
 public class SubjectsPassedStudent extends JPanel{
 	JLabel averageGradeLabel;
 	JLabel espbSumLabel;
+	private JList<String> subjectList;
 	SubjectsPassedTable passed;
 	SubjectsNotPassedTable notPassed;
 	SubjectsPassedStudent sps = this;
@@ -45,8 +46,7 @@ public class SubjectsPassedStudent extends JPanel{
 					if(resp == 0) {
 						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 						student.getPassedExams().remove(student.getPassedExams().get(passed.getSelectedRow()));
-						CustomListModelForNotPassedSubjects customListModelForNotPassedSubjects = new CustomListModelForNotPassedSubjects(student);
-						student.getFailedExams().add(customListModelForNotPassedSubjects.getSubjects().get(0));
+						//student.getFailedExams().add();
 						ObserverNotifier.getInstance().subjectsPassedDataChanged();
 						ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 

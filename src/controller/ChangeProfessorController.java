@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import enums.Title;
 import model.Address;
 import model.DatabaseReader;
+import model.DatabaseWriter;
 import model.ObserverNotifier;
 import model.Professor;
 import view.MainFrame;
@@ -20,6 +21,7 @@ import view.tabs.tabPanels.InformationProfessor;
 
 public class ChangeProfessorController {
 	private static ChangeProfessorController instance = null;
+	DatabaseWriter wr = new DatabaseWriter();
 	private ChangeProfessorController() {};
 	
 	public static ChangeProfessorController getInstance() {
@@ -34,6 +36,7 @@ public class ChangeProfessorController {
 			Professor newProfessor = generateProfessor(cpd);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.getProfessors().set(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable(), newProfessor);
+			wr.writeInProfessorDatabase(databaseReader.getProfessors());
 			ObserverNotifier.getInstance().professorDataChanged();
 			cpd.dispose();
 		} catch(Exception e) {

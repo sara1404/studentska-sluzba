@@ -50,8 +50,7 @@ public class DatabaseWriter {
 			for(int i = 0; i < subjects.size(); i++) {
 				buffer.write(subjects.get(i).toString());
 				if(i != subjects.size() - 1) buffer.newLine();
-			} 
-			buffer.write("Kraj");
+			}
 			buffer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -12,6 +12,7 @@ import enums.Title;
 public class DatabaseReader {
 	
 	private static DatabaseReader instance = null;
+	DatabaseWriter wr = new DatabaseWriter();
 	private ArrayList<Student> students;
 	private ArrayList<Professor> professors;
 	private ArrayList<Subject> subjects;
@@ -256,31 +257,42 @@ public class DatabaseReader {
 	
 	public void addNewStudent(Student newStudent) {
 		students.add(newStudent);
+		wr.writeInStudentDatabase(students);
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
 	public void addNewProfessor(Professor newProfessor) {
 		professors.add(newProfessor);
+		wr.writeInProfessorDatabase(professors);
 		ObserverNotifier.getInstance().professorDataChanged();
+	}
+	
+	public void addNewGrade(Grade newGrade) {
+		grades.add(newGrade);
+		ObserverNotifier.getInstance().subjectsPassedDataChanged();
 	}
 	
 	public void addNewSubject(Subject newSubject) {
 		subjects.add(newSubject);
+		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 	
 	public void deleteStudent(String index) {
 		students.remove(findStudent(index));
+		wr.writeInStudentDatabase(students);
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
 	public void deleteProfessor(String index) {
 		professors.remove(findProfessor(index));
+		wr.writeInProfessorDatabase(professors);
 		ObserverNotifier.getInstance().professorDataChanged();
 	}
 	
 	public void deleteSubject(String index) {
 		subjects.remove(findSubject(index));
+		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 

@@ -217,7 +217,7 @@ public class DatabaseReader {
 	
 	private Address stringToAddress(String text) {
 		String[] addressData = text.split("#");
-		Address address = new Address(addressData[0], Integer.parseInt(addressData[1]), addressData[2], addressData[3]);
+		Address address = new Address(addressData[0], addressData[1], addressData[2], addressData[3]);
 		return address;
 	} 
 	
@@ -285,6 +285,12 @@ public class DatabaseReader {
 	}
 	
 	public void deleteProfessor(String index) {
+		
+		for(int i =0; i< subjects.size(); i++) {
+			if(subjects.get(i).getProfessor() != null)
+			if(subjects.get(i).getProfessor().getId() == findProfessor(index).getId())
+				subjects.get(i).setProfessor(null);
+		}
 		professors.remove(findProfessor(index));
 		wr.writeInProfessorDatabase(professors);
 		ObserverNotifier.getInstance().professorDataChanged();
@@ -292,6 +298,9 @@ public class DatabaseReader {
 	
 	public void deleteSubject(String index) {
 		subjects.remove(findSubject(index));
+		for(int i =0; i< students.size(); i++) {
+				students.get(i).getFailedExams().remove(findSubject(index));
+			}
 		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}

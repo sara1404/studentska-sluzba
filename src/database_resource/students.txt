@@ -1,2 +1,4 @@
-Sinjeri, Sara, 2000-04-14, Janka Cmelika#56#NoviSad#Srbija, 0665045747, sara@gmail.com, RA76/2019, 2019, 3, S, 9.0
-Dinic, Jelena, 2000-10-12, Strazilovska#4#NoviSad#Srbija, 0665045747, jelena@gmail.com, RA44/2019, 2019, 3, S, 0.0
+Milosevic, Marko, 2001-03-12, Safarikova#2#Novi Sad#Srbija , 021/333-555, marko.milosevic@mailinator.com, RA 2/2020, 2020, 1, B , 0.0
+Milic, Marija, 2000-01-12, Nikole Tesle#56#Novi Sad#Srbija , 021/555-2222, marija.milic@mailinator.com, RA 3/2019, 2019, 2, S, 0.0
+Nikolic, Nikola, 2001-08-30, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/135-463, nikola.nikolic@mailinator.com, RA 3/2017, 2017, 1, B, 0.0
+Peric, Pera, 1995-06-07, Strazilovska#6a#Novi Sad#Srbija, 021/903-463, pera.peric@mailinator.com, RA 134/2015, 2015, 3, S, 0.0

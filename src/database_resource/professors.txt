@@ -1,4 +1,3 @@
-Peric, Pera, 1985-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, peraa@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 001, PROFESSOR, 10
-Beric, Aleksa, 1985-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, apera@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 002, ASISTENT, 10
-Veric, Zoran, 1985-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, zpera@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 003, DOCENT, 10
-Neric, Bojan, 1985-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, pera@uns.ac.rs,Janka Cmelika#56#Novi Sad#Srbija, 004, VANREDNI, 10
+Peric, Pera, 1985-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, peraa@uns.ac.rs, Janka Cmelika#56#Novi Sad#Srbija, 001, REDOVNI, 10
+Beric, Aleksa, 1985-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, apera@uns.ac.rs, Janka Cmelika#56#Novi Sad#Srbija, 002, ASISTENT, 10
+Neric, Bojan, 1985-11-17, Janka Cmelika#56#Novi Sad#Srbija, 0603308330, pera@uns.ac.rs, Janka Cmelika#56#Novi Sad#Srbija, 004, VANREDNI, 10

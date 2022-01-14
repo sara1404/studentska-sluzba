@@ -132,7 +132,7 @@ public class ChangeStudentController {
 			streetName += streetData[i];
 		}
 
-		Address address = new Address(streetName, Integer.parseInt(streetData[streetData.length - 1]), town, country);
+		Address address = new Address(streetName, streetData[streetData.length - 1], town, country);
 		return address;
 	}
 

@@ -1,14 +1,10 @@
 package model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import controller.ShowPassedExamsForStudentController;
 import enums.Semester;
 import enums.Status;
 import enums.Title;
@@ -16,6 +12,7 @@ import enums.Title;
 public class DatabaseReader {
 	
 	private static DatabaseReader instance = null;
+	DatabaseWriter wr = new DatabaseWriter();
 	private ArrayList<Student> students;
 	private ArrayList<Professor> professors;
 	private ArrayList<Subject> subjects;
@@ -59,7 +56,26 @@ public class DatabaseReader {
 			}
 		}
 	}
-
+	
+	public ArrayList<Subject> filterSubjectsListForProfessor(Professor professor){
+		ArrayList<Subject> filteredSubjects = new ArrayList<>();
+		for(Subject subject : subjects) {
+			if(!inSubjectList(professor.getSubjectList(), subject)) {
+				filteredSubjects.add(subject);
+			}
+		}
+		return filteredSubjects;
+	}
+	
+	private boolean inSubjectList(ArrayList<Subject> list, Subject subject) {
+		for(Subject sub : list){
+			if(sub.getSubjectKey().equals(subject.getSubjectKey()))
+				return true;
+		}
+		return false;
+		
+	}
+	
 	public ArrayList<Subject> filterSubjectsForStudent(Student student){
 		ArrayList<Subject> filteredSubjects = new ArrayList<>();
 		for(Subject subject : subjects){
@@ -211,7 +227,7 @@ public class DatabaseReader {
 	
 	private Address stringToAddress(String text) {
 		String[] addressData = text.split("#");
-		Address address = new Address(addressData[0], Integer.parseInt(addressData[1]), addressData[2], addressData[3]);
+		Address address = new Address(addressData[0], addressData[1], addressData[2], addressData[3]);
 		return address;
 	} 
 	
@@ -251,31 +267,51 @@ public class DatabaseReader {
 	
 	public void addNewStudent(Student newStudent) {
 		students.add(newStudent);
+		wr.writeInStudentDatabase(students);
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
 	public void addNewProfessor(Professor newProfessor) {
 		professors.add(newProfessor);
+		wr.writeInProfessorDatabase(professors);
 		ObserverNotifier.getInstance().professorDataChanged();
+	}
+	
+	public void addNewGrade(Grade newGrade) {
+		grades.add(newGrade);
+		ObserverNotifier.getInstance().subjectsPassedDataChanged();
 	}
 	
 	public void addNewSubject(Subject newSubject) {
 		subjects.add(newSubject);
+		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 	
 	public void deleteStudent(String index) {
 		students.remove(findStudent(index));
+		wr.writeInStudentDatabase(students);
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
 	public void deleteProfessor(String index) {
+		
+		for(int i =0; i< subjects.size(); i++) {
+			if(subjects.get(i).getProfessor() != null)
+			if(subjects.get(i).getProfessor().getId() == findProfessor(index).getId())
+				subjects.get(i).setProfessor(null);
+		}
 		professors.remove(findProfessor(index));
+		wr.writeInProfessorDatabase(professors);
 		ObserverNotifier.getInstance().professorDataChanged();
 	}
 	
 	public void deleteSubject(String index) {
 		subjects.remove(findSubject(index));
+		for(int i =0; i< students.size(); i++) {
+				students.get(i).getFailedExams().remove(findSubject(index));
+			}
+		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 

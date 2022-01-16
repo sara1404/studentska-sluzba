@@ -12,7 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+
 import bundle.LanguageSupport;
+import controller.GradeEntryController;
 import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
 import model.ObserverNotifier;
@@ -25,10 +27,10 @@ import view.dialogs.AssignSubjectToStudent;
 import view.dialogs.GradeEntry;
 import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
 import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsPassed;
+import view.listeners.GradeEntryListener;
 import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class SubjectsNotPassedStudent extends JPanel{
-	private JList<String> subjectList;
 	GradeEntry gradeEntry; 
 	SubjectsNotPassedTable notPassed;
 	JButton addBtn;
@@ -106,14 +108,9 @@ public class SubjectsNotPassedStudent extends JPanel{
 					String key = student.getFailedExams().get(id).getSubjectKey();
 					Subject subject = DatabaseReader.getInstance().findSubject(key);
 					gradeEntry.fillingInfo(subject);
-				gradeEntry.getApplyBtn().addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						gradeEntry.dispose();
-					}
-				});
+			
+				gradeEntry.getApplyBtn().addActionListener(GradeEntryListener.enteringGradeListener(gradeEntry.getApplyBtn())); 
+				
 				
 				gradeEntry.getCancelBtn().addActionListener(new ActionListener() {
 					

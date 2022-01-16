@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import enums.Status;
 import model.Address;
 import model.DatabaseReader;
+import model.DatabaseWriter;
 import model.ObserverNotifier;
 import model.Student;
 import view.MainFrame;
@@ -17,7 +18,7 @@ import javax.swing.*;
 
 public class ChangeStudentController {
 	private static ChangeStudentController instance = null;
-	
+	DatabaseWriter wr = new DatabaseWriter();
 	private ChangeStudentController() {};
 	
 	public void changeStudent(ChangeStudentDialog changeStudentDialog) {
@@ -36,6 +37,7 @@ public class ChangeStudentController {
 	public void swapStudent(ChangeStudentDialog changeStudentDialog) {
 		Student newStudent = generateStudentFromDialogInputs(changeStudentDialog);
 		DatabaseReader.getInstance().getStudents().set(MainFrame.getInstance().getTab().getSelectedRowInStudentTable(), newStudent);
+		wr.writeInStudentDatabase(DatabaseReader.getInstance().getStudents());
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
@@ -130,7 +132,7 @@ public class ChangeStudentController {
 			streetName += streetData[i];
 		}
 
-		Address address = new Address(streetName, Integer.parseInt(streetData[streetData.length - 1]), town, country);
+		Address address = new Address(streetName, streetData[streetData.length - 1], town, country);
 		return address;
 	}
 

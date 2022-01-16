@@ -1,6 +1,12 @@
 package view.tabs.tabPanels;
 
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import bundle.LanguageSupport;
 import controller.ShowProfessorTeachSubjectsController;
@@ -9,13 +15,11 @@ import model.Professor;
 import utils.Utils;
 import view.MainFrame;
 import view.tabs.tabPanels.tabels.AbstractTableModelProfessorTeachSubjects;
+import view.dialogs.AssignSubjectToProfessor;
 import view.tabs.tabPanels.tabels.ProfessorTeachSubjectsTable;
 import view.tabs.tables.AbstractTableModelProfessor;
 import view.tabs.tables.AbstractTableModelStudent;
 import view.tabs.tables.AbstractTableModelSubject;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SubjectsListProfessor extends JPanel{
 	
@@ -34,7 +38,13 @@ public class SubjectsListProfessor extends JPanel{
 			Utils.setCursor(addBtn);
 			pan.add(addBtn);
 			
-			
+			addBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					AssignSubjectToProfessor dialog = new AssignSubjectToProfessor();
+					dialog.setVisible(true);
+				}
+			});
 			
 			removeBtn = new JButton();
 			removeBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("removeSubBtn"));

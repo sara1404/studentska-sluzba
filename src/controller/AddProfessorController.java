@@ -55,11 +55,6 @@ public void validateFields(ArrayList<JTextField> fields) throws Exception{
 					throw new DateTimeException("Datum mora biti ispravno formatiran!");
 				}
 			
-			if((i == 3 || i == 8) && !validAddressFormat(field.getText())) {
-				fields.get(i).setForeground(Color.RED);
-				throw new NullPointerException("Adresa nije pravilno uneta!"); 
-			}
-			
 			if(i == 11 && idExists(field.getText())) {
 				fields.get(i).setForeground(Color.RED);
 				throw new Exception("Vec postoji profesor sa unetim brojem licne karte!");
@@ -103,19 +98,7 @@ public void validateFields(ArrayList<JTextField> fields) throws Exception{
 			return false;
 		}
 	}
-	
-	private boolean validAddressFormat(String address) {
-		try {
-			String[] data = address.split(" ");
-			if(address == " ") {
-				return false;
-			}
-			Integer.parseInt(data[data.length - 1]);
-		}catch(Exception e) {
-			return false;
-		}
-		return true;
-	}
+
 	
 	private Professor generateProfessor(AddProfessorDialog apd) {
 		String surname = apd.getTextFieldAt(0).getText().trim();
@@ -140,7 +123,7 @@ public void validateFields(ArrayList<JTextField> fields) throws Exception{
 	
 	private Address stringToAddress(String street, String town, String country) {
 		String[] streetData = street.split(" ");
-		Address address = new Address(streetData[0], Integer.parseInt(streetData[1]), town, country);
+		Address address = new Address(streetData[0], streetData[1], town, country);
 		return address;
 	} 
 	

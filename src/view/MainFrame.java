@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -16,6 +17,8 @@ import javax.swing.WindowConstants;
 
 import bundle.LanguageSupport;
 import controller.ListenerController;
+import model.DatabaseWriter;
+import model.Student;
 import view.dialogs.*;
 import view.menuBar.MenuBar;
 import view.statusBar.StatusBar;

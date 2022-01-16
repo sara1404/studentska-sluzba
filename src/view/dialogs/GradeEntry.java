@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -28,6 +29,7 @@ public class GradeEntry extends JDialog{
 	JButton applyBtn;
 	JButton cancelBtn;
 	ArrayList<JTextField> textFields;
+	private JComboBox comboInput;
 	SubjectsNotPassedTable notPassedTable;
 	public GradeEntry() {
 		notPassedTable = new SubjectsNotPassedTable();
@@ -70,12 +72,14 @@ public class GradeEntry extends JDialog{
 		String[] data = {"6", "7", "8", "9", "10"};
 		JComponent gradeComp = WindowComponentBuilder.createComboBoxField(data);
 		gradePan.add(gradeComp);
+		comboInput = (JComboBox)gradeComp;
 		panCenter.add(gradePan);
 		
 		JPanel datePan = new JPanel();
 		datePan.add(WindowComponentBuilder.createLabel("Datum*"));
 		datePan.setBackground(Color.DARK_GRAY);
-		JComponent dateComp = WindowComponentBuilder.createTextField();
+		JTextField dateComp = WindowComponentBuilder.createTextField();
+		textFields.add(dateComp);
 		datePan.add(dateComp);
 		panCenter.add(datePan);
 		
@@ -129,6 +133,10 @@ public class GradeEntry extends JDialog{
 	
 	public JTextField getTextField(int index) {
 		return textFields.get(index);
+	}
+	
+	public JComboBox getComboInput() {
+		return comboInput;
 	}
 
 }

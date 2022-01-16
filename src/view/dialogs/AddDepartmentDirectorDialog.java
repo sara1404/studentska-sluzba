@@ -8,6 +8,9 @@ import model.Professor;
 import utils.WindowComponentBuilder;
 
 import javax.swing.*;
+
+import bundle.LanguageSupport;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,12 +26,13 @@ public class AddDepartmentDirectorDialog extends JDialog{
     AssignProfessorToDepartmentDirectorDialog assignProfessorToDepartmentDirectorDialog = new AssignProfessorToDepartmentDirectorDialog(this);
     private DepartmentsDialog departmentsDialog;
     private AddDepartmentDirectorDialog ctx = this;
+    JLabel departmentDirector;
     public AddDepartmentDirectorDialog(DepartmentsDialog departmentsDialog){
         this.departmentsDialog = departmentsDialog;
         setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         Toolkit kit = Toolkit.getDefaultToolkit();
-        setTitle("Dodavanje sefa katedre");
+        setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addDirector"));
         BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
         setLayout(box);
         getContentPane().setBackground(Color.DARK_GRAY);
@@ -44,7 +48,7 @@ public class AddDepartmentDirectorDialog extends JDialog{
         JPanel temp = new JPanel();
         BoxLayout box1 = new BoxLayout(temp, BoxLayout.X_AXIS);
         temp.setLayout(box1);
-        JLabel departmentDirector = new JLabel("Sef katedre");
+        departmentDirector = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("departmentDirector"));
         departmentDirector.setForeground(Color.WHITE);
         departmentDirectorField = WindowComponentBuilder.createTextField();
         departmentDirectorField.setEditable(false);
@@ -99,6 +103,8 @@ public class AddDepartmentDirectorDialog extends JDialog{
                 dispose();
             }
         });
+        
+        initComponents();
     }
 
     public void determineButtonActivity() {
@@ -113,5 +119,10 @@ public class AddDepartmentDirectorDialog extends JDialog{
     }
     public JTextField getDepartmentDirectorField(){
         return departmentDirectorField;
+    }
+    
+    public void initComponents() {
+    	setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addDirector"));
+    	departmentDirector.setText(LanguageSupport.getInstance().getResourceBundle().getString("departmentDirector"));
     }
 }

@@ -2,6 +2,7 @@ package view.tabs.tabPanels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -9,7 +10,10 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
+
+import bundle.LanguageSupport;
 import controller.GradeEntryController;
 import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
@@ -21,26 +25,32 @@ import utils.WindowComponentBuilder;
 import view.MainFrame;
 import view.dialogs.AssignSubjectToStudent;
 import view.dialogs.GradeEntry;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsPassed;
 import view.listeners.GradeEntryListener;
 import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class SubjectsNotPassedStudent extends JPanel{
 	GradeEntry gradeEntry; 
 	SubjectsNotPassedTable notPassed;
+	JButton addBtn;
+	JButton removeBtn;
+	JButton passBtn;
 	SubjectsNotPassedStudent cxt = this;
+	AssignSubjectToStudent dialog;
 	public SubjectsNotPassedStudent() {
 		JPanel buttonPanel = new JPanel();
 		BoxLayout box = new BoxLayout(buttonPanel, BoxLayout.X_AXIS);
 		buttonPanel.setLayout(box);
 		gradeEntry = new GradeEntry();
 	   
-		JButton addBtn = new JButton();
-		JButton removeBtn = new JButton();
-		JButton passBtn = new JButton();
+		addBtn = new JButton();
+		removeBtn = new JButton();
+		passBtn = new JButton();
 		
-		addBtn.setText("Dodaj");
-		removeBtn.setText("Obrisi");
-		passBtn.setText("Polaganje");
+		addBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("addBtn"));
+		removeBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("removeBtn"));
+		passBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("passBtn"));
 		
 		WindowComponentBuilder.setContainerSize(addBtn, 100, 30);
 		WindowComponentBuilder.setContainerSize(removeBtn, 100, 30);
@@ -59,7 +69,7 @@ public class SubjectsNotPassedStudent extends JPanel{
 		addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AssignSubjectToStudent dialog = new AssignSubjectToStudent();
+				dialog = new AssignSubjectToStudent();
 				dialog.setVisible(true);
 			}
 		});
@@ -70,10 +80,10 @@ public class SubjectsNotPassedStudent extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				if(notPassed.getSelectedRow() == -1)
-					JOptionPane.showMessageDialog(cxt, "Morate selektovati predmet iz tabele pre brisanja!");
+					JOptionPane.showMessageDialog(cxt, LanguageSupport.getInstance().getResourceBundle().getString("editStudentMessage2"));
 				else{
-					resp = JOptionPane.showConfirmDialog(cxt, "Da li zelite da izbrisete predmet za studenta?",
-							"Brisanje studenta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					resp = JOptionPane.showConfirmDialog(cxt, LanguageSupport.getInstance().getResourceBundle().getString("editStudentQuestion2"),
+							 LanguageSupport.getInstance().getResourceBundle().getString("editStudentTitle2"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if(resp == 0) {
 						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 						student.getFailedExams().remove(student.getFailedExams().get(notPassed.getSelectedRow()));
@@ -110,7 +120,8 @@ public class SubjectsNotPassedStudent extends JPanel{
 				gradeEntry.setVisible(true);
 				
 				} catch (Exception ex){
-					JOptionPane.showMessageDialog(notPassed, "Mora se selektovati predmet iz tabele pre unosa ocene!");
+
+					JOptionPane.showMessageDialog(notPassed, LanguageSupport.getInstance().getResourceBundle().getString("editStudentMessage3"));;
 				}
 				
 			}
@@ -130,6 +141,25 @@ public class SubjectsNotPassedStudent extends JPanel{
 		gradeEntry = new GradeEntry();
 	}
 	
+	private void setTableColumnNames() {
+		AbstractTableModelSubjectsNotPassed model = (AbstractTableModelSubjectsNotPassed) notPassed.getModel();
+		
+		for(int i = 0; i < notPassed.getColumnCount();i++) {
+			notPassed.getColumnModel().getColumn(i).setHeaderValue(model.getColumnString(i));
+		}
+	}
 	
+	
+	public void initComponents() {
+		ResourceBundle resourceBundle = LanguageSupport.getInstance().getResourceBundle();
+		addBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("addBtn"));
+		removeBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("removeBtn"));
+		passBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("passBtn"));
+		setTableColumnNames();
+		UIManager.put("OptionPane.yesButtonText", resourceBundle.getObject("yesOption"));
+		UIManager.put("OptionPane.noButtonText", resourceBundle.getObject("noOption"));
+		UIManager.put("OptionPane.okButtonText", resourceBundle.getObject("okOption"));
+		UIManager.put("OptionPane.cancelButtonText", resourceBundle.getObject("cancelOption"));
+	}
 	
 }

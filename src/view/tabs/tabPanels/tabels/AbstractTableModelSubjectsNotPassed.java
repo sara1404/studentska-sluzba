@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import bundle.LanguageSupport;
 import model.DatabaseReader;
 import model.Student;
 import view.MainFrame;
@@ -13,12 +14,6 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	private Student student;
 	public AbstractTableModelSubjectsNotPassed() {
 		columnNames = new ArrayList<String>();
-
-		columnNames.add("Sifra predmeta");
-		columnNames.add("Naziv predmeta");
-		columnNames.add("ESPB");
-		columnNames.add("Godina studija");
-		columnNames.add("Semestar");
 	}
 	@Override
 	public int getRowCount() {
@@ -30,7 +25,7 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return columnNames.size();
+		return 5;
 	}
 
 	@Override
@@ -40,7 +35,19 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	@Override
 	public String getColumnName(int column) {
 		// TODO Auto-generated method stub
-		return columnNames.get(column);
+		return getColumnString(column);
 	}
+	
+	public String getColumnString(int colIndex) {
+		switch(colIndex) {
+		case 0:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableCode");
+		case 1:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableName");
+		case 2:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableEspb");
+		case 3:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableYear");
+		case 4:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableSemester");
+		default: return "";
+		}
+	}
+
 }
 

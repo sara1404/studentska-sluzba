@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import bundle.LanguageSupport;
 import model.DatabaseReader;
 
 public class AbstractTableModelSubject extends AbstractTableModel {
@@ -23,7 +24,7 @@ public class AbstractTableModelSubject extends AbstractTableModel {
 	}
 	@Override
 	public int getColumnCount() {
-		return columnNames.size();
+		return 6;
 	}
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
@@ -31,6 +32,19 @@ public class AbstractTableModelSubject extends AbstractTableModel {
 	}
 	@Override
 	public String getColumnName(int column) {
-		return columnNames.get(column);
+		return getColumnString(column);
 	}
+	
+	public String getColumnString(int colIndex) {
+		switch(colIndex) {
+		case 0:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableCode");
+		case 1:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableName");
+		case 2:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableYear");
+		case 3:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableSemester");
+		case 4:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableEspb");
+		case 5:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableProfessor");
+		default: return "";
+		}
+	}
+
 }

@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+import bundle.LanguageSupport;
 import controller.ListenerController;
 import controller.SearchController;
 import view.listeners.ToolbarListener;
@@ -25,20 +26,20 @@ public class ToolBar extends JToolBar {
 		ToolbarListener tlDelete = new ToolbarListener(KeyEvent.VK_DELETE);
 		ToolbarListener tlSearch = new ToolbarListener(KeyEvent.VK_S);
 
-		createEntityBtn = new Button("Open entity", "src/toolbar_imgs/open_dialog.png", tlNew);
+		createEntityBtn = new Button(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip1"), "src/toolbar_imgs/open_dialog.png", tlNew);
 		
 		add(createEntityBtn);
 		
 		addSeparator();
 		
-		changeEntityBtn = new Button("Change entity", "src/toolbar_imgs/pen.png", tlChange);
+		changeEntityBtn = new Button(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip2"), "src/toolbar_imgs/pen.png", tlChange);
 		add(changeEntityBtn);
 
 		
 		addSeparator();
 		
 
-		removeEntityBtn = new Button("Remove entity", "src/toolbar_imgs/remove.png", tlDelete);
+		removeEntityBtn = new Button(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip3"), "src/toolbar_imgs/remove.png", tlDelete);
 		add(removeEntityBtn);
 
 		add(Box.createHorizontalGlue());
@@ -48,7 +49,7 @@ public class ToolBar extends JToolBar {
 		
 		addSeparator();
 		
-		searchBtn = new Button("Search", "src/toolbar_imgs/search_icon.png", tlSearch);
+		searchBtn = new Button(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip4"), "src/toolbar_imgs/search_icon.png", tlSearch);
 		add(searchBtn);
 
 		searchBtn.addActionListener(new ActionListener() {
@@ -80,5 +81,12 @@ public class ToolBar extends JToolBar {
 	}
 	public JTextField getSearchField() {
 		return searchField;
+	}
+	
+	public void initComponents() {
+		createEntityBtn.setToolTipText(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip1"));
+		changeEntityBtn.setToolTipText(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip2"));
+		removeEntityBtn.setToolTipText(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip3"));
+		searchBtn.setToolTipText(LanguageSupport.getInstance().getResourceBundle().getString("toolbarTip4"));
 	}
 }

@@ -2,12 +2,14 @@ package controller;
 
 import model.DatabaseReader;
 import model.Grade;
+import model.ObserverNotifier;
 import model.Student;
 import view.MainFrame;
 import view.tabs.tabPanels.SubjectsPassedStudent;
 
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Observer;
 
 public class ShowPassedExamsForStudentController {
 
@@ -22,13 +24,18 @@ public class ShowPassedExamsForStudentController {
         for(int i = 0; i < passedSubs.size(); i++){
             grades += passedSubs.get(i).getGrade();
         }
-        if(passedSubs.isEmpty())
-            subjectsPassedStudent.getAverageGradeLabel().setText("0");
-        else
-            subjectsPassedStudent.getAverageGradeLabel().setText(String.valueOf(grades/passedSubs.size()));
+        if(passedSubs.isEmpty()) {
+        	subjectsPassedStudent.getAverageGradeLabel().setText("0");
+        	student.setAverageGrade(0);
+        }
+        else {
+        	subjectsPassedStudent.getAverageGradeLabel().setText(String.valueOf(grades/passedSubs.size()));
+        	student.setAverageGrade(grades/passedSubs.size());
+        }
     }
 
     public void setEspbPoints(SubjectsPassedStudent subjectsPassedStudent){
+
         Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
         ArrayList<Grade> passedSubs = student.getPassedExams();
         int espbPoints = 0;
@@ -39,6 +46,7 @@ public class ShowPassedExamsForStudentController {
             subjectsPassedStudent.getEspbSumLabel().setText("0");
         else
             subjectsPassedStudent.getEspbSumLabel().setText(String.valueOf(espbPoints));
+        //ObserverNotifier.getInstance().studentsDataChanged();
     }
 
     public static ShowPassedExamsForStudentController getInstance(){

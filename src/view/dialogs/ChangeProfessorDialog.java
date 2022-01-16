@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import bundle.LanguageSupport;
 import controller.ListenerController;
 import view.tabs.tabPanels.InformationProfessor;
 import view.tabs.tabPanels.InformationStudent;
@@ -18,6 +19,7 @@ import view.tabs.tabPanels.SubjectsListProfessor;
 public class ChangeProfessorDialog extends JDialog{
 	
 	private InformationProfessor info;
+	SubjectsListProfessor subj;
 	
 	public ChangeProfessorDialog() {
 		
@@ -25,7 +27,7 @@ public class ChangeProfessorDialog extends JDialog{
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		
-		setTitle("Izmena profesora");
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("editProfDialogTitle"));
 		getContentPane().setBackground(Color.DARK_GRAY);
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;
@@ -35,11 +37,14 @@ public class ChangeProfessorDialog extends JDialog{
 		
 		JTabbedPane tab = new JTabbedPane();
 		info = new InformationProfessor();
-		SubjectsListProfessor subj = new SubjectsListProfessor(); 
+		subj = new SubjectsListProfessor(); 
 		ListenerController.closeWindowOnCancelListener(this, info.getButtons().get(1));
-		tab.addTab("Info", info);
+		tab.addTab(LanguageSupport.getInstance().getResourceBundle().getString("profInfo"), info);
 		info.setBackground(Color.DARK_GRAY);
-		tab.addTab("Predmeti", subj);
+		tab.addTab(LanguageSupport.getInstance().getResourceBundle().getString("subjList"), subj);
+		//tab.addTab("Info", info);
+		//info.setBackground(Color.DARK_GRAY);
+		//tab.addTab("Predmeti", subj);
 		subj.setBackground(Color.DARK_GRAY);
 		add(tab);
 		
@@ -59,5 +64,14 @@ public class ChangeProfessorDialog extends JDialog{
 	
 	public InformationProfessor getInformationPanel() {
 		return info;
+	}
+	
+	public SubjectsListProfessor getSubjectsListProfessor() {
+		return subj;
+	}
+	
+	public void initComponents() {
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("editProfDialogTitle"));
+		subj.initComponents();
 	}
 }

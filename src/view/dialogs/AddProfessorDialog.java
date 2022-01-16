@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import bundle.LanguageSupport;
 import controller.ListenerController;
 import utils.Utils;
 import utils.WindowComponentBuilder;
@@ -60,7 +61,7 @@ public class AddProfessorDialog extends JDialog {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		
-		setTitle("Dodavanje profesora");
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addProfDialogTitle"));
 		
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;
@@ -75,23 +76,23 @@ public class AddProfessorDialog extends JDialog {
 		buttons= new ArrayList<>();
 		
 		
-		setPanel("Prezime*", 0);
-        setPanel("Ime*", 0);
+		setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf0"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf1"), 0);
         JLabel format = new JLabel("    Format: yyyy-MM-dd");
         format.setForeground(Color.GRAY);
         panCenter.add(format);
-        setPanel("Datum rodjenja*", 0);
-        setPanel("Ulica i broj stanovanja*", 0);
-        setPanel("Grad stanovanja*",0);
-        setPanel("Drzava stanovanja*",0);
-        setPanel("Kontakt telefon", 0);
-        setPanel("E-mail*", 0);
-        setPanel("Ulica i broj kancelarije*", 0);
-        setPanel("Grad kancelarije*",0);
-        setPanel("Drzava kancelarije*",0);
-        setPanel("Broj licne karte*", 0);
-        setPanel("Zvanje*", 1);
-        setPanel("Godine staza*", 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf2"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf3"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf4"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf5"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf6"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf7"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf8"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf9"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf10"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf11"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf12"), 1);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf13"), 0);
         
         panCenter.add(Box.createVerticalStrut(25));  
         add(panCenter,BorderLayout.CENTER);
@@ -103,10 +104,10 @@ public class AddProfessorDialog extends JDialog {
 		panBottom.setBackground(Color.DARK_GRAY);
 		
 		
-		JButton btnOk=new JButton("Potvrdi");
+		JButton btnOk=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("addProfessorBtn1"));
 		btnOk.setPreferredSize(new Dimension(100,25));
 		
-		JButton btnCancel=new JButton("Odustani");
+		JButton btnCancel=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("addProfessorBtn2"));
 		btnCancel.setPreferredSize(new Dimension(100,25));
 		
 		panBottom.add(Box.createHorizontalStrut(200));
@@ -147,6 +148,12 @@ public class AddProfessorDialog extends JDialog {
 
 	public JComboBox getComboInput() {
 		return comboInput;
+	}
+	
+	public void initComponents() {
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addProfDialogTitle"));
+		buttons.get(0).setText(LanguageSupport.getInstance().getResourceBundle().getString("addProfessorBtn1"));
+		buttons.get(1).setText(LanguageSupport.getInstance().getResourceBundle().getString("addProfessorBtn2"));
 	}
 
 }

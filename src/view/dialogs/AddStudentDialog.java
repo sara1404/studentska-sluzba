@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ResourceBundle;
+
 import javax.swing.*;
 
+import bundle.LanguageSupport;
 import controller.ListenerController;
 import utils.WindowComponentBuilder;
 import view.listeners.StudentListener;
@@ -25,6 +28,7 @@ public class AddStudentDialog extends JDialog{
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*"};
 
 	ArrayList<JButton> buttonsInAddStudentForm;
+	ArrayList<JLabel> labels;
 
 	public AddStudentDialog() {
 
@@ -32,9 +36,10 @@ public class AddStudentDialog extends JDialog{
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dataInputs = new ArrayList<>();
 		comboInputs = new ArrayList<>();
+		labels = new ArrayList<>();
 		buttonsInAddStudentForm = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		setTitle("Dodavanje studenta");
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addStudDialogTitle"));
 		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(box);
 		getContentPane().setBackground(Color.DARK_GRAY);
@@ -55,20 +60,20 @@ public class AddStudentDialog extends JDialog{
 				addressFormat.setForeground(Color.WHITE);
 				temp.add(Box.createHorizontalStrut(190));
 				temp.add(addressFormat);
-				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createTextField()));
+				getContentPane().add(createPanel(getTextForLabel(i), WindowComponentBuilder.createTextField()));
 				getContentPane().add(temp);
 			}
 
 			else if(i == 10) {
 				String[] data = {"1", "2", "3", "4", "5", "6"};
-				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
+				getContentPane().add(createPanel(getTextForLabel(i), WindowComponentBuilder.createComboBoxField(data)));
 			}
 			else if(i == 11) {
 				String[] data = {"B", "S"};
-				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createComboBoxField(data)));
+				getContentPane().add(createPanel(getTextForLabel(i), WindowComponentBuilder.createComboBoxField(data)));
 			}
 			else {
-				getContentPane().add(createPanel(namesSerbian[i], WindowComponentBuilder.createTextField()));
+				getContentPane().add(createPanel(getTextForLabel(i), WindowComponentBuilder.createTextField()));
 				getContentPane().add(Box.createVerticalStrut(10));
 			}
 		}
@@ -85,7 +90,9 @@ public class AddStudentDialog extends JDialog{
 	private JPanel createPanel(String text, JComponent comp) {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		panel.add(WindowComponentBuilder.createLabel(text));		
+		JLabel lbl = WindowComponentBuilder.createLabel(text);
+		labels.add(lbl);
+		panel.add(lbl);		
 		panel.add(Box.createHorizontalStrut(50));
 		addComponentToArray(comp);
 		panel.add(comp);
@@ -122,5 +129,33 @@ public class AddStudentDialog extends JDialog{
 		return buttonsInAddStudentForm;
 	}
 
+	public void initComponents() {
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addStudDialogTitle"));
+		for(int i = 0; i < labels.size(); i++) {
+			JLabel label = labels.get(i);
+			label.setText(getTextForLabel(i));
+		}
+		buttonsInAddStudentForm.get(0).setText(LanguageSupport.getInstance().getResourceBundle().getString("addStudentBtn1"));
+		buttonsInAddStudentForm.get(1).setText(LanguageSupport.getInstance().getResourceBundle().getString("addStudentBtn2"));
+	}
+	
+	private String getTextForLabel(int i ) {
+		ResourceBundle bundle = LanguageSupport.getInstance().getResourceBundle();
+		switch(i) {
+		case 0:  return bundle.getString("addStud0");
+		case 1: return bundle.getString("addStud1");
+		case 2:  return bundle.getString("addStud2");
+		case 3: return bundle.getString("addStud3");
+		case 4:  return bundle.getString("addStud4");
+		case 5: return bundle.getString("addStud5");
+		case 6:  return bundle.getString("addStud6");
+		case 7: return bundle.getString("addStud7");
+		case 8:  return bundle.getString("addStud8");
+		case 9: return bundle.getString("addStud9");
+		case 10:  return bundle.getString("addStud10");
+		case 11: return bundle.getString("addStud11");
+		default: return "";
+		}
+	}
 
 }

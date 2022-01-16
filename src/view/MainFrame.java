@@ -5,12 +5,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import bundle.LanguageSupport;
 import controller.ListenerController;
 import view.dialogs.*;
 import view.menuBar.MenuBar;
@@ -35,11 +39,12 @@ public class MainFrame extends JFrame {
 	
 	MainTab tab;
 	MenuBar menu = new MenuBar();
-
+	StatusBar status = new StatusBar();
+	
 	private MainFrame() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 
-		setTitle("Studentska služba");
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("mainFrameTitle"));
 		getContentPane().setBackground(Color.GRAY);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		Dimension dim = kit.getScreenSize();
@@ -51,13 +56,11 @@ public class MainFrame extends JFrame {
 		Image img = kit.getImage("src/main_icon/icon.jpg");
 		setIconImage(img);
 
-		MenuBar menu = new MenuBar();
 		this.setJMenuBar(menu);
 
 		tb = new ToolBar();
 		getContentPane().add(tb, BorderLayout.NORTH);
 
-		StatusBar status = new StatusBar();
 		status.setPreferredSize(new Dimension(this.getWidth(), 30));
 		add(status, BorderLayout.SOUTH);
 
@@ -155,5 +158,29 @@ public class MainFrame extends JFrame {
 		return tab;
 	}
 	
+	public void changeLanguage() {	
+		
+		
+		ResourceBundle resourceBundle = LanguageSupport.getInstance().getResourceBundle();
+		
+		setTitle(resourceBundle.getString("mainFrameTitle"));
+		menu.initComponents();
+		status.initComponents();
+		tab.initComponents();
+		tb.initComponents();
+		addStudentDialog.initComponents();
+		changeStudentDialog.initComponents();
+		addProfessorDialog.initComponents();
+		changeProfessorDialog.initComponents();
+		changeProfessorDialog.getInformationPanel().initComponents();
+		changeStudentDialog.getInformationPanel().initComponents();
+		addSubjectDialog.initComponents();
+		departmentsDialog.initComponenets();
+		UIManager.put("OptionPane.yesButtonText", resourceBundle.getObject("yesOption"));
+		UIManager.put("OptionPane.noButtonText", resourceBundle.getObject("noOption"));
+		UIManager.put("OptionPane.okButtonText", resourceBundle.getObject("okOption"));
+		UIManager.put("OptionPane.cancelButtonText", resourceBundle.getObject("cancelOption"));
+	}
+
 	
 }

@@ -5,6 +5,9 @@ import model.CustomListModelForProfessors;
 import model.DatabaseReader;
 
 import javax.swing.*;
+
+import bundle.LanguageSupport;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +21,7 @@ public class AssignProfessorToDepartmentDirectorDialog extends JDialog {
         addDepartmentDirectorDialog = dialog;
         setModalityType(DEFAULT_MODALITY_TYPE);
         Toolkit kit = Toolkit.getDefaultToolkit();
-        setTitle("Odaberi sefa katedre");
+        setTitle(LanguageSupport.getInstance().getResourceBundle().getString("chooseDirector"));
         BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
         setLayout(box);
         getContentPane().setBackground(Color.DARK_GRAY);
@@ -70,8 +73,8 @@ public class AssignProfessorToDepartmentDirectorDialog extends JDialog {
         JPanel btnPanel = new JPanel();
         BoxLayout box = new BoxLayout(btnPanel, BoxLayout.X_AXIS);
         btnPanel.setLayout(box);
-        applyBtn.setText("Potvrdi");
-        cancelBtn.setText("Odustani");
+        applyBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("applyBtn"));
+        cancelBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("cancelBtn"));
         btnPanel.add(applyBtn);
         btnPanel.add(cancelBtn);
 
@@ -81,4 +84,10 @@ public class AssignProfessorToDepartmentDirectorDialog extends JDialog {
     public JList getProfessorList(){
         return professorList;
     }
+    
+	public void initComponents() {
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("chooseDirector"));
+		applyBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("applyBtn"));
+		cancelBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("cancelBtn"));
+	}
 }

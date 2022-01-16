@@ -5,6 +5,9 @@ import model.Professor;
 import view.MainFrame;
 
 import javax.swing.table.AbstractTableModel;
+
+import bundle.LanguageSupport;
+
 import java.util.ArrayList;
 
 public class AbstractTableModelProfessorTeachSubjects extends AbstractTableModel {
@@ -14,10 +17,6 @@ public class AbstractTableModelProfessorTeachSubjects extends AbstractTableModel
 
     public AbstractTableModelProfessorTeachSubjects(){
         columnNames = new ArrayList<>();
-        columnNames.add("Sifra");
-        columnNames.add("Naziv");
-        columnNames.add("Godina studija");
-        columnNames.add("Semestar");
     }
     @Override
     public int getRowCount() {
@@ -28,7 +27,7 @@ public class AbstractTableModelProfessorTeachSubjects extends AbstractTableModel
 
     @Override
     public int getColumnCount() {
-        return columnNames.size();
+        return 4;
     }
 
     @Override
@@ -39,6 +38,16 @@ public class AbstractTableModelProfessorTeachSubjects extends AbstractTableModel
     @Override
     public String getColumnName(int column) {
         // TODO Auto-generated method stub
-        return columnNames.get(column);
+        return getColumnString(column);
     }
+    
+	public String getColumnString(int colIndex) {
+		switch(colIndex) {
+		case 0:return LanguageSupport.getInstance().getResourceBundle().getString("subProfTableCode");
+		case 1:return LanguageSupport.getInstance().getResourceBundle().getString("subProfTableName");
+		case 2:return LanguageSupport.getInstance().getResourceBundle().getString("subProfTableYear");
+		case 3:return LanguageSupport.getInstance().getResourceBundle().getString("subProfTableSemester");
+		default: return "";
+		}
+	}
 }

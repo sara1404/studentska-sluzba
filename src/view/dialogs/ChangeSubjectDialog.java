@@ -6,9 +6,11 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javax.swing.*;
 
+import bundle.LanguageSupport;
 import controller.ListenerController;
 import model.Subject;
 import utils.WindowComponentBuilder;
@@ -19,6 +21,7 @@ public class ChangeSubjectDialog extends JDialog{
 	private ArrayList<JTextField> dataInputs;
 	private ArrayList<JComboBox> comboInputs;
 	private String[] labelText = {"Sifra predmeta*", "Naziv predmeta*", "Semestar*", "Godina studija*", "Predmetni profesor*", "Broj ESPB bodova*"};
+	private ArrayList<JLabel> labels;
 	
 	SubjectsNotPassedStudent snps = new SubjectsNotPassedStudent();
 	private ArrayList<JButton> buttonsInChangeSubjectForm;
@@ -31,8 +34,9 @@ public class ChangeSubjectDialog extends JDialog{
 		dataInputs = new ArrayList<JTextField>();
 		comboInputs = new ArrayList<JComboBox>();
 		buttonsInChangeSubjectForm = new ArrayList<>();
+		labels = new ArrayList<>();
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		setTitle("Izmena predmeta");
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("editSubDialogTitle"));
 		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(box);
 		getContentPane().setBackground(Color.DARK_GRAY);
@@ -46,11 +50,11 @@ public class ChangeSubjectDialog extends JDialog{
 		for(int i = 0; i < labelText.length; i++) {
 			if(i == 2) {
 				String[] data = {"LETNJI", "ZIMSKI"};
-				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createComboBoxField(data)));
+				getContentPane().add(createPanel(getTextForLabel(i), WindowComponentBuilder.createComboBoxField(data)));
 			}
 			else if(i == 3) {
 				String[] data = {"1", "2", "3", "4", "5", "6"};
-				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createComboBoxField(data)));
+				getContentPane().add(createPanel(getTextForLabel(i), WindowComponentBuilder.createComboBoxField(data)));
 			}
 			else if(i == 4) {
 				JTextField field = WindowComponentBuilder.createTextField();
@@ -64,7 +68,7 @@ public class ChangeSubjectDialog extends JDialog{
 				remove.setPreferredSize(new Dimension(30, 30));
 				remove.setMaximumSize(new Dimension(30, 30));
 				
-				getContentPane().add(createSpecialPanel(labelText[i], field, add, remove));
+				getContentPane().add(createSpecialPanel(getTextForLabel(i), field, add, remove));
 
 				add.addActionListener(new ActionListener() {
 					@Override
@@ -74,7 +78,7 @@ public class ChangeSubjectDialog extends JDialog{
 				});
 
 			} else {
-				getContentPane().add(createPanel(labelText[i], WindowComponentBuilder.createTextField()));
+				getContentPane().add(createPanel(getTextForLabel(i), WindowComponentBuilder.createTextField()));
 			}
 		}
 		
@@ -196,4 +200,29 @@ public class ChangeSubjectDialog extends JDialog{
 			dataInputs.get(2).setText(subject.getProfessor().getName() + " " + subject.getProfessor().getSurname());
 		dataInputs.get(3).setText(String.valueOf(subject.getESPB()));
 	}
+	
+	public void initComponents() {
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("editSubDialogTitle"));
+		for(int i = 0; i < labels.size(); i++) {
+			JLabel label = labels.get(i);
+			label.setText(getTextForLabel(i));
+		}
+		buttonsInChangeSubjectForm.get(0).setText(LanguageSupport.getInstance().getResourceBundle().getString("addSubjectBtn1"));
+		buttonsInChangeSubjectForm.get(1).setText(LanguageSupport.getInstance().getResourceBundle().getString("addSubjectBtn2"));
+		assignProfessorToSubject.initComponents();
+	}
+	
+	private String getTextForLabel(int i ) {
+		ResourceBundle bundle = LanguageSupport.getInstance().getResourceBundle();
+		switch(i) {
+		case 0:  return bundle.getString("editSub0");
+		case 1: return bundle.getString("editSub1");
+		case 2:  return bundle.getString("editSub2");
+		case 3: return bundle.getString("editSub3");
+		case 4:  return bundle.getString("editSub4");
+		case 5:  return bundle.getString("editSub5");
+		default: return "";
+		}
+	}
 }
+

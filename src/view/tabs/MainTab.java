@@ -1,5 +1,10 @@
 package view.tabs;
 
+import java.awt.Component;
+import java.util.ResourceBundle;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -9,6 +14,7 @@ import view.tabs.tabPanels.SubjectsNotPassedStudent;
 import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
 import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 import RowFilters.RowFilterStudent;
+import bundle.LanguageSupport;
 import model.DatabaseReader;
 import view.MainFrame;
 import view.tabs.tables.AbstractTableModelProfessor;
@@ -23,18 +29,21 @@ public class MainTab extends JTabbedPane {
 	private SubjectTable subjectTable;
 	private ProfessorTable professorTable;
 	private MainFrame frame;
+	private JLabel tabName1;
+	private JLabel tabName2;
+	private JLabel tabName3;
 	
 	public MainTab(MainFrame mainFrame) {
 		super();
 		frame = mainFrame;
-
+		tabName1 = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("tabName1"));
 
 		studentTable = new StudentTable(frame);
-		add("Studenti", new JScrollPane(studentTable));
+		add(LanguageSupport.getInstance().getResourceBundle().getString("tabName1"), new JScrollPane(studentTable));
 		professorTable = new ProfessorTable(frame);
-		add("Profesori", new JScrollPane(professorTable));
+		add(LanguageSupport.getInstance().getResourceBundle().getString("tabName2"), new JScrollPane(professorTable));
 		subjectTable = new SubjectTable(frame);
-		add("Predmeti", new JScrollPane(subjectTable));
+		add(LanguageSupport.getInstance().getResourceBundle().getString("tabName3"), new JScrollPane(subjectTable));
 		
 	}
 
@@ -97,5 +106,31 @@ public class MainTab extends JTabbedPane {
 
 	public ProfessorTable getProfessorTable() {
 		return professorTable;
+	}
+	
+	private void setTableColumnNames() {
+		AbstractTableModelStudent model = (AbstractTableModelStudent)studentTable.getModel();
+		AbstractTableModelProfessor modelProf = (AbstractTableModelProfessor) professorTable.getModel();
+		AbstractTableModelSubject modelSub = (AbstractTableModelSubject) subjectTable.getModel();
+		
+		for(int i = 0; i < studentTable.getColumnCount();i++) {
+			studentTable.getColumnModel().getColumn(i).setHeaderValue(model.getColumnString(i));
+		}
+		for(int i = 0; i < professorTable.getColumnCount(); i++) {
+			professorTable.getColumnModel().getColumn(i).setHeaderValue(modelProf.getColumnString(i));
+		}
+		for(int i = 0; i < subjectTable.getColumnCount(); i++) {
+			subjectTable.getColumnModel().getColumn(i).setHeaderValue(modelSub.getColumnString(i));
+		}
+		
+	}
+	
+	
+	public void initComponents() {
+		ResourceBundle bundle = LanguageSupport.getInstance().getResourceBundle();
+		this.setTitleAt(0, bundle.getString("tabName1"));
+		this.setTitleAt(1, bundle.getString("tabName2"));	
+		this.setTitleAt(2, bundle.getString("tabName3"));	
+		setTableColumnNames();
 	}
 }

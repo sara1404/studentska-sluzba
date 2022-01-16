@@ -5,17 +5,14 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import javax.xml.crypto.Data;
 
+import bundle.LanguageSupport;
 import model.DatabaseReader;
 
 public class AbstractTableModelProfessor extends AbstractTableModel {
 	private ArrayList<String> columnNames;
 	public AbstractTableModelProfessor() {
 		columnNames = new ArrayList<String>();
-		columnNames.add("Ime");
-		columnNames.add("Prezime");
-		columnNames.add("Zvanje");
-		columnNames.add("E-mail adresa");
-		columnNames.add("hidden");
+
 		
 	}
 	@Override
@@ -25,7 +22,7 @@ public class AbstractTableModelProfessor extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return columnNames.size();
+		return 5;
 	}
 
 	@Override
@@ -34,7 +31,17 @@ public class AbstractTableModelProfessor extends AbstractTableModel {
 	}
 	@Override
 	public String getColumnName(int column) {
-		return columnNames.get(column);
+		return getColumnString(column);
+	}
+	
+	public String getColumnString(int colIndex) {
+		switch(colIndex) {
+		case 0:return LanguageSupport.getInstance().getResourceBundle().getString("professorTableName");
+		case 1:return LanguageSupport.getInstance().getResourceBundle().getString("professorTableSurname");
+		case 2:return LanguageSupport.getInstance().getResourceBundle().getString("professorTableTitle");
+		case 3:return LanguageSupport.getInstance().getResourceBundle().getString("professorTableEmail");
+		default: return "";
+		}
 	}
 
 }

@@ -13,6 +13,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import bundle.LanguageSupport;
 import model.Professor;
 import utils.Utils;
 import utils.WindowComponentBuilder;
@@ -56,20 +57,20 @@ public class InformationProfessor extends JPanel{
 		setBackground(Color.DARK_GRAY);
 	
 		textFields = new ArrayList<>();
-		setPanel("Prezime*", 0);
-        setPanel("Ime*", 0);
-        setPanel("Datum rodjenja*", 0);
-        setPanel("Ulica i broj stanovanja*", 0);
-        setPanel("Grad stanovanja*",0);
-        setPanel("Drzava stanovanja*",0);
-        setPanel("Kontakt telefon", 0);
-        setPanel("E-mail*", 0);
-        setPanel("Ulica i broj kancelarije*", 0);
-        setPanel("Grad kancelarije*",0);
-        setPanel("Drzava kancelarije*",0);
-        setPanel("Broj licne karte*", 0);
-        setPanel("Zvanje*", 1);
-        setPanel("Godine staza*", 0);
+		setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf0"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf1"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf2"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf3"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf4"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf5"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf6"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf7"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf8"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf9"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf10"),0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf11"), 0);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf12"), 1);
+        setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf13"), 0);
         
         add(Box.createVerticalStrut(25));  
         
@@ -78,10 +79,10 @@ public class InformationProfessor extends JPanel{
 		panBottom.setLayout(box);
 		panBottom.setBackground(Color.DARK_GRAY);
 		
-		JButton btnOk=new JButton("Potvrdi");
+		JButton btnOk=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("editProfBtn1"));
 		btnOk.setPreferredSize(new Dimension(100,25));
 		
-		JButton btnCancel=new JButton("Odustani");
+		JButton btnCancel=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("editProfBtn2"));
 		btnCancel.setPreferredSize(new Dimension(100,25));
 		
 		panBottom.add(Box.createHorizontalStrut(200));
@@ -151,6 +152,11 @@ public class InformationProfessor extends JPanel{
 
 	public JComboBox getCombo() {
 		return combo;
+	}
+	
+	public void initComponents() {
+		buttons.get(0).setText(LanguageSupport.getInstance().getResourceBundle().getString("editProfBtn1"));
+		buttons.get(1).setText(LanguageSupport.getInstance().getResourceBundle().getString("editProfBtn2"));
 	}
 	
 }

@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
+import bundle.LanguageSupport;
 import model.CustomListModelForProfessors;
 
 public class AssignProfessorToSubject extends JDialog {
@@ -25,7 +26,7 @@ public class AssignProfessorToSubject extends JDialog {
 	public AssignProfessorToSubject(ChangeSubjectDialog dialog) {
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		setTitle("Odaberi profesora");
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("chooseProf"));
 		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(box);
 		getContentPane().setBackground(Color.DARK_GRAY);
@@ -75,8 +76,8 @@ public class AssignProfessorToSubject extends JDialog {
 		JPanel btnPanel = new JPanel();
 		BoxLayout box = new BoxLayout(btnPanel, BoxLayout.X_AXIS);
 		btnPanel.setLayout(box);
-		applyBtn.setText("Potvrdi");
-		cancelBtn.setText("Odustani");
+		applyBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("applyBtn"));
+		cancelBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("cancelBtn"));
 		btnPanel.add(applyBtn);
 		btnPanel.add(cancelBtn);
 		
@@ -93,5 +94,11 @@ public class AssignProfessorToSubject extends JDialog {
 	
 	public JButton getCancelBtn() {
 		return cancelBtn;
+	}
+	
+	public void initComponents() {
+		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("chooseProf"));
+		applyBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("applyBtn"));
+		cancelBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("cancelBtn"));
 	}
 }

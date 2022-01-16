@@ -5,22 +5,27 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import bundle.LanguageSupport;
+
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class StatusBar extends JPanel {
-		JLabel currentTablbl = new JLabel("Studenti");
+		JLabel currentTablbl;
 		JLabel timeLbl = new JLabel();
+		JLabel statusLabel;
 	public StatusBar() {
 		
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBackground(new Color(48, 51, 49));
-		JLabel statusLabel = new JLabel("Studentska sluzba - ");
+		statusLabel = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("statusLabel"));
 
 		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		statusLabel.setForeground(Color.WHITE);
+		currentTablbl = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("currentTablbl"));
 		currentTablbl.setHorizontalAlignment(SwingConstants.LEFT);
 		currentTablbl.setForeground(Color.WHITE);
 		add(Box.createHorizontalStrut(10));
@@ -77,5 +82,10 @@ public class StatusBar extends JPanel {
 	    }
 	   };
 	   t1.start();
+	}
+	
+	public void initComponents() {
+		currentTablbl.setText(LanguageSupport.getInstance().getResourceBundle().getString("currentTablbl"));
+		statusLabel.setText(LanguageSupport.getInstance().getResourceBundle().getString("statusLabel"));
 	}
 }

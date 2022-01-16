@@ -87,6 +87,16 @@ public class Subject {
 		default: return "";
 		}
 	}
+	public String getValueAtFailed(int index) {
+		switch(index) {
+		case 0: return subjectKey;
+		case 1: return subjectName;
+		case 2: return String.valueOf(ESPB);
+		case 3: return String.valueOf(year);
+		case 4: return semester.getValue();
+		default: return "";
+		}
+	}
 	@Override
 	public String toString() {
 		try {

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,6 +32,7 @@ public class DatabaseReader {
 			this.professorTeachSubjects = readSubjectsForProfessor();
 			linkSubjectsToProfessor();
 			this.departments = readDepartmentDatabase();
+			linkSubjectsFailedToStudent();
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -55,6 +57,21 @@ public class DatabaseReader {
 				}
 			}
 		}
+	}
+	
+	private void linkSubjectsFailedToStudent() throws Exception {
+		File text = new File("src/database_resource/subjects_student_not_passed.txt");
+		Scanner scanner;
+		scanner = new Scanner(text);
+		while(scanner.hasNextLine()){
+			String subj = scanner.nextLine();
+			String[] subjData = trimData(subj.split(","));
+			Student student = findStudent(subjData[0]);
+			Subject s = findSubject(subjData[1]);
+			student.getFailedExams().add(s);
+		}
+		scanner.close();
+		
 	}
 	
 	public ArrayList<Subject> filterSubjectsListForProfessor(Professor professor){
@@ -179,6 +196,7 @@ public class DatabaseReader {
 		scanner.close();
 		return grades;
 	}
+	
 
 	private ArrayList<ProfessorTeachSubject> readSubjectsForProfessor() throws Exception {
 		File text = new File("src/database_resource/professor_teach_subjects.txt");
@@ -270,6 +288,7 @@ public class DatabaseReader {
 	public void addNewGrade(Grade newGrade) {
 		grades.add(newGrade);
 		ObserverNotifier.getInstance().subjectsPassedDataChanged();
+		ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 	}
 	
 	public void addNewSubject(Subject newSubject) {
@@ -301,6 +320,10 @@ public class DatabaseReader {
 		for(int i =0; i< students.size(); i++) {
 				students.get(i).getFailedExams().remove(findSubject(index));
 			}
+		for(int i =0; i< professors.size(); i++) {
+			professors.get(i).getSubjectList().remove(findSubject(index));
+		}
+		
 		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}

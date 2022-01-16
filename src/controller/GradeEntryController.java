@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import model.DatabaseReader;
 import model.Grade;
+import model.ObserverNotifier;
 import model.Student;
 import model.Subject;
 import view.MainFrame;
@@ -24,28 +25,29 @@ public class GradeEntryController {
 	}
 	
 	public void gradeEntry(GradeEntry ge) {
-		//try {
+		try {
 			notPassed = new SubjectsNotPassedTable();
-			//validateFields(ge.getDataInputs());
-			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			Grade newGrade = generateGrade(ge);
+			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.addNewGrade(newGrade);
 			Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
-			student.getFailedExams().remove(student.getFailedExams().get(notPassed.getSelectedRow()));
+			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
+			student.getPassedExams().add(newGrade);
 			
 			
-		/*} catch(Exception e) {
+			
+		} catch(Exception e) {
 			JOptionPane.showMessageDialog(ge, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
-		}*/
+		}
 	}
 	
 	public Grade generateGrade(GradeEntry ge) {
 		int mark = Integer.parseInt(ge.getComboInput().getSelectedItem().toString());
 		LocalDate date = LocalDate.parse(ge.getDataInputs().get(2).getText());
 		Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
-		//Subject subject = DatabaseReader.getInstance().findSubject()
+		Subject subject = DatabaseReader.getInstance().findSubject(ge.getDataInputs().get(0).getText());
 		
-		Grade grade = new Grade(student, null, mark, date);
+		Grade grade = new Grade(student, subject, mark, date);
 		return grade;
 	}
 	

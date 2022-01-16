@@ -12,10 +12,12 @@ public class ProfessorTable extends JTable {
 	public ProfessorTable(MainFrame frame) {
 		this.setRowSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setColumnSelectionAllowed(false);
 		AbstractTableModelProfessor atmp = new AbstractTableModelProfessor();
 		this.setModel(atmp);
 		TableRowSorter<AbstractTableModelProfessor> sorter = new TableRowSorter<>(atmp);
 		sorter.setRowFilter(new RowFilterProfessor(frame));
+		sorter.setSortsOnUpdates(true);
 		setRowSorter(sorter);
 		this.getColumnModel().getColumn(4).setMinWidth(0);
 		this.getColumnModel().getColumn(4).setMaxWidth(0);

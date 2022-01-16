@@ -26,7 +26,6 @@ public class SubjectsPassedStudent extends JPanel{
 	JLabel espbSumLabel;
 	private JList<String> subjectList;
 	SubjectsPassedTable passed;
-	SubjectsNotPassedTable notPassed;
 	SubjectsPassedStudent sps = this;
 	public SubjectsPassedStudent() {
 		
@@ -46,9 +45,8 @@ public class SubjectsPassedStudent extends JPanel{
 					if(resp == 0) {
 						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 						student.getPassedExams().remove(student.getPassedExams().get(passed.getSelectedRow()));
-						//student.getFailedExams().add();
 						ObserverNotifier.getInstance().subjectsPassedDataChanged();
-						ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
+						
 
 				}
 				
@@ -58,7 +56,6 @@ public class SubjectsPassedStudent extends JPanel{
 		passed = new SubjectsPassedTable();
 		add(new JScrollPane(passed));
 		
-		notPassed = new SubjectsNotPassedTable();
 		
 		JPanel wrapper = new JPanel();
 		BoxLayout box2 = new BoxLayout(wrapper, BoxLayout.Y_AXIS);

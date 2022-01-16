@@ -35,7 +35,7 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return student.getFailedExams().get(rowIndex).getValueAt(columnIndex);
+		return student.getFailedExams().get(rowIndex).getValueAtFailed(columnIndex);
 	}
 	@Override
 	public String getColumnName(int column) {

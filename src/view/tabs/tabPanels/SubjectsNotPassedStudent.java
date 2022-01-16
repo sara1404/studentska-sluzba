@@ -86,8 +86,6 @@ public class SubjectsNotPassedStudent extends JPanel{
 		});
 
 		passBtn.addActionListener(new ActionListener() {
-			
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setGradeEntry();
@@ -112,7 +110,7 @@ public class SubjectsNotPassedStudent extends JPanel{
 				gradeEntry.setVisible(true);
 				
 				} catch (Exception ex){
-					JOptionPane.showMessageDialog(notPassed, "Mora se selektovati predmet iz tabele pre unosa ocene!");;
+					JOptionPane.showMessageDialog(notPassed, "Mora se selektovati predmet iz tabele pre unosa ocene!");
 				}
 				
 			}

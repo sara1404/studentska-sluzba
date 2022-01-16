@@ -111,6 +111,14 @@ public class Professor {
 		default: return "";
 		}
 	}
+	@Override
+	public String toString() {
+		return surname + ", " + name + ", " + birthDate + ", "
+				+ homeAdress + ", " + phone + ", " + email + ", " + officeAdress + ", " + id
+				+ ", " + title + ", " + serviceYears;
+	}
+	
+	
 	
 	
 }

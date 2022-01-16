@@ -23,6 +23,7 @@ private static DeleteSubjectController instance = null;
 			
 		} catch(Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Greska!", JOptionPane.WARNING_MESSAGE);
+			e.printStackTrace();
 		}
 	}
 }

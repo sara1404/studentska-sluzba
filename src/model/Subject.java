@@ -89,8 +89,14 @@ public class Subject {
 	}
 	@Override
 	public String toString() {
-		return subjectKey +", "+ subjectName + ", " + semester + ", "
-				+ year + ", " + professor +", " + ESPB ;
+		try {
+			return subjectKey +", "+ subjectName + ", " + semester + ", "
+					+ year + ", " + professor.getId() +", " + ESPB ;
+		} catch (Exception e ) {
+			return subjectKey +", "+ subjectName + ", " + semester + ", "
+					+ year + ", " + null +", " + ESPB ;
+		}
+		
 	}
 	
 }

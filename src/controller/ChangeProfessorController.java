@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import enums.Title;
 import model.Address;
 import model.DatabaseReader;
+import model.DatabaseWriter;
 import model.ObserverNotifier;
 import model.Professor;
 import view.MainFrame;
@@ -20,6 +21,7 @@ import view.tabs.tabPanels.InformationProfessor;
 
 public class ChangeProfessorController {
 	private static ChangeProfessorController instance = null;
+	DatabaseWriter wr = new DatabaseWriter();
 	private ChangeProfessorController() {};
 	
 	public static ChangeProfessorController getInstance() {
@@ -34,6 +36,7 @@ public class ChangeProfessorController {
 			Professor newProfessor = generateProfessor(cpd);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.getProfessors().set(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable(), newProfessor);
+			wr.writeInProfessorDatabase(databaseReader.getProfessors());
 			ObserverNotifier.getInstance().professorDataChanged();
 			cpd.dispose();
 		} catch(Exception e) {
@@ -55,11 +58,6 @@ public class ChangeProfessorController {
 						fields.get(i).setForeground(Color.RED);
 						throw new DateTimeException("Datum mora biti ispravno formatiran!");
 					}
-				
-				if((i == 3 || i == 8) && !validAddressFormat(field.getText())) {
-					fields.get(i).setForeground(Color.RED);
-					throw new NullPointerException("Adresa nije pravilno uneta!"); 
-				}
 				
 				if(i == 11 && idExists(field.getText())) {
 					fields.get(i).setForeground(Color.RED);
@@ -102,19 +100,6 @@ public class ChangeProfessorController {
 			return false;
 		}
 	}
-	
-	private boolean validAddressFormat(String address) {
-		try {
-			String[] data = address.split(" ");
-			if(address == " ") {
-				return false;
-			}
-			Integer.parseInt(data[data.length - 1]);
-		}catch(Exception e) {
-			return false;
-		}
-		return true;
-	}
 
 	private Professor generateProfessor(ChangeProfessorDialog cpd) {
 		String surname = cpd.getTextField(0).getText().trim();
@@ -143,7 +128,7 @@ public class ChangeProfessorController {
 		for(int i = 0; i < streetData.length - 1; i++){
 			streetName += streetData[i];
 		}
-		Address address = new Address(streetName, Integer.parseInt(streetData[streetData.length - 1]), town, country);
+		Address address = new Address(streetName, streetData[streetData.length - 1], town, country);
 		return address;
 	} 
 	

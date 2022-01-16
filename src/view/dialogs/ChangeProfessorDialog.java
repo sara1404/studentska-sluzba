@@ -42,6 +42,9 @@ public class ChangeProfessorDialog extends JDialog{
 		tab.addTab(LanguageSupport.getInstance().getResourceBundle().getString("profInfo"), info);
 		info.setBackground(Color.DARK_GRAY);
 		tab.addTab(LanguageSupport.getInstance().getResourceBundle().getString("subjList"), subj);
+		//tab.addTab("Info", info);
+		//info.setBackground(Color.DARK_GRAY);
+		//tab.addTab("Predmeti", subj);
 		subj.setBackground(Color.DARK_GRAY);
 		add(tab);
 		

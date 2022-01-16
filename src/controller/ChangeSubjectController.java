@@ -2,18 +2,23 @@ package controller;
 
 
 
+import java.awt.Color;
+import java.util.ArrayList;
+
+import javax.swing.JTextField;
+
 import enums.Semester;
-import model.*;
+import model.DatabaseReader;
+import model.DatabaseWriter;
+import model.ObserverNotifier;
+import model.Professor;
+import model.Subject;
 import view.MainFrame;
 import view.dialogs.ChangeSubjectDialog;
 
-import javax.swing.*;
-import java.awt.*;
-import java.time.DateTimeException;
-import java.util.ArrayList;
-
 public class ChangeSubjectController {
 	private static ChangeSubjectController instance = null;
+	DatabaseWriter wr = new DatabaseWriter();
 	
 	private ChangeSubjectController() {}
 	
@@ -30,12 +35,13 @@ public class ChangeSubjectController {
 	public void swapSubjects(ChangeSubjectDialog changeSubjectDialog) {
 		Subject newSubject = generateSubjectFromDialogInputs(changeSubjectDialog);
 		DatabaseReader.getInstance().getSubjects().set(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable(), newSubject);
+		wr.writeInSubjectDatabase(DatabaseReader.getInstance().getSubjects());
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 
 	public void validateFields(ArrayList<JTextField> fields) throws Exception {
 		System.out.println("Validiramo");
-		for(int i = 0; i < fields.size(); i++) {
+		for(int i = 0; i < fields.size()-2; i++) {
 			JTextField field = fields.get(i);
 			if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
 			if(i == 0) {
@@ -46,6 +52,8 @@ public class ChangeSubjectController {
 				}
 			}
 		}
+		JTextField field = fields.get(3);
+		if(field.getText().trim().equals("")) throw new NullPointerException("Polja moraju biti popunjena!");
 	}
 	
 	private Subject generateSubjectFromDialogInputs(ChangeSubjectDialog changeSubjectDialog) {
@@ -53,11 +61,19 @@ public class ChangeSubjectController {
 		String name = changeSubjectDialog.getTextFieldAt(1).getText();
 		String semestar = changeSubjectDialog.getComboAt(0).getSelectedItem().toString();
 		int year =  Integer.parseInt(changeSubjectDialog.getComboAt(1).getSelectedItem().toString());
-		Professor professor = DatabaseReader.getInstance().getProfessors().get(changeSubjectDialog.getProfessorList().getSelectedIndex());
+		Professor professor;
+		try {
+			professor = DatabaseReader.getInstance().getProfessors().get(changeSubjectDialog.getProfessorList().getSelectedIndex());
+			
+		} catch (Exception e) {
+			professor = null;
+		}
+		
 		int espb = Integer.parseInt(changeSubjectDialog.getTextFieldAt(3).getText());
 		
 		Subject subject = new Subject(id, name, Semester.getSemesterWithString(semestar), year, professor, espb);
-		professor.getSubjectList().add(subject);
+		if(professor != null)
+			professor.getSubjectList().add(subject);
 		return subject;
 	}
 	

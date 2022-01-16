@@ -15,8 +15,10 @@ public class SubjectTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		AbstractTableModelSubject model = new AbstractTableModelSubject();
 		this.setModel(model);
-		TableRowSorter<AbstractTableModelSubject> sorter = new TableRowSorter<>(model);
+		TableRowSorter<AbstractTableModelSubject> sorter = new TableRowSorter<>((AbstractTableModelSubject) model);
+		setAutoCreateRowSorter(true);
 		sorter.setRowFilter(new RowFilterProfessor(frame));
+		sorter.setSortsOnUpdates(true);
 		setRowSorter(sorter);
 		ObserverNotifier on = ObserverNotifier.getInstance();
 		on.setSubjectTable(this);

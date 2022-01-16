@@ -212,6 +212,16 @@ public class DatabaseReader {
 				filteredProfessors.add(professor);
 			}
 		}
+		ArrayList<Professor> removeProfessors = new ArrayList<>();
+		for(Professor professor : filteredProfessors){
+			for(int i = 0; i < departments.size(); i++){
+				if(departments.get(i).getHead() != null){
+					if(departments.get(i).getHead().getId().equals(professor.getId()))
+						removeProfessors.add(professor);
+				}
+			}
+		}
+		filteredProfessors.removeAll(removeProfessors);
 		return filteredProfessors;
 	}
 	

@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import bundle.LanguageSupport;
 import controller.AddProfessorController;
 import controller.AddStudentController;
 import controller.AddSubjectController;
@@ -134,8 +135,8 @@ public class WindowComponentBuilder {
 		WindowComponentBuilder.setContainerSize(btn1, 100, 30);
 //		JButton cancel = new JButton();
 		WindowComponentBuilder.setContainerSize(btn2, 100, 30);
-		btn1.setText("Potvrdi");
-		btn2.setText("Odustani");
+		btn1.setText(LanguageSupport.getInstance().getResourceBundle().getString("editStudentBtn1"));
+		btn2.setText(LanguageSupport.getInstance().getResourceBundle().getString("editStudentBtn2"));
 		Utils.setCursor(btn1);
 		Utils.setCursor(btn2);
 		panel.add(btn1);

@@ -3,6 +3,7 @@ package view.tabs.tabPanels;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,13 +12,18 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
+import bundle.LanguageSupport;
 import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
 import model.ObserverNotifier;
 import model.Student;
 import utils.Utils;
 import view.MainFrame;
+import view.tabs.tabPanels.tabels.AbstractTableModelProfessorTeachSubjects;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsPassed;
 import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 import view.tabs.tabPanels.tabels.SubjectsPassedTable;
 
@@ -27,11 +33,14 @@ public class SubjectsPassedStudent extends JPanel{
 	private JList<String> subjectList;
 	SubjectsPassedTable passed;
 	SubjectsNotPassedTable notPassed;
+	JButton removeGrade;
+	JLabel averageGrade;
+	JLabel espbSum;
 	SubjectsPassedStudent sps = this;
 	public SubjectsPassedStudent() {
 		
-		JButton removeGrade = new JButton();
-		removeGrade.setText("Ponisti ocenu");
+		removeGrade = new JButton();
+		removeGrade.setText(LanguageSupport.getInstance().getResourceBundle().getString("removeGradeBtn"));
 		Utils.setCursor(removeGrade);
 		add(removeGrade);
 		removeGrade.addActionListener(new ActionListener() {
@@ -39,10 +48,10 @@ public class SubjectsPassedStudent extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(passed.getSelectedRow() == -1)
-					JOptionPane.showMessageDialog(sps, "Mora se selektovati predmet kojem se ponistava ocena! ");
+					JOptionPane.showMessageDialog(sps, LanguageSupport.getInstance().getResourceBundle().getString("editStudentMessage1"));
 				else {
-					resp = JOptionPane.showConfirmDialog(sps, "Da li ste sigurni da zelite da ponistite ocenu?",
-							"Ponistavanje ocene", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					resp = JOptionPane.showConfirmDialog(sps, LanguageSupport.getInstance().getResourceBundle().getString("editStudentQuestion1"),
+							LanguageSupport.getInstance().getResourceBundle().getString("editStudentTitle1"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if(resp == 0) {
 						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 						student.getPassedExams().remove(student.getPassedExams().get(passed.getSelectedRow()));
@@ -71,11 +80,11 @@ public class SubjectsPassedStudent extends JPanel{
 		espb.setBackground(Color.DARK_GRAY);
 		BoxLayout box1 = new BoxLayout(espb, BoxLayout.X_AXIS);
 		espb.setLayout(box1);
-		JLabel averageGrade = new JLabel("Prosecna ocena: ");
+		averageGrade = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("averageGradeLbl"));
 		averageGrade.setForeground(Color.WHITE);
 		averageGradeLabel = new JLabel();
 		averageGradeLabel.setForeground(Color.WHITE);
-		JLabel espbSum = new JLabel("Ukupno ESPB: ");
+		espbSum = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("espbSumLbl"));
 		espbSum.setForeground(Color.WHITE);
 		espbSumLabel = new JLabel();
 		espbSumLabel.setForeground(Color.WHITE);
@@ -93,4 +102,25 @@ public class SubjectsPassedStudent extends JPanel{
 	public JLabel getAverageGradeLabel(){return averageGradeLabel;}
 
 	public JLabel getEspbSumLabel(){return espbSumLabel;}
+	
+	private void setTableColumnNames() {
+		AbstractTableModelSubjectsPassed modelPass = (AbstractTableModelSubjectsPassed) passed.getModel();
+		
+		for(int i = 0; i < passed.getColumnCount();i++) {
+			passed.getColumnModel().getColumn(i).setHeaderValue(modelPass.getColumnString(i));
+		}
+	}
+	
+	
+	public void initComponents() {
+		ResourceBundle resourceBundle = LanguageSupport.getInstance().getResourceBundle();
+		removeGrade.setText(LanguageSupport.getInstance().getResourceBundle().getString("removeGradeBtn"));
+		averageGrade.setText(LanguageSupport.getInstance().getResourceBundle().getString("averageGradeLbl"));
+		espbSum.setText(LanguageSupport.getInstance().getResourceBundle().getString("espbSumLbl"));
+		setTableColumnNames();
+		UIManager.put("OptionPane.yesButtonText", resourceBundle.getObject("yesOption"));
+		UIManager.put("OptionPane.noButtonText", resourceBundle.getObject("noOption"));
+		UIManager.put("OptionPane.okButtonText", resourceBundle.getObject("okOption"));
+		UIManager.put("OptionPane.cancelButtonText", resourceBundle.getObject("cancelOption"));
+	}
 }

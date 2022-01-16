@@ -4,6 +4,9 @@ import model.*;
 import view.MainFrame;
 
 import javax.swing.*;
+
+import bundle.LanguageSupport;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +19,7 @@ public class AssignSubjectToStudent extends JDialog {
     public AssignSubjectToStudent() {
         setModalityType(DEFAULT_MODALITY_TYPE);
         Toolkit kit = Toolkit.getDefaultToolkit();
-        setTitle("Dodavanje predmeta");
+        setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addSubTitle"));
         BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
         setLayout(box);
         getContentPane().setBackground(Color.DARK_GRAY);
@@ -35,9 +38,8 @@ public class AssignSubjectToStudent extends JDialog {
         subjectList = new JList<>(customListModelForNotPassedSubjects);
         subjectList.setPreferredSize(new Dimension(width * 1/10, height));
         subjectList.setMaximumSize(new Dimension(width * 1/10, height));
-
-        applyBtn.setText("Potvrdi");
-        cancelBtn.setText("Odustani");
+        applyBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("applyBtn"));
+        cancelBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("cancelBtn"));
         JScrollPane pane = new JScrollPane();
         pane.setViewportView(subjectList);
         subjectList.setLayoutOrientation(JList.VERTICAL);
@@ -66,6 +68,8 @@ public class AssignSubjectToStudent extends JDialog {
                 ctx.dispose();
             }
         });
+        
+        initComponents();
     }
 
     private JPanel createBtnPanel() {
@@ -90,5 +94,11 @@ public class AssignSubjectToStudent extends JDialog {
 
     public JButton getCancelBtn() {
         return cancelBtn;
+    }
+    
+    public void initComponents() {
+    	setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addSubTitle"));
+    	applyBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("applyBtn"));
+    	cancelBtn.setText(LanguageSupport.getInstance().getResourceBundle().getString("cancelBtn"));
     }
 }

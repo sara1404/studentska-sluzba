@@ -14,10 +14,12 @@ public class StudentTable extends JTable {
 	public StudentTable(MainFrame frame) {
 		this.setRowSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setColumnSelectionAllowed(false);
 		AbstractTableModelStudent atms = new AbstractTableModelStudent();
 		this.setModel(atms);
 		TableRowSorter<AbstractTableModelStudent> sorter = new TableRowSorter<>(atms);
 		sorter.setRowFilter(new RowFilterStudent(frame));
+		sorter.setSortsOnUpdates(true);
 		setRowSorter(sorter);
 
 		ObserverNotifier on = ObserverNotifier.getInstance();

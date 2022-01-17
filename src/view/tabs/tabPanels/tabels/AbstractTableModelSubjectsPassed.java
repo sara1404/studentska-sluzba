@@ -1,27 +1,16 @@
 package view.tabs.tabPanels.tabels;
 
 import model.DatabaseReader;
-import model.ObserverNotifier;
 import model.Student;
 import view.MainFrame;
-import view.tabs.tables.AbstractTableModelDepartment;
-import view.tabs.tables.StudentTable;
-
-import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
 import bundle.LanguageSupport;
 
 public class AbstractTableModelSubjectsPassed extends AbstractTableModel{
-
-
-	private ArrayList<String> columnNames;
 	private Student student;
-	public AbstractTableModelSubjectsPassed() {
-		columnNames = new ArrayList<String>();
-		
-	}
+	public AbstractTableModelSubjectsPassed() {}
 	@Override
 	public int getRowCount() {
 		int selectedIndex = MainFrame.getInstance().getTab().getStudentTable().getSelectedRow();

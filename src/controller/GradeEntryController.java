@@ -15,7 +15,6 @@ import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class GradeEntryController {
 	private static GradeEntryController instance = null;
-	SubjectsNotPassedTable notPassed;
 	private GradeEntryController() {}
 	
 	public static GradeEntryController getInstance() {
@@ -26,13 +25,13 @@ public class GradeEntryController {
 	
 	public void gradeEntry(GradeEntry ge) {
 		try {
-			notPassed = new SubjectsNotPassedTable();
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.addNewGrade(newGrade);
 			Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
 			student.getPassedExams().add(newGrade);
+		
 			
 			
 			

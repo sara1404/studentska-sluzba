@@ -42,6 +42,11 @@ public class AbstractTableModelStudent extends AbstractTableModel {
 	
 	
 
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		return getValueAt(0, columnIndex).getClass();
+	}
+
 	public String getColumnString(int colIndex) {
 		switch(colIndex) {
 		case 0:return LanguageSupport.getInstance().getResourceBundle().getString("studentTableIndex");

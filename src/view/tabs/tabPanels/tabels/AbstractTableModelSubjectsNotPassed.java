@@ -25,6 +25,8 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
+		int selectedIndex = MainFrame.getInstance().getTab().getSelectedRowInStudentTable();
+		this.student = DatabaseReader.getInstance().getStudents().get(selectedIndex);
 		return student.getFailedExams().get(rowIndex).getValueAtFailed(columnIndex);
 	}
 	@Override

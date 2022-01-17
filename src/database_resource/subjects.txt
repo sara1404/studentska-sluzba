@@ -12,8 +12,8 @@ p11,	ORT,	2,	7,	null,	LETNJI
 p12,	NANS,	2,	5,	200020244,	LETNJI
 p13,	Organizacija podataka,	2,	7,	200020244,	ZIMSKI
 p14,	Baze podataka,	2,	6,	200020244,	ZIMSKI
-p15,	paralelno programiranje,	2,	8	559585632,	ZIMSKI
-p16,	konkurentno programiranje,	2,	9	559585632,	LETNJI
+p15,	paralelno programiranje,	2,	8,	559585632,	ZIMSKI
+p16,	konkurentno programiranje,	2,	9,	559585632,	LETNJI
 p17,	Operativni sistemi,	2,	8,	null,	LETNJI
 p18,	Algebra,	1,	15,	null,	ZIMSKI
 p19,	Diskretna matematika,	3,	14,	null,	LETNJI

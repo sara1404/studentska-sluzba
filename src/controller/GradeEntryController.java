@@ -15,7 +15,6 @@ import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class GradeEntryController {
 	private static GradeEntryController instance = null;
-	SubjectsNotPassedTable notPassed;
 	private GradeEntryController() {}
 	
 	public static GradeEntryController getInstance() {
@@ -26,7 +25,6 @@ public class GradeEntryController {
 	
 	public void gradeEntry(GradeEntry ge) {
 		try {
-			notPassed = new SubjectsNotPassedTable();
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 
@@ -35,9 +33,6 @@ public class GradeEntryController {
 			student.getPassedExams().add(newGrade);
 			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 			databaseReader.addNewGrade(newGrade);
-
-
-
 		} catch(Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(ge, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);

@@ -19,6 +19,7 @@ import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
 import model.ObserverNotifier;
 import model.Student;
+import model.Subject;
 import utils.Utils;
 import view.MainFrame;
 import view.tabs.tabPanels.tabels.AbstractTableModelProfessorTeachSubjects;
@@ -30,7 +31,6 @@ import view.tabs.tabPanels.tabels.SubjectsPassedTable;
 public class SubjectsPassedStudent extends JPanel{
 	JLabel averageGradeLabel;
 	JLabel espbSumLabel;
-	private JList<String> subjectList;
 	SubjectsPassedTable passed;
 	SubjectsNotPassedTable notPassed;
 	JButton removeGrade;
@@ -54,8 +54,11 @@ public class SubjectsPassedStudent extends JPanel{
 							LanguageSupport.getInstance().getResourceBundle().getString("editStudentTitle1"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if(resp == 0) {
 						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+						Subject subject = student.getPassedExams().get(passed.getSelectedRow()).getSubject();
 						student.getPassedExams().remove(student.getPassedExams().get(passed.getSelectedRow()));
+						student.getFailedExams().add(subject);
 						ObserverNotifier.getInstance().subjectsPassedDataChanged();
+						ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 						
 
 				}

@@ -79,7 +79,7 @@ public class MainTab extends JTabbedPane {
 			JOptionPane.showMessageDialog(null, "Mora se selektovati profesor iz tabele pre izmene!");
 			return null;
 		}
-		String id = (String) model.getValueAt(row, 4);;
+		String id = (String) model.getValueAt(row, 4);
 		return id;
 
 	}

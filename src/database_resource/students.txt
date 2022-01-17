@@ -2,4 +2,26 @@ Milosevic, Marko, 2001-03-12, Safarikova#2#Novi Sad#Srbija, 021/333-555, marko.m
 Milic, Marija, 2000-01-12, Nikole Tesle#56#Novi Sad#Srbija, 021/555-2222, marija.milic@mailinator.com, RA 3/2019, 2019, 2, S, 9.0
 Nikolic, Nikola, 2001-08-30, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/135-463, nikola.nikolic@mailinator.com, RA 3/2017, 2017, 1, B, 0.0
 Peric, Pera, 1995-06-07, Strazilovska#6a#Novi Sad#Srbija, 021/903-463, pera.peric@mailinator.com, RA 134/2015, 2015, 3, S, 0.0
-aefd, yhd, 2000-12-12, aegrf#5#ayethdz#hdFB, ERDFb, TRGSFB, RA100/2019, 2019, 3, B, 0.0
+Ilic, Sofija, 1999-05-06, Nikole Pasica#2d#Kikinda#Srbija, 021/731-067, sofija.ilic@mailinator.com, RA 5/2019, 2019, 3, B, 0.0
+Lukic, Martina, 1999-05-16, Bulevar Kralja Petra#22#Nis#Srbija,011/4333-800, martina.lukic@mailinator.com, RA 8/2018, 2018, 3, S, 0.0
+Stojakovic, Stojan, 2001-10-19, Tolstojeva#31#Novi Sad#Srbija,011/3130-007, stojan.stojakovic@mailinator.com, RA 10/2017, 2017, 1, B,0.0
+Milanovic, Milan, 2000-11-02, Mariceva#11#Kragujevac#Srbija,015/313-061, milan.milanovic@mailinator.com, RA 12/2017, 2017, 2, S,0.0
+Milic, Miroslav, 2000-10-11, Strazilovska#3#Beograd#Srbija,021/351-091, miroslav.milic@mailinator.com, RA 16/2019, 2019, 2, B,0.0
+Gojic, Stefan, 1999-05-01, Nikole Pasica#6a#Novi Sad# Srbija,015/324-500, stefan.gojic@mailinator.com, RA 21/2015, 2015, 3, S,0.0
+Jokic, Anastasija, 1999-07-11, Bulevar Kralja Petra#2d#Nis#Srbija,011/2333-900, anastasija.jokic@mailinator.com, RA 9/2020, 2020, 3, B,0.0
+Bogdanovic, Bogdan, 1999-07-23, Knez Mihajlova#22#Beograd#Srbija, 021/231-231, bogdan.bogdanovic@mailinator.com, RA 4/2017, 2017, 3, S, 0.0
+Dabovic, Ana, 2002-12-12,a#a#a#a , 014/303-007, ana.dabovic@mailinator.com, RA 30/2019, 2019, 1, B, 0.0
+Mikic, Mika, 2001-11-05, Nikole Tesle#56#Novi Sad#Srbija, 015/101-909, mika.mikic@mailinator.com, RA 1/2020, 2020, 1, S, 0.0
+Deretic, Jovan, 1998-09-10, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 002/200-300, jovan.deretic@mailinator.com, RA 11/2018, 2018, 4, B, 0.0
+Miskovic, Nikola, 1998-08-03, Strazilovska#6a#Novi Sad#Srbija, 022/123-456, nikola.miskovic@mailinator.com, RA 12/2018, 2018, 4, S, 0.0
+Stojanovic, Martin, 1998-05-01,a#a#a#a , 24/321-775, martin.stojanovic@mailinator.com, RA 13/2018, 2018, 4, S, 0.0
+Novakovic, Tomislav, 1996-02-25, Bulevar Kralja Petra#22#Nis#Srbija, 011/1188-379, tomislav.novakovic@mailinator.com, RA 14/2018, 2018, 4,B,0.0
+Ivic, Lena, 1998-05-11, Tolstojeva#31#Novi Sad#Srbija,024/333-555, lena.ivic@mailinator.com, RA 154/2016, 2016, 4, B, 0.0
+Lazic, Jovan, 2001-01-22, Mariceva#11#Kragujevac#Srbija, 025/1189-479, jovan.lazic@mailinator.com, RA 23/2020, 2020, 1, B, 0.0
+Mikic, Isidora, 2000-12-31, Strazilovska#3#Beograd#Srbija, 011/1122-366,	isidora.mikic@mailinator.com, RA 1/2019, 2019,  2, B, 0.0
+Ilic, Vladimir, 1998-08-31,  Nikole Pasica#6a#Novi Sad# Srbija,021/1122-367,	vladimir.ilic@mailinator.com, SW 4/2014, 2014, 4, B, 0.0
+Alicic, Mirko, 1999-07-21, Bulevar Kralja Petra#2d#Nis#Srbija,012/1122-368,	mirko.alicic@mailinator.com, SW 17/2015, 2015,  3, S, 0.0
+Perkovic, Milislav, 1998-09-28, Knez Mihajlova#22#Beograd#Srbija,012/1122-369,	milisav.pejkovic@mailinator.com,SW 17/2016, 2016, 4, S, 0.0
+Djorjdjevic, Purisa, 2000-02-29, Bulevar Patrijarha Pavla#3#Beograd#Srbija,011/1543-370,	purisa.djordjevic@mailinator.com, SW 27/2018, 2018, 2,B, 0.0 
+Kovacevic, Mikica, 1999-03-23, Nikole Pasica#2d#Kikinda#Srbija, 011/1992-371,	mikica.kovacevic@mailinator.com, RA 226/2017, 2017,  3, S, 0.0
+Milic, Milos, 2001-10-21, Nikole Tesle#56#Novi Sad#Srbija, 011/8172-372,	milos.milic@mailinator.com, SW 12/2021, 2021, 1, S, 0.0

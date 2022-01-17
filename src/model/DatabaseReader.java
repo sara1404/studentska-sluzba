@@ -248,7 +248,7 @@ public class DatabaseReader {
 		String[] addressData = text.split("#");
 		Address address = new Address(addressData[0], addressData[1], addressData[2], addressData[3]);
 		return address;
-	} 
+	}
 	
 	private String[] trimData(String[] text) {
 		for(int i = 0; i < text.length; i++) {

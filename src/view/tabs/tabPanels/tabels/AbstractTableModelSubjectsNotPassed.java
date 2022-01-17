@@ -1,7 +1,5 @@
 package view.tabs.tabPanels.tabels;
 
-import java.util.ArrayList;
-
 import javax.swing.table.AbstractTableModel;
 
 import bundle.LanguageSupport;
@@ -10,14 +8,11 @@ import model.Student;
 import view.MainFrame;
 
 public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
-	private ArrayList<String> columnNames;
 	private Student student;
-	public AbstractTableModelSubjectsNotPassed() {
-		columnNames = new ArrayList<String>();
-	}
+	public AbstractTableModelSubjectsNotPassed() {}
 	@Override
 	public int getRowCount() {
-		int selectedIndex = MainFrame.getInstance().getTab().getSelectedRowInStudentTable();
+		int selectedIndex = MainFrame.getInstance().getTab().getStudentTable().getSelectedRow();
 		this.student = DatabaseReader.getInstance().getStudents().get(selectedIndex);
 		return student.getFailedExams().size();
 	}

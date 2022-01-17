@@ -116,14 +116,14 @@ public class Student {
 		this.failedExams = failedExams;
 	}
 	
-	public String getValueAt(int columnIndex) {
+	public Object getValueAt(int columnIndex) {
 		switch(columnIndex) {
 		case 0 : return index;
 		case 1: return name;
 		case 2: return surname;
-		case 3: return String.valueOf(currentYear);
+		case 3: return currentYear;
 		case 4: return status.getValue();
-		case 5: return String.valueOf(averageGrade);
+		case 5: return averageGrade;
 		default: return "";
 		}
 	}

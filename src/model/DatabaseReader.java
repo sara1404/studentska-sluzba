@@ -162,7 +162,7 @@ public class DatabaseReader {
             String subjectInfo = scanner.nextLine();
             String[] subjectData = trimData(subjectInfo.split(","));
             
-            subjects.add(new Subject(subjectData[0], subjectData[1], Semester.getSemesterWithString(subjectData[2]), Integer.parseInt(subjectData[3]), findProfessor(subjectData[4]), Integer.parseInt(subjectData[5])));
+            subjects.add(new Subject(subjectData[0], subjectData[1], Semester.getSemesterWithString(subjectData[5]), Integer.parseInt(subjectData[3]), findProfessor(subjectData[4]), Integer.parseInt(subjectData[2])));
         }  
         scanner.close();
 		return subjects;

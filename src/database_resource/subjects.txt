@@ -1,6 +1,6 @@
 bp, baze podataka, ZIMSKI, 3, null, 8
 mo, metode optimizacije, LETNJI, 3, null, 8
-p1, osnove programiranja, ZIMSKI, 1, null, 7
+p1, osnove programiranja, ZIMSKI, 1, 002, 7
 p2, statistika, LETNJI, 3, 004, 8
 p3, algoritmi i strukture podataka, LETNJI, 2, null, 9
 p4, LPRS, ZIMSKI, 3, null, 7

@@ -52,6 +52,7 @@ public class DatabaseReader {
 	private void linkSubjectsToProfessor(){
 		for(Professor professor : professors){
 			for(int i = 0; i < professorTeachSubjects.size(); i++){
+				if(professorTeachSubjects.get(i).getProfessor() == null) continue;
 				if(professor.getId().equals(professorTeachSubjects.get(i).getProfessor().getId())){
 					professor.getSubjectList().add(professorTeachSubjects.get(i).getSubject());
 				}

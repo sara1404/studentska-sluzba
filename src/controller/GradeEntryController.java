@@ -29,14 +29,17 @@ public class GradeEntryController {
 			notPassed = new SubjectsNotPassedTable();
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-			databaseReader.addNewGrade(newGrade);
+
 			Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
 			student.getPassedExams().add(newGrade);
-			
-			
-			
+			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
+			databaseReader.addNewGrade(newGrade);
+
+
+
 		} catch(Exception e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(ge, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);
 		}
 	}

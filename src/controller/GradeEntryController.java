@@ -27,10 +27,11 @@ public class GradeEntryController {
 		try {
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-
-			Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+			Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+			
 			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
 			student.getPassedExams().add(newGrade);
+			
 			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 			databaseReader.addNewGrade(newGrade);
 		} catch(Exception e) {

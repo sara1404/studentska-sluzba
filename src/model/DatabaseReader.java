@@ -163,7 +163,7 @@ public class DatabaseReader {
             String subjectInfo = scanner.nextLine();
             String[] subjectData = trimData(subjectInfo.split(","));
             
-            subjects.add(new Subject(subjectData[0], subjectData[1], Semester.getSemesterWithString(subjectData[5]), Integer.parseInt(subjectData[3]), findProfessor(subjectData[4]), Integer.parseInt(subjectData[2])));
+            subjects.add(new Subject(subjectData[0], subjectData[1], Semester.getSemesterWithString(subjectData[5]), Integer.parseInt(subjectData[2]), findProfessor(subjectData[4]), Integer.parseInt(subjectData[3])));
         }  
         scanner.close();
 		return subjects;

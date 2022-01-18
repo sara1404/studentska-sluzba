@@ -39,8 +39,8 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 		switch(colIndex) {
 		case 0:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableCode");
 		case 1:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableName");
-		case 2:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableEspb");
-		case 3:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableYear");
+		case 2:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableYear");
+		case 3:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableEspb");
 		case 4:return LanguageSupport.getInstance().getResourceBundle().getString("subjectTableSemester");
 		default: return "";
 		}

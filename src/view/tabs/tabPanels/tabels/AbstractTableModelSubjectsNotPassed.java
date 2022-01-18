@@ -14,6 +14,7 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	public int getRowCount() {
 		int selectedIndex = MainFrame.getInstance().getTab().getStudentTable().getSelectedRow();
 		this.student = DatabaseReader.getInstance().getStudents().get(selectedIndex);
+
 		return student.getFailedExams().size();
 	}
 
@@ -27,6 +28,7 @@ public class AbstractTableModelSubjectsNotPassed extends AbstractTableModel{
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		int selectedIndex = MainFrame.getInstance().getTab().getSelectedRowInStudentTable();
 		this.student = DatabaseReader.getInstance().getStudents().get(selectedIndex);
+
 		return student.getFailedExams().get(rowIndex).getValueAtFailed(columnIndex);
 	}
 	@Override

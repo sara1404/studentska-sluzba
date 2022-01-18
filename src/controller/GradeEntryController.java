@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.Observer;
 
 import javax.swing.JOptionPane;
 
@@ -11,6 +12,7 @@ import model.Student;
 import model.Subject;
 import view.MainFrame;
 import view.dialogs.GradeEntry;
+import view.tabs.tabPanels.tabels.AbstractTableModelSubjectsNotPassed;
 import view.tabs.tabPanels.tabels.SubjectsNotPassedTable;
 
 public class GradeEntryController {
@@ -25,15 +27,17 @@ public class GradeEntryController {
 	
 	public void gradeEntry(GradeEntry ge) {
 		try {
+
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 			
 			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
 			student.getPassedExams().add(newGrade);
-			
-			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
+
 			databaseReader.addNewGrade(newGrade);
+			ShowPassedExamsForStudentController.getInstance().setAverageGrade(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
+			ShowPassedExamsForStudentController.getInstance().setEspbPoints(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
 		} catch(Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(ge, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);

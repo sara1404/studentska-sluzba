@@ -30,9 +30,8 @@ public class GradeEntry extends JDialog{
 	JButton cancelBtn;
 	ArrayList<JTextField> textFields;
 	private JComboBox comboInput;
-	SubjectsNotPassedTable notPassedTable;
+
 	public GradeEntry() {
-		notPassedTable = new SubjectsNotPassedTable();
 		setModalityType(DEFAULT_MODALITY_TYPE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		setTitle("Unos ocene");
@@ -102,16 +101,7 @@ public class GradeEntry extends JDialog{
 	}
 	
 	
-	public String getIdOfSelectedNotPassedSubject() {
-		AbstractTableModelSubjectsNotPassed model = (AbstractTableModelSubjectsNotPassed) notPassedTable.getModel();
-		int row = notPassedTable.getSelectedRow();
-		if (row == -1) {
-			JOptionPane.showMessageDialog(null, "Mora se selektovati predmet iz tabele pre unosa ocene!");
-			return null;
-		}
-		String id = (String) model.getValueAt(row, 0);
-		return id;
-	}
+
 	
 	
 	public void fillingInfo(Subject subject) {

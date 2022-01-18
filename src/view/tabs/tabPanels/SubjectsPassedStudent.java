@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
 import bundle.LanguageSupport;
+import controller.ShowPassedExamsForStudentController;
 import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
 import model.ObserverNotifier;
@@ -32,7 +33,6 @@ public class SubjectsPassedStudent extends JPanel{
 	JLabel averageGradeLabel;
 	JLabel espbSumLabel;
 	SubjectsPassedTable passed;
-	SubjectsNotPassedTable notPassed;
 	JButton removeGrade;
 	JLabel averageGrade;
 	JLabel espbSum;
@@ -59,8 +59,8 @@ public class SubjectsPassedStudent extends JPanel{
 						student.getFailedExams().add(subject);
 						ObserverNotifier.getInstance().subjectsPassedDataChanged();
 						ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
-						
-
+						ShowPassedExamsForStudentController.getInstance().setEspbPoints(sps);
+						ShowPassedExamsForStudentController.getInstance().setAverageGrade(sps);
 				}
 				
 			}

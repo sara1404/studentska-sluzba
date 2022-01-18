@@ -128,6 +128,7 @@ public class SubjectsNotPassedStudent extends JPanel{
 		});
 		
 		notPassed = new SubjectsNotPassedTable();
+
 		add(new JScrollPane(notPassed));
 	}
 	public GradeEntry getGradeEntry() {

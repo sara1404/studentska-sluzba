@@ -59,11 +59,11 @@ public class AssignSubjectToStudent extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(subjectList.getSelectedIndex() == -1) {
-                    System.out.println("nije selektovan element");
                     ctx.dispose();
                     return;
                 }
                 student.getFailedExams().add(customListModelForNotPassedSubjects.getSubjectElement(subjectList.getSelectedIndex()));
+                customListModelForNotPassedSubjects.getSubjectElement(subjectList.getSelectedIndex()).getStudentsFailed().add(student);
                 ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
                 ctx.dispose();
             }

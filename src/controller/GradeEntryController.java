@@ -25,15 +25,23 @@ public class GradeEntryController {
 	
 	public void gradeEntry(GradeEntry ge) {
 		try {
-			Grade newGrade = generateGrade(ge);
+			
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+			Subject subject = student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow());
 			
-			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
+			Grade newGrade = generateGrade(ge);
 			student.getPassedExams().add(newGrade);
-			
-			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 			databaseReader.addNewGrade(newGrade);
+			
+			student.getFailedExams().remove(subject);
+			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
+			MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().repaint();
+			MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().validate();
+			
+		
+			
+			ge.dispose();
 		} catch(Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(ge, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);

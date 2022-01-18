@@ -299,7 +299,6 @@ public class DatabaseReader {
 	public void addNewGrade(Grade newGrade) {
 		grades.add(newGrade);
 		ObserverNotifier.getInstance().subjectsPassedDataChanged();
-		ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
 	}
 	
 	public void addNewSubject(Subject newSubject) {

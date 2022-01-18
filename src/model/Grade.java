@@ -77,4 +77,11 @@ public class Grade {
 			default: return " ";
 		}
 	}
+
+	@Override
+	public String toString() {
+		return student.getIndex() + ", " + subject.getSubjectKey() + ", " + grade + ", " + examDate;
+	}
+	
+	
 }	

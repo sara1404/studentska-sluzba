@@ -38,6 +38,7 @@ public class GradeEntryController {
 			databaseReader.addNewGrade(newGrade);
 			ShowPassedExamsForStudentController.getInstance().setAverageGrade(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
 			ShowPassedExamsForStudentController.getInstance().setEspbPoints(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
+			student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()).getStudentsPassed().add((student));
 		} catch(Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(ge, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);

@@ -33,6 +33,25 @@ public class SubjectTable extends JTable {
                else {
                	return 0;
                }   
+		    	}
+		    
+		});
+		
+		sorter.setComparator(4, (Comparator<?>) new Comparator<String>() {
+			 
+		    @Override
+		    public int compare(String name1, String name2) {
+		    	int int1 = Integer.parseInt(name1) ;
+		    	int int2 = Integer.parseInt(name2) ;
+		    	if (int1 < int2) {
+               	 return -1;
+               } 
+               else if (int1 > int2) {
+               	return 1;
+               }
+               else {
+               	return 0;
+               }   
 		    }
 		});
 		sorter.setRowFilter(new RowFilterSubject(frame));

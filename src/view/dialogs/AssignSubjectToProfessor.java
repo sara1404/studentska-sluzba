@@ -17,8 +17,10 @@ import javax.swing.SwingConstants;
 
 import model.CustomListModelForSubjectListProfessor;
 import model.DatabaseReader;
+import model.DatabaseWriter;
 import model.ObserverNotifier;
 import model.Professor;
+import model.Subject;
 import utils.WindowComponentBuilder;
 import view.MainFrame;
 
@@ -77,7 +79,11 @@ public class AssignSubjectToProfessor extends JDialog {
 	                    astp.dispose();
 	                    return;
 	                }
+	                DatabaseWriter wr = new DatabaseWriter();
+	                Subject subject = customListModelForSubjectListProfessor.getSubjectElement(subjectList.getSelectedIndex());
 	                professor.getSubjectList().add(customListModelForSubjectListProfessor.getSubjectElement(subjectList.getSelectedIndex()));
+	                subject.setProfessor(professor);
+	                wr.writeInSubjectDatabase(DatabaseReader.getInstance().getSubjects());
 	                ObserverNotifier.getInstance().professorTeachSubjectsDataChanged();
 	                astp.dispose();
 	            }

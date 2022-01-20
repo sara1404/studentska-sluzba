@@ -24,37 +24,11 @@ import view.listeners.ProfessorListener;
 
 public class AddProfessorDialog extends JDialog {
 	
-	JPanel panCenter = new JPanel();
-	BoxLayout boxCenter = new BoxLayout(panCenter, BoxLayout.Y_AXIS);
+	
 	private ArrayList<JTextField> textInputs;
 	private JComboBox comboInput;
 	ArrayList<JButton> buttons;
-
-	private void setPanel(String str, int field) {
-		JPanel pan = new JPanel();
-		pan.add(WindowComponentBuilder.createLabel(str));
-        pan.setBackground(Color.DARK_GRAY);
-        
-        switch (field) {
-        	case 0:
-        		JComponent comp0 = WindowComponentBuilder.createTextField();
-        		pan.add(comp0);
-        		textInputs.add((JTextField)comp0);
-        		break;
-        	case 1:
-        		String[] data = {"ASISTENT", "DOCENT", "VANREDNI", "REDOVNI"};
-        		JComponent comp1 = WindowComponentBuilder.createComboBoxField(data);
-        		pan.add(comp1);
-        		comboInput = (JComboBox)comp1;
-        		
-        		break;
-        }
-        panCenter.add(pan);
-
-       
-	}
 	
-
 	public AddProfessorDialog(){
 		
 		setModalityType(DEFAULT_MODALITY_TYPE);
@@ -62,6 +36,9 @@ public class AddProfessorDialog extends JDialog {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		
 		setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addProfDialogTitle"));
+		BoxLayout box = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
+		setLayout(box);
+		getContentPane().setBackground(Color.DARK_GRAY);
 		
 		Dimension dim = kit.getScreenSize();
 		int width = dim.width;
@@ -69,9 +46,6 @@ public class AddProfessorDialog extends JDialog {
 		setSize(width * 3/8, height *3/4);
 		setLocationRelativeTo(null);
 		
-		panCenter.setLayout(boxCenter);
-		panCenter.setBackground(Color.DARK_GRAY);
-
 		textInputs = new ArrayList<>();
 		buttons= new ArrayList<>();
 		
@@ -80,7 +54,7 @@ public class AddProfessorDialog extends JDialog {
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf1"), 0);
         JLabel format = new JLabel("    Format: yyyy-MM-dd");
         format.setForeground(Color.GRAY);
-        panCenter.add(format);
+        add(format);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf2"), 0);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf3"), 0);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf4"),0);
@@ -93,44 +67,47 @@ public class AddProfessorDialog extends JDialog {
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf11"), 0);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf12"), 1);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("addProf13"), 0);
-        
-        panCenter.add(Box.createVerticalStrut(25));  
-        add(panCenter,BorderLayout.CENTER);
-       
- 
-        JPanel panBottom=new JPanel();
-		BoxLayout box=new BoxLayout(panBottom, BoxLayout.X_AXIS);
-		panBottom.setLayout(box);
-		panBottom.setBackground(Color.DARK_GRAY);
-		
 		
 		JButton btnOk=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("addProfessorBtn1"));
-		btnOk.setPreferredSize(new Dimension(100,25));
-		
-		JButton btnCancel=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("addProfessorBtn2"));
-		btnCancel.setPreferredSize(new Dimension(100,25));
-		
-		panBottom.add(Box.createHorizontalStrut(200));
-		panBottom.add(btnOk);
-		Utils.setCursor(btnOk);
-		
-		panBottom.add(Box.createHorizontalStrut(100));
-		panBottom.add(btnCancel);
-		Utils.setCursor(btnCancel);
-		
 		buttons.add(btnOk);
+		JButton btnCancel=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("addProfessorBtn2"));
 		buttons.add(btnCancel);
+		getContentPane().add(WindowComponentBuilder.createButtons(btnOk, btnCancel));
+		
 		
 		btnOk.setEnabled(false);
 		btnOk.addActionListener(ProfessorListener.addingProfessorListener(btnOk));
 		ListenerController.closeWindowOnCancelListener(this, btnCancel);
 		
-		panBottom.add(Box.createHorizontalStrut(10));
-		panBottom.add(Box.createVerticalStrut(50));
 		
-
-		add(panBottom,BorderLayout.SOUTH);
-		
+	}
+	
+	private void setPanel(String str, int field) {
+		JPanel pan = new JPanel();
+		pan.add(WindowComponentBuilder.createLabel(str));
+        pan.setBackground(Color.DARK_GRAY);
+        pan.add(Box.createHorizontalStrut(50));
+        
+        switch (field) {
+        	case 0:
+        		JComponent comp0 = WindowComponentBuilder.createTextField();
+        		pan.add(comp0);
+        		textInputs.add((JTextField)comp0);
+        		
+        		break;
+        	case 1:
+        		String[] data = {"ASISTENT", "DOCENT", "VANREDNI", "REDOVNI"};
+        		JComponent comp1 = WindowComponentBuilder.createComboBoxField(data);
+        		pan.add(comp1);
+        		comboInput = (JComboBox)comp1;
+        		
+        		
+        		break;
+        } 
+        BoxLayout box = new BoxLayout(pan, BoxLayout.X_AXIS);
+		pan.setLayout(box);
+		getContentPane().add(pan);
+		getContentPane().add(Box.createVerticalStrut(10));
 	}
 	
 	public ArrayList<JButton> getButtons() {

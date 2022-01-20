@@ -1,19 +1,19 @@
-Nikolic, Milos,1965-12-12,Safarikova#2#Novi Sad#Srbija,021/356-785,milos.nikolic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija, 123123123,REDOVNI_PROFESOR,30
-Mirkovic,Nikola,1978-01-01,Nikole Tesle#56#Novi Sad#Srbija, 021/368-456,nikola.mirkovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 321321321,REDOVNI_PROFESOR, 22
-Petkovic,Ilija,1988-09-03,Bulevar Patrijarha Pavla#3#Beograd#Srbija,021/215-314,ilija.petkovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,456456456,VANREDNI_PROFESOR,	22
-Petrovic,Mitar,1976-07-25,Strazilovska#6a#Novi Sad#Srbija,021/884-640,mitar.petrovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,789789789,VANREDNI_PROFESOR,27
-Micic,Vasa,1970-02-14,Nikole Pasica#2d#Kikinda#Srbija,021/212-114,vasa.micic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,100100144,DOCENT,24,
-Miletic,Srdjan,1966-04-20,Bulevar Kralja Petra#22#Nis#Srbija,021/978-225,srdjan.miletic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,200020244,DOCENT,31
-Mihajlovic,Branislav,1980-06-28,Tolstojeva#31#Novi Sad#Srbija,021/778-323,branislav.mihajlovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,559585632,REDOVNI_PROFESOR,13
-Markovic,Marko,1985-01-31,Mariceva#11#Kragujevac#Srbija,021/899-659,marko.markovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,334968855,REDOVNI_PROFESOR,17
-Milakovic,Milos,1975-09-21,Strazilovska#3#Beograd#Srbija,021/122-326,milos.milakovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,730703654, VANREDNI_PROFESOR,12
-Bratic,Lazar,1973-11-13,Nikole Pasica#6a#Novi Sad#Srbija,021/156-326,lazar.bratic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,600378644,VANREDNI_PROFESOR,3
-Drazic,Ljeposava,1964-08-11,Bulevar Kralja Petra#2d#Nis#Srbija,021/888-156,ljeposava.drazic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,158496152,DOCENT,31
-Dragic,Miroljub,1959-03-02,Knez Mihajlova#22#Novi Sad#Srbija,021/456-125,miroljub.dragic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,777348595,	DOCENT,42
-Rekavic,Bogdan,1977-06-23,Bulevar Kralja Petra#22#Nis#Srbija,021/886-455,bogdan.rekavic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,721254363,VANREDNI_PROFESOR,18
-Milic,Stanka,1991-03-03,Bulevar Patrijarha Pavla#3#Beograd#Srbija,021/945-155,stanka.milic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,225533448,DOCENT,7
-Vukovic,Milica,1967-10-18,Mariceva#11#Kragujevac#Srbija,021/746-659,milica.vukovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,111555888,VANREDNI_PROFESOR,14
-Misic,Misa,1969-10-20,Safarikova#2#Novi Sad#Srbija,021/489-326,misa.misic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,300300344,DOCENT,	19
-Maricic,Branko,1973-01-18,Nikole Tesle#56#Novi Sad#Srbija,021/487-265,branko.maricic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,400400444,DOCENT,22
-Lukovic,Branislav,1982-04-08,Bulevar Patrijarha Pavla#3#Beograd#Srbija,021/159-478,branislav.lukovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,500500544,REDOVNI_PROFESOR,9
-Obradovic,Branimir,1979-01-07,Safarikova#2#Novi Sad#Srbija,021/922-333,branimir.obradovic@mailinator.com,Nikole Pasica#6a#Novi Sad#Srbija,600600644,DOCENT,17
+Nikolic, Milos, 1965-12-12, Safarikova#2#Novi Sad#Srbija, 021/356-785, milos.nikolic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 123123123, REDOVNI, 30
+Mirkovic, Nikola, 1978-01-01, Nikole Tesle#56#Novi Sad#Srbija, 021/368-456, nikola.mirkovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 321321321, REDOVNI, 22
+Petkovic, Ilija, 1988-09-03, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/215-314, ilija.petkovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 456456456, REDOVNI, 22
+Petrovic, Mitar, 1976-07-25, Strazilovska#6a#Novi Sad#Srbija, 021/884-640, mitar.petrovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 789789789, REDOVNI, 27
+Micic, Vasa, 1970-02-14, Nikole Pasica#2d#Kikinda#Srbija, 021/212-114, vasa.micic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 100100144, DOCENT, 24
+Miletic, Srdjan, 1966-04-20, Bulevar Kralja Petra#22#Nis#Srbija, 021/978-225, srdjan.miletic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 200020244, DOCENT, 31
+Mihajlovic, Branislav, 1980-06-28, Tolstojeva#31#Novi Sad#Srbija, 021/778-323, branislav.mihajlovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 559585632, REDOVNI, 13
+Markovic, Marko, 1985-01-31, Mariceva#11#Kragujevac#Srbija, 021/899-659, marko.markovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 334968855, REDOVNI, 17
+Milakovic, Milos, 1975-09-21, Strazilovska#3#Beograd#Srbija, 021/122-326, milos.milakovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 730703654, REDOVNI, 12
+Bratic, Lazar, 1973-11-13, Nikole Pasica#6a#Novi Sad#Srbija, 021/156-326, lazar.bratic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 600378644, REDOVNI, 3
+Drazic, Ljeposava, 1964-08-11, Bulevar Kralja Petra#2d#Nis#Srbija, 021/888-156, ljeposava.drazic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 158496152, DOCENT, 31
+Dragic, Miroljub, 1959-03-02, Knez Mihajlova#22#Novi Sad#Srbija, 021/456-125, miroljub.dragic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 777348595, DOCENT, 42
+Rekavic, Bogdan, 1977-06-23, Bulevar Kralja Petra#22#Nis#Srbija, 021/886-455, bogdan.rekavic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 721254363, REDOVNI, 18
+Milic, Stanka, 1991-03-03, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/945-155, stanka.milic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 225533448, DOCENT, 7
+Vukovic, Milica, 1967-10-18, Mariceva#11#Kragujevac#Srbija, 021/746-659, milica.vukovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 111555888, REDOVNI, 14
+Misic, Misa, 1969-10-20, Safarikova#2#Novi Sad#Srbija, 021/489-326, misa.misic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 300300344, DOCENT, 19
+Maricic, Branko, 1973-01-18, Nikole Tesle#56#Novi Sad#Srbija, 021/487-265, branko.maricic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 400400444, DOCENT, 22
+Lukovic, Branislav, 1982-04-08, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/159-478, branislav.lukovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 500500544, REDOVNI, 9
+Obradovic, Branimir, 1979-01-07, Safarikova#2#Novi Sad#Srbija, 021/922-333, branimir.obradovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 600600644, DOCENT, 17

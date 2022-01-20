@@ -287,6 +287,7 @@ public class DatabaseReader {
 	public void addNewStudent(Student newStudent) {
 		students.add(newStudent);
 		wr.writeInStudentDatabase(students);
+		
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
@@ -296,8 +297,10 @@ public class DatabaseReader {
 		ObserverNotifier.getInstance().professorDataChanged();
 	}
 	
-	public void addNewGrade(Grade newGrade) {
+	public void addNewGrade(Grade newGrade, Subject subject) {
 		grades.add(newGrade);
+		wr.writeInGradesDatabase(grades);
+		wr.writeInFailedSubjects(students);
 		ObserverNotifier.getInstance().subjectsPassedDataChanged();
 	}
 	

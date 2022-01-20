@@ -31,11 +31,12 @@ public class GradeEntryController {
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 			Subject subject = student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow());
+			
 			student.getFailedExams().remove(subject);
 			student.getPassedExams().add(newGrade);
-			
 			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
-			databaseReader.addNewGrade(newGrade);
+			databaseReader.addNewGrade(newGrade, subject);
+			
 			ShowPassedExamsForStudentController.getInstance().setAverageGrade(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
 			ShowPassedExamsForStudentController.getInstance().setEspbPoints(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
 		} catch(Exception e) {

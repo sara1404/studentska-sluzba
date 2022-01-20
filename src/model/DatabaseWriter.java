@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public class DatabaseWriter {
 	
-	public DatabaseWriter() {}
+	//private static DatabaseWriter instance = null;
+	//private DatabaseWriter() {}
 	
 	public void writeInStudentDatabase(ArrayList<Student> students) {
 		 FileWriter writer;

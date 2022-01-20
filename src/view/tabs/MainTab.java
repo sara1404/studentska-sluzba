@@ -62,24 +62,22 @@ public class MainTab extends JTabbedPane {
 	
 
 	public String getIdOfSelectedSubject() {
-		AbstractTableModelSubject model = (AbstractTableModelSubject) subjectTable.getModel();
 		int row = subjectTable.getSelectedRow();
 		if (row == -1) {
 			JOptionPane.showMessageDialog(null, "Mora se selektovati predmet iz tabele pre izmene!");
 			return null;
 		}
-		String index = (String) model.getValueAt(row, 0);
+		String index = (String) subjectTable.getValueAt(row, 0);
 		return index;
 	}
 
 	public String getIdOfSelectedProfessor() {
-		AbstractTableModelProfessor model = (AbstractTableModelProfessor) professorTable.getModel();
 		int row = professorTable.getSelectedRow();
 		if(row == -1) {
 			JOptionPane.showMessageDialog(null, "Mora se selektovati profesor iz tabele pre izmene!");
 			return null;
 		}
-		String id = (String) model.getValueAt(row, 4);
+		String id = (String) professorTable.getValueAt(row, 4);
 		return id;
 
 	}

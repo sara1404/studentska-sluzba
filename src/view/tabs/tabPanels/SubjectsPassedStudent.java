@@ -18,6 +18,7 @@ import bundle.LanguageSupport;
 import controller.ShowPassedExamsForStudentController;
 import model.CustomListModelForNotPassedSubjects;
 import model.DatabaseReader;
+import model.DatabaseWriter;
 import model.ObserverNotifier;
 import model.Student;
 import model.Subject;

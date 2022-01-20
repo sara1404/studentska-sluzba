@@ -39,6 +39,7 @@ public class MainFrame extends JFrame {
 	ChangeSubjectDialog changeSubjectDialog = new ChangeSubjectDialog();
 
 	DepartmentsDialog departmentsDialog = new DepartmentsDialog();
+	AboutDialog aboutDialog = new AboutDialog();
 	
 	MainTab tab;
 	MenuBar menu = new MenuBar();
@@ -86,6 +87,7 @@ public class MainFrame extends JFrame {
 		ListenerController.setDisplayDeleteDialogAction(this, tab, menu.getDelete());
 		ListenerController.setDisplayDepartmentDialog(this, menu.getDepartment());
 		ListenerController.setDisplayHelpDialogAction(this, menu.gethHelp());
+		ListenerController.setDisplayAboutSection(this, menu.getAbout());
 		
 		//menu item listeners for tabs switch
 		ListenerController.switchTabsfromMenu(this, tab, menu.getStudent(), 0);
@@ -131,7 +133,12 @@ public class MainFrame extends JFrame {
 	}
 
 	public DepartmentsDialog getDepartmentsDialog() { return departmentsDialog; }
+
 	
+
+	public AboutDialog getAboutDialog() {
+		return aboutDialog;
+	}
 
 	public void setNewAddStudentDialog() {
 		addStudentDialog = new AddStudentDialog();
@@ -166,6 +173,12 @@ public class MainFrame extends JFrame {
 	public void setNewAddDepartmentDirectorDialog(){
 		departmentsDialog = new DepartmentsDialog();
 	}
+	
+
+	public void setAboutSection() {
+		aboutDialog = new AboutDialog();
+		
+	}
 
 	public ToolBar getToolbar() { return tb; }
 	public MainTab getTab() {
@@ -195,6 +208,7 @@ public class MainFrame extends JFrame {
 		UIManager.put("OptionPane.okButtonText", resourceBundle.getObject("okOption"));
 		UIManager.put("OptionPane.cancelButtonText", resourceBundle.getObject("cancelOption"));
 	}
+
 
 	
 }

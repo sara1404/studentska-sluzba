@@ -236,4 +236,18 @@ public class ListenerController {
 		else if (comp instanceof JMenuItem)
 			((JMenuItem) comp).addActionListener(listener);
 	}
+	
+	public static void setDisplayAboutSection(MainFrame frame, JMenuItem itm) {
+		ActionListener listener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setAboutSection();
+				frame.getAboutDialog().setVisible(true);
+				
+			}
+			
+		};
+		itm.addActionListener(listener);
+	}
 }

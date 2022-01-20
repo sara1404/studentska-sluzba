@@ -51,4 +51,14 @@ public class Department {
 			default: return "";
 		}
 	}
+	@Override
+	public String toString() {
+		try {
+		return key + ", " + name + ", " + head;
+	} catch (Exception e) {
+		return key + ", " + name + ", " + null;
+	}
+	}
+	
+	
 }

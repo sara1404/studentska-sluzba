@@ -1,5 +1,6 @@
 package model;
 
+import view.MainFrame;
 import view.tabs.tabPanels.tabels.*;
 import view.tabs.tables.*;
 

@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 import controller.GradeEntryController;
+import model.ObserverNotifier;
+import view.MainFrame;
 import view.dialogs.GradeEntry;
 
 public class GradeEntryListener {
@@ -22,6 +24,7 @@ public class GradeEntryListener {
 					GradeEntry ge = (GradeEntry) window;
 					GradeEntryController gec = GradeEntryController.getInstance();
 					gec.gradeEntry(ge);
+					
 					ge.dispose();
 				}
 			}

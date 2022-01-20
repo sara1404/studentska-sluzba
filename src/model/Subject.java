@@ -100,13 +100,12 @@ public class Subject {
 	@Override
 	public String toString() {
 		try {
-			return subjectKey +", "+ subjectName + ", " + semester + ", "
-					+ year + ", " + professor.getId() +", " + ESPB ;
+			return subjectKey +", "+ subjectName + ", " + year + ", "
+					+ ESPB + ", " + professor.getId() +", " + semester ;
 		} catch (Exception e ) {
-			return subjectKey +", "+ subjectName + ", " + semester + ", "
-					+ year + ", " + null +", " + ESPB ;
+			return subjectKey +", "+ subjectName + ", " + year + ", "
+					+ ESPB + ", " + null +", " + semester ;
 		}
 		
 	}
-	
 }

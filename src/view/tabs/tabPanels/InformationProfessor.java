@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -59,6 +60,9 @@ public class InformationProfessor extends JPanel{
 		textFields = new ArrayList<>();
 		setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf0"), 0);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf1"), 0);
+        JLabel format = new JLabel("    Format: yyyy-MM-dd");
+        format.setForeground(Color.GRAY);
+        add(format);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf2"), 0);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf3"), 0);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf4"),0);

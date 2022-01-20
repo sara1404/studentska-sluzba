@@ -27,18 +27,24 @@ public class GradeEntryController {
 	
 	public void gradeEntry(GradeEntry ge) {
 		try {
-
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
+
 			//Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
 			Student student = databaseReader.findStudent(MainFrame.getInstance().getTab().getIndexOfSelectedStudent());
-			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
-			student.getPassedExams().add(newGrade);
+			Subject subject = student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow());
 
-			databaseReader.addNewGrade(newGrade);
+
+			student.getFailedExams().remove(subject);
+			student.getPassedExams().add(newGrade);
+			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
+			databaseReader.addNewGrade(newGrade, subject);
+			
 			ShowPassedExamsForStudentController.getInstance().setAverageGrade(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
 			ShowPassedExamsForStudentController.getInstance().setEspbPoints(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
+
 			newGrade.getSubject().getStudentsPassed().add(student);
+
 			//student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()).getStudentsPassed().add((student));
 		} catch(Exception e) {
 			e.printStackTrace();

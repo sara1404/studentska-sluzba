@@ -1,16 +1,12 @@
 package view.tabs.tables;
 
-import java.util.ArrayList;
-
 import javax.swing.table.AbstractTableModel;
 
 import bundle.LanguageSupport;
 import model.DatabaseReader;
 
 public class AbstractTableModelStudent extends AbstractTableModel {
-	private ArrayList<String> columnNames;
 	public AbstractTableModelStudent() {
-		columnNames = new ArrayList<String>();
 	}
 
 	// broj redova

@@ -33,7 +33,7 @@ public class AssignSubjectToStudent extends JDialog {
         applyBtn = new JButton();
         cancelBtn = new JButton();
 
-        Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+        Student student = DatabaseReader.getInstance().findStudent(MainFrame.getInstance().getTab().getIndexOfSelectedStudent());
         CustomListModelForNotPassedSubjects customListModelForNotPassedSubjects = new CustomListModelForNotPassedSubjects(student);
         subjectList = new JList<>(customListModelForNotPassedSubjects);
         subjectList.setPreferredSize(new Dimension(width * 1/10, height));
@@ -64,6 +64,7 @@ public class AssignSubjectToStudent extends JDialog {
                 }
                 student.getFailedExams().add(customListModelForNotPassedSubjects.getSubjectElement(subjectList.getSelectedIndex()));
                 customListModelForNotPassedSubjects.getSubjectElement(subjectList.getSelectedIndex()).getStudentsFailed().add(student);
+                System.out.println(student.getFailedExams().size());
                 ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
                 ctx.dispose();
             }

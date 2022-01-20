@@ -148,7 +148,7 @@ public class DatabaseReader {
             professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), 
             		stringToAddress(professorData[3]), professorData[4], professorData[5], 
             		stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), 
-            		Integer.parseInt(professorData[9] )));
+            		Integer.parseInt(professorData[9])));
         }  
         scanner.close();
 		return professors;
@@ -245,6 +245,7 @@ public class DatabaseReader {
 	}
 	
 	private Address stringToAddress(String text) {
+		if(text.equals("null")) return null;
 		String[] addressData = text.split("#");
 		Address address = new Address(addressData[0], addressData[1], addressData[2], addressData[3]);
 		return address;
@@ -280,6 +281,15 @@ public class DatabaseReader {
 		for(int i = 0; i < professors.size(); i++) {
 			if(professors.get(i).getId().equals(id)) 
 				return professors.get(i);
+		}
+		return null;
+	}
+
+	public Department findDepartment(String id){
+		for(int i = 0; i < departments.size(); i++){
+			if(departments.get(i).getKey().equals(id)){
+				return departments.get(i);
+			}
 		}
 		return null;
 	}

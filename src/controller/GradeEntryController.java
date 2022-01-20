@@ -30,15 +30,16 @@ public class GradeEntryController {
 
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-			Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
-			
+			//Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+			Student student = databaseReader.findStudent(MainFrame.getInstance().getTab().getIndexOfSelectedStudent());
 			student.getFailedExams().remove(student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()));
 			student.getPassedExams().add(newGrade);
 
 			databaseReader.addNewGrade(newGrade);
 			ShowPassedExamsForStudentController.getInstance().setAverageGrade(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
 			ShowPassedExamsForStudentController.getInstance().setEspbPoints(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
-			student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()).getStudentsPassed().add((student));
+			newGrade.getSubject().getStudentsPassed().add(student);
+			//student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()).getStudentsPassed().add((student));
 		} catch(Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(ge, e.getMessage(), "Neispravan unos podataka!", JOptionPane.WARNING_MESSAGE);

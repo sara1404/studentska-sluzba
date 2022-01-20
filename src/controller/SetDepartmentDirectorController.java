@@ -18,6 +18,7 @@ public class SetDepartmentDirectorController {
         if(assignProfessorToDepartmentDirectorDialog.getProfessorList().getSelectedIndex() != -1){
             Professor professor = DatabaseReader.getInstance().filterProfessorsForDepartmentDirector().get(assignProfessorToDepartmentDirectorDialog.getProfessorList().getSelectedIndex());
             department.setHead(professor);
+            department.getProfessors().add(professor);
             ObserverNotifier.getInstance().departmentDataChanged();
         }
         else{

@@ -114,7 +114,7 @@ public class Professor {
 	@Override
 	public String toString() {
 		return surname + ", " + name + ", " + birthDate + ", "
-				+ homeAdress + ", " + phone + ", " + email + ", " + officeAdress + ", " + id
+				+ (homeAdress==null?"null":homeAdress)   + ", " + phone + ", " + email + ", " + (officeAdress==null?"null":officeAdress) + ", " + id
 				+ ", " + title + ", " + serviceYears;
 	}
 	

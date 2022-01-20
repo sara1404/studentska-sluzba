@@ -117,7 +117,7 @@ public void validateFields(ArrayList<JTextField> fields) throws Exception{
 		int serviceYears = Integer.parseInt(apd.getTextFieldAt(12).getText().trim());
 		Address homeAddress = stringToAddress(street, town, country);
 		Address officeAddress = stringToAddress(street1, town1, country1);
-		Professor professor = new Professor(surname, name, birthDate, homeAddress, phone, email, officeAddress, id, Title.getTitleWithString(title), serviceYears);
+		Professor professor = new Professor(surname, name, birthDate, homeAddress, phone, email, officeAddress, id, Title.getTitleWithString(title), serviceYears,"NO_DATA");
 		return professor;
 	}
 	

@@ -1,12 +1,18 @@
 package controller;
 
+import com.sun.tools.javac.Main;
 import model.DatabaseReader;
 import model.Department;
 import model.ObserverNotifier;
 import model.Professor;
+import view.MainFrame;
 import view.dialogs.AddDepartmentDirectorDialog;
+import view.dialogs.AddProfessorToDepartmentDialog;
 import view.dialogs.AssignProfessorToDepartmentDirectorDialog;
 import view.dialogs.DepartmentsDialog;
+
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
 
 public class SetDepartmentDirectorController {
     private static SetDepartmentDirectorController instance = null;
@@ -18,7 +24,7 @@ public class SetDepartmentDirectorController {
         if(assignProfessorToDepartmentDirectorDialog.getProfessorList().getSelectedIndex() != -1){
             Professor professor = DatabaseReader.getInstance().filterProfessorsForDepartmentDirector().get(assignProfessorToDepartmentDirectorDialog.getProfessorList().getSelectedIndex());
             department.setHead(professor);
-            department.getProfessors().add(professor);
+            //department.getProfessors().add(professor);
             ObserverNotifier.getInstance().departmentDataChanged();
         }
         else{
@@ -28,6 +34,14 @@ public class SetDepartmentDirectorController {
             }
         }
         assignProfessorToDepartmentDirectorDialog.dispose();
+    }
+
+    public void addProfessorToDepartment(AddProfessorToDepartmentDialog dialog){
+        ArrayList<Professor> professors = DatabaseReader.getInstance().getProfessorsWithNoDepartment();
+        Department department = DatabaseReader.getInstance().getDepartments().get(MainFrame.getInstance().getDepartmentsDialog().getDepartmentTable().getSelectedRow());
+        int row = dialog.getList().getSelectedIndex();
+        Professor professor = professors.get(row);
+        DatabaseReader.getInstance().setDepartmentToProfessor(professor.getId(), department.getKey());
     }
 
     public static SetDepartmentDirectorController getInstance(){

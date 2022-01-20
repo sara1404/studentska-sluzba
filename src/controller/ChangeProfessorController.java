@@ -35,7 +35,10 @@ public class ChangeProfessorController {
 			validateFields(cpd.getDataInputs());
 			Professor newProfessor = generateProfessor(cpd);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-			databaseReader.getProfessors().set(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable(), newProfessor);
+			int position = MainFrame.getInstance().getTab().getSelectedRowInProfessorTable();
+			Professor oldProfessor = databaseReader.getProfessors().get(position);
+			newProfessor.setDepartment(oldProfessor.getDepartment());
+			databaseReader.getProfessors().set(position, newProfessor);
 			wr.writeInProfessorDatabase(databaseReader.getProfessors());
 			ObserverNotifier.getInstance().professorDataChanged();
 			cpd.dispose();
@@ -118,7 +121,7 @@ public class ChangeProfessorController {
 		int serviceYears = Integer.parseInt(cpd.getTextField(12).getText().trim());
 		Address homeAddress = stringToAddress(street, town, country);
 		Address officeAddress = stringToAddress(street1, town1, country1);
-		Professor professor = new Professor(surname, name, birthDate, homeAddress, phone, email, officeAddress, id, Title.getTitleWithString(title), serviceYears);
+		Professor professor = new Professor(surname, name, birthDate, homeAddress, phone, email, officeAddress, id, Title.getTitleWithString(title), serviceYears, "NO_DATA");
 		return professor;
 	}
 	

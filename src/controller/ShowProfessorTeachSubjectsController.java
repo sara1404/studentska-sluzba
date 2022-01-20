@@ -20,12 +20,11 @@ public class ShowProfessorTeachSubjectsController {
             JOptionPane.showMessageDialog(dialog, LanguageSupport.getInstance().getResourceBundle().getString("message"));
         }
         else{
-            Subject subject = DatabaseReader.getInstance().getSubjects().get(table.getSelectedRow());
-            int resp = 0;
-            resp = JOptionPane.showConfirmDialog(dialog, LanguageSupport.getInstance().getResourceBundle().getString("question"),
+            Subject subject = professor.getSubjectList().get(table.getSelectedRow());
+            int resp = JOptionPane.showConfirmDialog(dialog, LanguageSupport.getInstance().getResourceBundle().getString("question"),
             		LanguageSupport.getInstance().getResourceBundle().getString("title"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(resp == 0) {
-                professor.getSubjectList().remove(subject);
+                DatabaseReader.getInstance().removeSubjectFromProfessor(professor.getId(), subject.getSubjectKey());
                 ObserverNotifier.getInstance().professorTeachSubjectsDataChanged();
             }
         }

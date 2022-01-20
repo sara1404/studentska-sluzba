@@ -30,7 +30,7 @@ public class AboutDialog extends JDialog{
 		Dimension dim = kit.getScreenSize();
         int width = dim.width;
         int height = dim.height;
-        setSize(width * 3/8, height * 2/4);
+        setSize(width * 1/2, height * 3/4);
         setLocationRelativeTo(null);
         setTitle("O nama");
         panCenter.setLayout(boxCenter);

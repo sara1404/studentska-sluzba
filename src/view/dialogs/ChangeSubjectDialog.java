@@ -96,12 +96,14 @@ public class ChangeSubjectDialog extends JDialog{
 							subject.setProfessor(null);
 							getDataInputs().get(2).setText("");
 						}
+						determineButtonActivity();
 					}
 				});
 				add.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						assignProfessorToSubject.setVisible(true);
+						determineButtonActivity();
 					}
 				});
 

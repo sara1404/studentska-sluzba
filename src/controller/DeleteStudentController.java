@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
@@ -17,19 +18,22 @@ public class DeleteStudentController {
 		try {
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
 			databaseReader.deleteStudent(index);
-			Student student = DatabaseReader.getInstance().findStudent(index);
 			ArrayList<Subject> subjects = databaseReader.getSubjects();
-			for(int i  = 0; i < subjects.size(); i++){
-				for(int j = 0; j < subjects.get(i).getStudentsPassed().size(); j++){
-					if(subjects.get(i).getStudentsPassed().get(j).getIndex().equals(student.getIndex())){
-						subjects.get(i).getStudentsPassed().remove(student);
+
+
+			for(Subject subject: subjects) {
+				for(Iterator<Student> studentIterator = subject.getStudentsPassed().iterator(); studentIterator.hasNext();) {
+					Student tempStudent  = studentIterator.next();
+					if(index.equals(tempStudent.getIndex())) {
+						studentIterator.remove();;
 					}
 				}
 			}
-			for(int i  = 0; i < subjects.size(); i++){
-				for(int j = 0; j < subjects.get(i).getStudentsFailed().size(); j++){
-					if(subjects.get(i).getStudentsFailed().get(j).getIndex().equals(student.getIndex())){
-						subjects.get(i).getStudentsFailed().remove(student);
+			for(Subject subject: subjects) {
+				for(Iterator<Student> studentIterator = subject.getStudentsFailed().iterator(); studentIterator.hasNext();) {
+					Student tempStudent  = studentIterator.next();
+					if(index.equals(tempStudent.getIndex())) {
+						studentIterator.remove();;
 					}
 				}
 			}

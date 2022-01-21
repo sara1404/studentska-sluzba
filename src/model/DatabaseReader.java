@@ -341,33 +341,27 @@ public class DatabaseReader {
 	
 	public void addNewStudent(Student newStudent) {
 		students.add(newStudent);
-		wr.writeInStudentDatabase(students);
-		
+
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
 	public void addNewProfessor(Professor newProfessor) {
 		professors.add(newProfessor);
-		wr.writeInProfessorDatabase(professors);
 		ObserverNotifier.getInstance().professorDataChanged();
 	}
 	
 	public void addNewGrade(Grade newGrade, Subject subject) {
 		grades.add(newGrade);
-		wr.writeInGradesDatabase(grades);
-		wr.writeInFailedSubjects(students);
 		ObserverNotifier.getInstance().subjectsPassedDataChanged();
 	}
 	
 	public void addNewSubject(Subject newSubject) {
 		subjects.add(newSubject);
-		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 	
 	public void deleteStudent(String index) {
 		students.remove(findStudent(index));
-		wr.writeInStudentDatabase(students);
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	
@@ -379,7 +373,6 @@ public class DatabaseReader {
 				subjects.get(i).setProfessor(null);
 		}
 		professors.remove(findProfessor(index));
-		wr.writeInProfessorDatabase(professors);
 		ObserverNotifier.getInstance().professorDataChanged();
 	}
 	
@@ -392,8 +385,16 @@ public class DatabaseReader {
 			professors.get(i).getSubjectList().remove(findSubject(index));
 		}
 		
-		wr.writeInSubjectDatabase(subjects);
 		ObserverNotifier.getInstance().subjectDataChanged();
+	}
+
+	public void initiateWritingToFiles() {
+		wr.writeInSubjectDatabase(subjects);
+		wr.writeInProfessorDatabase(professors);
+		wr.writeInStudentDatabase(students);
+		wr.writeInDepartmentsDatabase(departments);
+		wr.writeInGradesDatabase(grades);
+
 	}
 
 	public static DatabaseReader getInstance() {

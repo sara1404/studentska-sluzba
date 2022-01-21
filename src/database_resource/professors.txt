@@ -17,3 +17,4 @@ Misic, Misa, 1969-10-20, Safarikova#2#Novi Sad#Srbija, 021/489-326, misa.misic@m
 Maricic, Branko, 1973-01-18, Nikole Tesle#56#Novi Sad#Srbija, 021/487-265, branko.maricic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 400400444, DOCENT, 22,e46
 Lukovic, Branislav, 1982-04-08, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/159-478, branislav.lukovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 500500544, REDOVNI, 9,e47
 Obradovic, Branimir, 1979-01-07, Safarikova#2#Novi Sad#Srbija, 021/922-333, branimir.obradovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 600600644, DOCENT, 17,e42
+jajaja, tititi, 2000-12-12, WGSV#5#wg#4QTHEAB, 3RGF, RFDb, WGSV#5#wg#4QTHEAB, 111, VANREDNI, 20,e42

@@ -54,7 +54,9 @@ public class SubjectsPassedStudent extends JPanel{
 					resp = JOptionPane.showConfirmDialog(sps, LanguageSupport.getInstance().getResourceBundle().getString("editStudentQuestion1"),
 							LanguageSupport.getInstance().getResourceBundle().getString("editStudentTitle1"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if(resp == 0) {
-						Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+						String studentIndex = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
+						//Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+						Student student = DatabaseReader.getInstance().findStudent(studentIndex);
 						Subject subject = student.getPassedExams().get(passed.getSelectedRow()).getSubject();
 						student.getPassedExams().remove(student.getPassedExams().get(passed.getSelectedRow()));
 						student.getFailedExams().add(subject);

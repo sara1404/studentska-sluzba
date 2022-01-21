@@ -18,7 +18,8 @@ public class ShowPassedExamsForStudentController {
     private ShowPassedExamsForStudentController(){}
 
     public void setAverageGrade(SubjectsPassedStudent subjectsPassedStudent){
-        Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+        String studentIndex = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
+        Student student = DatabaseReader.getInstance().findStudent(studentIndex);
         ArrayList<Grade> passedSubs = student.getPassedExams();
         double grades = 0;
         for(int i = 0; i < passedSubs.size(); i++){
@@ -35,8 +36,8 @@ public class ShowPassedExamsForStudentController {
     }
 
     public void setEspbPoints(SubjectsPassedStudent subjectsPassedStudent){
-
-        Student student = DatabaseReader.getInstance().getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+        String studentIndex = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
+        Student student = DatabaseReader.getInstance().findStudent(studentIndex);
         ArrayList<Grade> passedSubs = student.getPassedExams();
         int espbPoints = 0;
         for(int i = 0; i < passedSubs.size(); i++){

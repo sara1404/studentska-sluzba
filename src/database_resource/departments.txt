@@ -1,6 +1,6 @@
-e42,katedra za matematiku, 321321321
-e43,katedra za fiziku,456456456
-e44,katedra za elektrotehniku,100100144
-e45,katedra za primenjene racunarske nauke,559585632
-e46,katedra za informatiku,721254363
-e47,katedra za autimatiku,500500544
+e42, katedra za matematiku, null
+e43, katedra za fiziku, 456456456
+e44, katedra za elektrotehniku, 100100144
+e45, katedra za primenjene racunarske nauke, 559585632
+e46, katedra za informatiku, 721254363
+e47, katedra za autimatiku, 500500544

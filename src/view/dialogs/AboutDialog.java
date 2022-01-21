@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import bundle.LanguageSupport;
+
 public class AboutDialog extends JDialog{
 	JPanel panCenter = new JPanel();
 	BoxLayout boxCenter = new BoxLayout(panCenter, BoxLayout.Y_AXIS);
@@ -32,7 +34,7 @@ public class AboutDialog extends JDialog{
         int height = dim.height;
         setSize(width * 1/2, height * 3/4);
         setLocationRelativeTo(null);
-        setTitle("O nama");
+        setTitle(LanguageSupport.getInstance().getResourceBundle().getString("about-us"));
         panCenter.setLayout(boxCenter);
 		panCenter.setBackground(Color.DARK_GRAY);
 		

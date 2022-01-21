@@ -54,10 +54,10 @@ public class Department {
 	@Override
 	public String toString() {
 		try {
-		return key + ", " + name + ", " + head;
-	} catch (Exception e) {
-		return key + ", " + name + ", " + null;
-	}
+			return key + ", " + name + ", " + (head == null? "null" : head.getId());
+		} catch (Exception e) {
+			return key + ", " + name + ", " + null;
+		}
 	}
 	
 	

@@ -13,8 +13,8 @@ public class AbstractTableModelSubjectsPassed extends AbstractTableModel{
 	public AbstractTableModelSubjectsPassed() {}
 	@Override
 	public int getRowCount() {
-		int selectedIndex = MainFrame.getInstance().getTab().getStudentTable().getSelectedRow();
-		this.student = DatabaseReader.getInstance().getStudents().get(selectedIndex);
+		String studentIndex = MainFrame.getInstance().getTab().getIndexOfSelectedStudent();
+		this.student = DatabaseReader.getInstance().findStudent(studentIndex);
 		return student.getPassedExams().size();
 	}
 

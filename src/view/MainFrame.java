@@ -86,6 +86,7 @@ public class MainFrame extends JFrame {
 		ListenerController.setDisplayChangeDialogAction(this, tab, menu.geteEdit());
 		ListenerController.setDisplayDeleteDialogAction(this, tab, menu.getDelete());
 		ListenerController.setDisplayDepartmentDialog(this, menu.getDepartment());
+		ListenerController.setDisplayHelpDialogAction(this, menu.gethHelp());
 		ListenerController.setDisplayAboutSection(this, menu.getAbout());
 		
 		//menu item listeners for tabs switch
@@ -95,6 +96,10 @@ public class MainFrame extends JFrame {
 		
 		setVisible(true);
 
+		UIManager.put("OptionPane.yesButtonText", LanguageSupport.getInstance().getResourceBundle().getObject("yesOption"));
+		UIManager.put("OptionPane.noButtonText",  LanguageSupport.getInstance().getResourceBundle().getObject("noOption"));
+		UIManager.put("OptionPane.okButtonText",  LanguageSupport.getInstance().getResourceBundle().getObject("okOption"));
+		UIManager.put("OptionPane.cancelButtonText",  LanguageSupport.getInstance().getResourceBundle().getObject("cancelOption"));
 	}
 	
 	public static MainFrame getInstance() {
@@ -128,7 +133,7 @@ public class MainFrame extends JFrame {
 	}
 
 	public DepartmentsDialog getDepartmentsDialog() { return departmentsDialog; }
-	
+
 	
 
 	public AboutDialog getAboutDialog() {
@@ -138,6 +143,11 @@ public class MainFrame extends JFrame {
 	public void setNewAddStudentDialog() {
 		addStudentDialog = new AddStudentDialog();
 		addStudentDialog.setVisible(true);
+	}
+	
+	public void setNewHelpDialog() {
+		HelpDialog helpDialog = new HelpDialog();
+		helpDialog.setVisible(true);
 	}
 	
 	public void setNewAddProfessorDialog() {

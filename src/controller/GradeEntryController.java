@@ -29,9 +29,12 @@ public class GradeEntryController {
 		try {
 			Grade newGrade = generateGrade(ge);
 			DatabaseReader databaseReader = DatabaseReader.getInstance();
-			Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+
+			//Student student = databaseReader.getStudents().get(MainFrame.getInstance().getTab().getSelectedRowInStudentTable());
+			Student student = databaseReader.findStudent(MainFrame.getInstance().getTab().getIndexOfSelectedStudent());
 			Subject subject = student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow());
-			
+
+
 			student.getFailedExams().remove(subject);
 			student.getPassedExams().add(newGrade);
 			ObserverNotifier.getInstance().subjectsNotPassedDataChanged();
@@ -39,6 +42,9 @@ public class GradeEntryController {
 			
 			ShowPassedExamsForStudentController.getInstance().setAverageGrade(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
 			ShowPassedExamsForStudentController.getInstance().setEspbPoints(MainFrame.getInstance().getChangeStudentDialog().getSubjectPassedStudent());
+
+			newGrade.getSubject().getStudentsPassed().add(student);
+
 			//student.getFailedExams().get(MainFrame.getInstance().getChangeStudentDialog().getSubjectNotPassedStudent().getNotPassed().getSelectedRow()).getStudentsPassed().add((student));
 		} catch(Exception e) {
 			e.printStackTrace();

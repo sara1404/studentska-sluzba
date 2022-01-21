@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -94,6 +95,19 @@ public class ListenerController {
 			}
 		};
 		itm.addActionListener(listener);
+	}
+	
+	public static void setDisplayHelpDialogAction(MainFrame frame,JMenuItem comp) {
+		ActionListener listener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.setNewHelpDialog();
+			}
+			
+		};
+		comp.addActionListener(listener);
 	}
 
 	public static void setDisplayChangeDialogAction(MainFrame frame, JTabbedPane tab, JComponent comp) {

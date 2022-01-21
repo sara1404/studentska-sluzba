@@ -92,9 +92,15 @@ public class InformationStudent extends JPanel{
 		textFields.get(0).setText(student.getName());
 		textFields.get(1).setText(student.getSurname());
 		textFields.get(2).setText(student.getDateOfBirth().toString());
-		textFields.get(3).setText(student.getHomeAdress().getStreet()+" "+student.getHomeAdress().getNumber());
-		textFields.get(4).setText(student.getHomeAdress().getTown());
-		textFields.get(5).setText(student.getHomeAdress().getCountry());
+		if(student.getHomeAdress() == null) {
+			textFields.get(3).setText("");
+			textFields.get(4).setText("");
+			textFields.get(5).setText("");
+		} else {
+			textFields.get(3).setText(student.getHomeAdress().getStreet()+" "+student.getHomeAdress().getNumber());
+			textFields.get(4).setText(student.getHomeAdress().getTown());
+			textFields.get(5).setText(student.getHomeAdress().getCountry());
+		}
 		textFields.get(6).setText(student.getPhone());
 		textFields.get(7).setText(student.getEmail());
 		textFields.get(8).setText(student.getIndex());

@@ -19,8 +19,9 @@ public class Professor {
 	private Title title;
 	private int serviceYears;
 	private ArrayList<Subject> subjectList;
+	private String department;
 	public Professor(String surname, String name, LocalDate birthDate, Address homeAdress, String phone, String email,
-			Address officeAdress, String id, Title title, int serviceYears) {
+			Address officeAdress, String id, Title title, int serviceYears, String department) {
 		super();
 		this.surname = surname;
 		this.name = name;
@@ -32,6 +33,7 @@ public class Professor {
 		this.id = id;
 		this.title = title;
 		this.serviceYears = serviceYears;
+		this.department = department;
 		subjectList = new ArrayList<>();
 	}
 	public String getSurname() {
@@ -100,7 +102,15 @@ public class Professor {
 	public void setSubjectList(ArrayList<Subject> subjectList) {
 		this.subjectList = subjectList;
 	}
-	
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public String getValueAt(int columnIndex) {
 		switch(columnIndex) {
 		case 0: return name;
@@ -114,8 +124,8 @@ public class Professor {
 	@Override
 	public String toString() {
 		return surname + ", " + name + ", " + birthDate + ", "
-				+ homeAdress + ", " + phone + ", " + email + ", " + officeAdress + ", " + id
-				+ ", " + title + ", " + serviceYears;
+				+ (homeAdress==null?"null":homeAdress)   + ", " + phone + ", " + email + ", " + (officeAdress==null?"null":officeAdress) + ", " + id
+				+ ", " + title + ", " + serviceYears + "," + department;
 	}
 	
 	

@@ -118,7 +118,7 @@ public class ChangeStudentController {
 			if(address == " ") {
 				return false;
 			}
-			Integer.parseInt(data[data.length - 1]);
+			//Integer.parseInt(data[data.length - 1]);
 		}catch(Exception e) {
 			return false;
 		}

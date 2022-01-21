@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import enums.Semester;
@@ -33,10 +34,11 @@ public class DatabaseReader {
 			linkSubjectsToProfessor();
 			this.departments = readDepartmentDatabase();
 			linkSubjectsFailedToStudent();
-
+			fillDepartmentListsWithProfessors();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	private void linkGradesToStudent(){
@@ -56,6 +58,14 @@ public class DatabaseReader {
 				if(professor.getId().equals(professorTeachSubjects.get(i).getProfessor().getId())){
 					professor.getSubjectList().add(professorTeachSubjects.get(i).getSubject());
 				}
+			}
+		}
+	}
+
+	public void setDepartmentToProfessor(String professorId, String departmentId) {
+		for(Professor professor: professors) {
+			if(professor.getId().equals(professorId)) {
+				professor.setDepartment(departmentId);
 			}
 		}
 	}
@@ -83,6 +93,15 @@ public class DatabaseReader {
 			}
 		}
 		return filteredSubjects;
+	}
+
+	public void removeSubjectFromProfessor(String professorId, String subjectId) {
+		Professor professor = findProfessor(professorId);
+		for(Iterator<Subject> iterator = professor.getSubjectList().iterator(); iterator.hasNext();) {
+			Subject subject = iterator.next();
+			if(subject.getSubjectKey().equals(subjectId))
+				iterator.remove();
+		}
 	}
 	
 	private boolean inSubjectList(ArrayList<Subject> list, Subject subject) {
@@ -148,7 +167,7 @@ public class DatabaseReader {
             professors.add(new Professor(professorData[0], professorData[1], LocalDate.parse(professorData[2]), 
             		stringToAddress(professorData[3]), professorData[4], professorData[5], 
             		stringToAddress(professorData[6]), professorData[7], Title.getTitleWithString(professorData[8]), 
-            		Integer.parseInt(professorData[9] )));
+            		Integer.parseInt(professorData[9]), professorData[10]));
         }  
         scanner.close();
 		return professors;
@@ -243,8 +262,35 @@ public class DatabaseReader {
 		filteredProfessors.removeAll(removeProfessors);
 		return filteredProfessors;
 	}
-	
+
+	private void fillDepartmentListsWithProfessors() {
+		ArrayList<Department> departments = getDepartments();
+		ArrayList<Professor> professors = getProfessors();
+		for(Department department: departments) {
+			ArrayList<Professor> departmentProfessors = new ArrayList<>();
+			for(Professor professor: professors) {
+				if(department.getKey().trim().equals(professor.getDepartment().trim())) {
+					departmentProfessors.add(professor);
+				}
+			}
+			department.setProfessors(departmentProfessors);
+
+		}
+	}
+
+	public ArrayList<Professor> getProfessorsWithNoDepartment(){
+		ArrayList<Professor> professors = getProfessors();
+		ArrayList<Professor> tempList = new ArrayList<>();
+		for(Professor professor : professors){
+			if(professor.getDepartment().equals("NO_DATA")){
+				tempList.add(professor);
+			}
+		}
+		return tempList;
+	}
+
 	private Address stringToAddress(String text) {
+		if(text.equals("null")) return null;
 		String[] addressData = text.split("#");
 		Address address = new Address(addressData[0], addressData[1], addressData[2], addressData[3]);
 		return address;
@@ -280,6 +326,15 @@ public class DatabaseReader {
 		for(int i = 0; i < professors.size(); i++) {
 			if(professors.get(i).getId().equals(id)) 
 				return professors.get(i);
+		}
+		return null;
+	}
+
+	public Department findDepartment(String id){
+		for(int i = 0; i < departments.size(); i++){
+			if(departments.get(i).getKey().equals(id)){
+				return departments.get(i);
+			}
 		}
 		return null;
 	}

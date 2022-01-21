@@ -19,14 +19,16 @@ import java.util.ArrayList;
 
 public class AddDepartmentDirectorDialog extends JDialog{
 
-    ArrayList<JButton> buttonsInAddDepartmentDirector;
-    JTextField departmentDirectorField;
-    JButton addBtn;
-    JButton removeBtn;
-    AssignProfessorToDepartmentDirectorDialog assignProfessorToDepartmentDirectorDialog = new AssignProfessorToDepartmentDirectorDialog(this);
+    private ArrayList<JButton> buttonsInAddDepartmentDirector;
+    private JTextField departmentDirectorField;
+    private JButton addBtn;
+    private JButton removeBtn;
+    private AssignProfessorToDepartmentDirectorDialog assignProfessorToDepartmentDirectorDialog = new AssignProfessorToDepartmentDirectorDialog(this);
     private DepartmentsDialog departmentsDialog;
     private AddDepartmentDirectorDialog ctx = this;
-    JLabel departmentDirector;
+    private JLabel departmentDirector;
+    private JLabel departmentProfessor;
+    private JButton addProfessorToDepartment;
     public AddDepartmentDirectorDialog(DepartmentsDialog departmentsDialog){
         this.departmentsDialog = departmentsDialog;
         setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
@@ -46,12 +48,22 @@ public class AddDepartmentDirectorDialog extends JDialog{
         buttonsInAddDepartmentDirector = new ArrayList<>();
 
         JPanel temp = new JPanel();
+        JPanel temp2 = new JPanel();
         BoxLayout box1 = new BoxLayout(temp, BoxLayout.X_AXIS);
+        BoxLayout box2 = new BoxLayout(temp2, BoxLayout.X_AXIS);
         temp.setLayout(box1);
+        temp2.setLayout(box2);
         departmentDirector = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("departmentDirector"));
         departmentDirector.setForeground(Color.WHITE);
         departmentDirectorField = WindowComponentBuilder.createTextField();
         departmentDirectorField.setEditable(false);
+        departmentProfessor = new JLabel(LanguageSupport.getInstance().getResourceBundle().getString("departmentProf"));
+        departmentProfessor.setForeground(Color.WHITE);
+        addProfessorToDepartment = new JButton(LanguageSupport.getInstance().getResourceBundle().getString("addBtn"));
+        temp2.add(departmentProfessor);
+        temp2.add(Box.createHorizontalStrut(20));
+        temp2.add(addProfessorToDepartment);
+        temp2.setBackground(Color.DARK_GRAY);
         addBtn = new JButton();
         removeBtn = new JButton();
         addBtn.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/new.png")));
@@ -72,6 +84,7 @@ public class AddDepartmentDirectorDialog extends JDialog{
         buttonsInAddDepartmentDirector.add(new JButton());
         buttonsInAddDepartmentDirector.add(new JButton());
         add(temp);
+        add(temp2);
         add(WindowComponentBuilder.createButtons(buttonsInAddDepartmentDirector.get(0), buttonsInAddDepartmentDirector.get(1)));
 
         addBtn.addActionListener(new ActionListener() {
@@ -103,6 +116,15 @@ public class AddDepartmentDirectorDialog extends JDialog{
                 dispose();
             }
         });
+
+        addProfessorToDepartment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddProfessorToDepartmentDialog addProfessorToDepartmentDialog = new AddProfessorToDepartmentDialog();
+                addProfessorToDepartmentDialog.setVisible(true);
+
+            }
+        });
         
         initComponents();
     }
@@ -120,7 +142,11 @@ public class AddDepartmentDirectorDialog extends JDialog{
     public JTextField getDepartmentDirectorField(){
         return departmentDirectorField;
     }
-    
+
+    public JButton getAddProfessorToDepartment() {
+        return addProfessorToDepartment;
+    }
+
     public void initComponents() {
     	setTitle(LanguageSupport.getInstance().getResourceBundle().getString("addDirector"));
     	departmentDirector.setText(LanguageSupport.getInstance().getResourceBundle().getString("departmentDirector"));

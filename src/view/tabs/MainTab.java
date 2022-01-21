@@ -51,7 +51,7 @@ public class MainTab extends JTabbedPane {
 	public String getIndexOfSelectedStudent() {
 		int row = studentTable.getSelectedRow();
 		if(row == -1) {
-			JOptionPane.showMessageDialog(null, "Mora se selektovati student iz tabele pre izmene!");
+			JOptionPane.showMessageDialog(null, LanguageSupport.getInstance().getResourceBundle().getString("mesage5"));
 			return null;
 		}
 		String index = (String) studentTable.getValueAt(row, 0);
@@ -64,7 +64,7 @@ public class MainTab extends JTabbedPane {
 	public String getIdOfSelectedSubject() {
 		int row = subjectTable.getSelectedRow();
 		if (row == -1) {
-			JOptionPane.showMessageDialog(null, "Mora se selektovati predmet iz tabele pre izmene!");
+			JOptionPane.showMessageDialog(null, LanguageSupport.getInstance().getResourceBundle().getString("mesage7"));
 			return null;
 		}
 		String index = (String) subjectTable.getValueAt(row, 0);
@@ -74,7 +74,7 @@ public class MainTab extends JTabbedPane {
 	public String getIdOfSelectedProfessor() {
 		int row = professorTable.getSelectedRow();
 		if(row == -1) {
-			JOptionPane.showMessageDialog(null, "Mora se selektovati profesor iz tabele pre izmene!");
+			JOptionPane.showMessageDialog(null, LanguageSupport.getInstance().getResourceBundle().getString("mesage6"));
 			return null;
 		}
 		String id = (String) professorTable.getValueAt(row, 4);

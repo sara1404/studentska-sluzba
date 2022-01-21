@@ -131,7 +131,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return  surname +", "+ name +", "+ dateOfBirth + ", "+
-				homeAdress +", "+ phone +", "+ email +", "+ index +", "+ startYear
+				(homeAdress==null?"null":homeAdress) +", "+ phone +", "+ email +", "+ index +", "+ startYear
 				+", "+ currentYear +", "+ status +", "+ averageGrade;
 	}
 	

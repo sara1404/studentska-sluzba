@@ -24,4 +24,11 @@ public class ProfessorTeachSubject {
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
+
+	@Override
+	public String toString() {
+		return professor.getId() + ", " + subject.getSubjectKey();
+	}
+    
+    
 }

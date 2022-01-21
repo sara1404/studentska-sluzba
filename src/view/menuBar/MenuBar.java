@@ -111,7 +111,6 @@ public class MenuBar extends JMenuBar{
 		
 		//Help
 		help = new JMenu(LanguageSupport.getInstance().getResourceBundle().getString("help"));
-		help.setMnemonic(KeyEvent.VK_H);
 		hHelp = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("hHelp"), KeyEvent.VK_L);
 		hHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		about = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("about"), KeyEvent.VK_A);

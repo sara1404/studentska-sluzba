@@ -66,6 +66,7 @@ public class SubjectsListProfessor extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					Professor professor = DatabaseReader.getInstance().getProfessors().get(MainFrame.getInstance().getTab().getSelectedRowInProfessorTable());
 					ShowProfessorTeachSubjectsController.getInstance().removeSubjectFromProfessor(table, professor, cxt);
+					
 				}
 			});
 		}

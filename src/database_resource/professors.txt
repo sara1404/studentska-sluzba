@@ -1,4 +1,4 @@
-Nikolic2, Milos, 1965-12-12, Safarikova#2#Novi Sad#Srbija, 021/356-785, milos.nikolic@mailinator.com, Safarikova#2#Novi Sad#Srbija, 123123123, REDOVNI, 30,e42
+Nikolic, Milos, 1965-12-12, Safarikova#2#Novi Sad#Srbija, 021/356-785, milos.nikolic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 123123123, REDOVNI, 30,e42
 Mirkovic, Nikola, 1978-01-01, Nikole Tesle#56#Novi Sad#Srbija, 021/368-456, nikola.mirkovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 321321321, REDOVNI, 22,e42
 Petkovic, Ilija, 1988-09-03, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/215-314, ilija.petkovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 456456456, REDOVNI, 22,e43
 Petrovic, Mitar, 1976-07-25, Strazilovska#6a#Novi Sad#Srbija, 021/884-640, mitar.petrovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 789789789, REDOVNI, 27,e44
@@ -17,4 +17,3 @@ Misic, Misa, 1969-10-20, Safarikova#2#Novi Sad#Srbija, 021/489-326, misa.misic@m
 Maricic, Branko, 1973-01-18, Nikole Tesle#56#Novi Sad#Srbija, 021/487-265, branko.maricic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 400400444, DOCENT, 22,e46
 Lukovic, Branislav, 1982-04-08, Bulevar Patrijarha Pavla#3#Beograd#Srbija, 021/159-478, branislav.lukovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 500500544, REDOVNI, 9,e47
 Obradovic, Branimir, 1979-01-07, Safarikova#2#Novi Sad#Srbija, 021/922-333, branimir.obradovic@mailinator.com, Nikole Pasica#6a#Novi Sad#Srbija, 600600644, DOCENT, 17,e42
-jajaja, tititi, 2000-12-12, WGSV#5#wg#4QTHEAB, 3RGF, RFDb, WGSV#5#wg#4QTHEAB, 111, VANREDNI, 20,e42

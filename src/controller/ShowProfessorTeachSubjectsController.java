@@ -25,6 +25,7 @@ public class ShowProfessorTeachSubjectsController {
             		LanguageSupport.getInstance().getResourceBundle().getString("title"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(resp == 0) {
                 DatabaseReader.getInstance().removeSubjectFromProfessor(professor.getId(), subject.getSubjectKey());
+                DatabaseReader.getInstance().findSubject(subject.getSubjectKey()).setProfessor(null);
                 ObserverNotifier.getInstance().professorTeachSubjectsDataChanged();
             }
         }

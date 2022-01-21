@@ -30,7 +30,7 @@ public class DatabaseReader {
 			this.subjects = readSubjectDatabase();
 			this.grades = readGradesForStudent();
 			linkGradesToStudent();
-			this.professorTeachSubjects = readSubjectsForProfessor();
+			this.professorTeachSubjects = readProfessorTeachSubjects();
 			linkSubjectsToProfessor();
 			this.departments = readDepartmentDatabase();
 			linkSubjectsFailedToStudent();
@@ -62,6 +62,7 @@ public class DatabaseReader {
 		}
 	}
 
+	
 	public void setDepartmentToProfessor(String professorId, String departmentId) {
 		for(Professor professor: professors) {
 			if(professor.getId().equals(professorId)) {
@@ -187,6 +188,17 @@ public class DatabaseReader {
         scanner.close();
 		return subjects;
 	}
+	
+	public ArrayList<ProfessorTeachSubject> readProfessorTeachSubjects() throws Exception {
+		ArrayList<ProfessorTeachSubject> profTeachSubj = new ArrayList<>();
+		subjects = readSubjectDatabase();
+		for(int i=0; i< subjects.size(); i++) {
+			Subject subject = subjects.get(i);
+			Professor professor = subjects.get(i).getProfessor();
+			profTeachSubj.add(new ProfessorTeachSubject(professor, subject));
+		}
+		return profTeachSubj;
+	}
 
 	public ArrayList<Department> readDepartmentDatabase() throws Exception{
 		File text = new File("src/database_resource/departments.txt");
@@ -217,21 +229,6 @@ public class DatabaseReader {
 		return grades;
 	}
 	
-
-	private ArrayList<ProfessorTeachSubject> readSubjectsForProfessor() throws Exception {
-		File text = new File("src/database_resource/professor_teach_subjects.txt");
-		ArrayList<ProfessorTeachSubject> professorTeachSubjectsList = new ArrayList<>();
-		Scanner scanner;
-		scanner = new Scanner(text);
-		while(scanner.hasNextLine()){
-			String professorTeachSubjectsInfo = scanner.nextLine();
-			String[] professorTeachSubjectData = trimData(professorTeachSubjectsInfo.split(","));
-			ProfessorTeachSubject professorTeachSubjects = new ProfessorTeachSubject(findProfessor(professorTeachSubjectData[0]), findSubject(professorTeachSubjectData[1]));
-			professorTeachSubjectsList.add(professorTeachSubjects);
-		}
-		scanner.close();
-		return professorTeachSubjectsList;
-	}
 
 	public ArrayList<Subject> filterSubjectsForProfessor(Professor professor){
 		ArrayList<Subject> filteredSubjects = new ArrayList<>();
@@ -407,6 +404,7 @@ public class DatabaseReader {
 		wr.writeInStudentDatabase(students);
 		wr.writeInDepartmentsDatabase(departments);
 		wr.writeInGradesDatabase(grades);
+		wr.writeInFailedSubjects(students);
 
 	}
 

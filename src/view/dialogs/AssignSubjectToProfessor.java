@@ -87,8 +87,6 @@ public class AssignSubjectToProfessor extends JDialog {
 	                professor.getSubjectList().add(customListModelForSubjectListProfessor.getSubjectElement(subjectList.getSelectedIndex()));
 	                subject.setProfessor(professor);
 	                profTeachSubj.add(new ProfessorTeachSubject(professor, subject));
-	                wr.writeInProfessorTeachSubject(profTeachSubj);
-	                wr.writeInSubjectDatabase(DatabaseReader.getInstance().getSubjects());
 	                ObserverNotifier.getInstance().professorTeachSubjectsDataChanged();
 	                astp.dispose();
 	            }

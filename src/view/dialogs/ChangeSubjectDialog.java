@@ -25,6 +25,7 @@ import javax.swing.WindowConstants;
 import bundle.LanguageSupport;
 import controller.ListenerController;
 import model.DatabaseReader;
+import model.Professor;
 import model.Subject;
 import utils.WindowComponentBuilder;
 import view.MainFrame;
@@ -93,7 +94,9 @@ public class ChangeSubjectDialog extends JDialog{
 				                    "Ukloni profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 						if(resp == 0) {
 							Subject subject = DatabaseReader.getInstance().getSubjects().get(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable());
+							Professor professor = subject.getProfessor();
 							subject.setProfessor(null);
+							professor.getSubjectList().remove(subject);
 							getDataInputs().get(2).setText("");
 						}
 						determineButtonActivity();

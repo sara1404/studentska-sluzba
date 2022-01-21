@@ -61,7 +61,7 @@ public class MenuBar extends JMenuBar{
 		professor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
 		department = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("department"), KeyEvent.VK_R);
 		department.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
-		subject = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("subject"), KeyEvent.VK_B);
+		subject = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("subject"), KeyEvent.VK_M);
 		subject.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		
 		open.add(student);
@@ -73,7 +73,7 @@ public class MenuBar extends JMenuBar{
 		open.add(department);
 		Utils.setCursor(department);
 
-		close = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("close"), KeyEvent.VK_C);
+		close = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("close"), KeyEvent.VK_Z);
 
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		
@@ -98,7 +98,7 @@ public class MenuBar extends JMenuBar{
 		edit.setMnemonic(KeyEvent.VK_E);
 		eEdit = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("eEdit"), KeyEvent.VK_I);
 		eEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		delete = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("delete"), KeyEvent.VK_D);
+		delete = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("delete"), KeyEvent.VK_B);
 		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, ActionEvent.CTRL_MASK));
 		
 		edit.add(eEdit);
@@ -112,7 +112,7 @@ public class MenuBar extends JMenuBar{
 		//Help
 		help = new JMenu(LanguageSupport.getInstance().getResourceBundle().getString("help"));
 		help.setMnemonic(KeyEvent.VK_P);
-		hHelp = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("hHelp"), KeyEvent.VK_L);
+		hHelp = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("hHelp"), KeyEvent.VK_P);
 		hHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		about = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("about"), KeyEvent.VK_A);
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
@@ -140,8 +140,11 @@ public class MenuBar extends JMenuBar{
 		department.setIcon(new ImageIcon(getClass().getResource("/menubar_imgs/department.png")));
 
 		languages = new JMenu(LanguageSupport.getInstance().getResourceBundle().getString("languages"));
-		serbian = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("serbian"));
-		english = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("english"));
+		languages.setMnemonic(KeyEvent.VK_J);
+		serbian = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("serbian"), KeyEvent.VK_R);
+		serbian.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		english = new JMenuItem(LanguageSupport.getInstance().getResourceBundle().getString("english"), KeyEvent.VK_N);
+		english.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		languages.add(serbian);
 		languages.add(english);
 		add(languages);	
@@ -250,13 +253,17 @@ public class MenuBar extends JMenuBar{
 		languages.setText(LanguageSupport.getInstance().getResourceBundle().getString("languages"));
 		serbian.setText(LanguageSupport.getInstance().getResourceBundle().getString("serbian"));
 		english.setText(LanguageSupport.getInstance().getResourceBundle().getString("english"));
-		
-
-//		DateFormat df = DateFormat.getDateInstance();
-//		String datum = df.format(new Date());
-//		statusBarMenuDescription.setText(datum);
-
+		if(LanguageSupport.getInstance().getResourceBundle().getLocale().toString().trim().equals("en_US")){
+			languages.setMnemonic(KeyEvent.VK_L);
+			close.setMnemonic(KeyEvent.VK_C);
+			subject.setMnemonic(KeyEvent.VK_S);
+			delete.setMnemonic(KeyEvent.VK_D);
+		}
+		else {
+			languages.setMnemonic(KeyEvent.VK_J);
+			close.setMnemonic(KeyEvent.VK_Z);
+			subject.setMnemonic(KeyEvent.VK_M);
+			delete.setMnemonic(KeyEvent.VK_B);
+		}
 	}
-	
-
 }

@@ -89,8 +89,8 @@ public class ChangeSubjectDialog extends JDialog{
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						int resp = 0;
-						resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni?",
-				                    "Ukloni profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+						resp = JOptionPane.showConfirmDialog(null, LanguageSupport.getInstance().getResourceBundle().getString("sure"),
+				                    LanguageSupport.getInstance().getResourceBundle().getString("removeProf"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 						if(resp == 0) {
 							Subject subject = DatabaseReader.getInstance().getSubjects().get(MainFrame.getInstance().getTab().getSelectedRowInSubjectTable());
 							subject.setProfessor(null);

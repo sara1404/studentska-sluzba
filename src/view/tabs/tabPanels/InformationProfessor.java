@@ -22,15 +22,15 @@ import view.listeners.ChangeProfessorListener;
 
 public class InformationProfessor extends JPanel{
 	
-	BoxLayout boxCenter = new BoxLayout(this, BoxLayout.Y_AXIS);
 	ArrayList<JButton> buttons;
 	ArrayList<JTextField> textFields;
 	JComboBox combo;
 	
 	private void setPanel(String str, int field) {
 		JPanel pan = new JPanel();
+		pan.setBackground(Color.DARK_GRAY);
 		pan.add(WindowComponentBuilder.createLabel(str));
-        pan.setBackground(Color.DARK_GRAY);
+		pan.add(Box.createHorizontalStrut(50));
         
         switch (field) {
         	case 0:
@@ -45,18 +45,19 @@ public class InformationProfessor extends JPanel{
         		combo =(JComboBox)comp1;
         		break;
         }
-        add(pan);
-        setLayout(boxCenter);
+        BoxLayout box = new BoxLayout(pan, BoxLayout.X_AXIS);
+		pan.setLayout(box);
+		add(pan);
+		add(Box.createVerticalStrut(10));
 	}
 
 	public InformationProfessor() {
 		
-		setLayout(boxCenter);
-		setBackground(Color.DARK_GRAY);
 		buttons= new ArrayList<>();
-		setLayout(boxCenter);
 		setBackground(Color.DARK_GRAY);
 	
+		BoxLayout box = new BoxLayout(this, BoxLayout.Y_AXIS);
+		setLayout(box);
 		textFields = new ArrayList<>();
 		setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf0"), 0);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf1"), 0);
@@ -76,35 +77,17 @@ public class InformationProfessor extends JPanel{
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf12"), 1);
         setPanel(LanguageSupport.getInstance().getResourceBundle().getString("editProf13"), 0);
         
-        add(Box.createVerticalStrut(25));  
-        
-        JPanel panBottom=new JPanel();
-		BoxLayout box=new BoxLayout(panBottom, BoxLayout.X_AXIS);
-		panBottom.setLayout(box);
-		panBottom.setBackground(Color.DARK_GRAY);
 		
 		JButton btnOk=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("editProfBtn1"));
-		btnOk.setPreferredSize(new Dimension(100,25));
 		
 		JButton btnCancel=new JButton(LanguageSupport.getInstance().getResourceBundle().getString("editProfBtn2"));
-		btnCancel.setPreferredSize(new Dimension(100,25));
-		
-		panBottom.add(Box.createHorizontalStrut(200));
-		panBottom.add(btnOk);
-		Utils.setCursor(btnOk);
-		panBottom.add(Box.createHorizontalStrut(100));
-		panBottom.add(btnCancel);
-		Utils.setCursor(btnCancel);
 		buttons.add(btnOk);
 		buttons.add(btnCancel);
+		add(WindowComponentBuilder.createButtons(btnOk, btnCancel));
 		
+		btnOk.setEnabled(false);
 		btnOk.addActionListener(ChangeProfessorListener.changingProfessorListener(btnOk));
 		
-		panBottom.add(Box.createHorizontalStrut(10));
-		panBottom.add(Box.createVerticalStrut(50));
-		
-
-		add(panBottom,BorderLayout.SOUTH);
 	}
 	
 	public void fillingInfo(Professor professor) {

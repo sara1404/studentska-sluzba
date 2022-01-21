@@ -339,6 +339,14 @@ public class DatabaseReader {
 		return null;
 	}
 	
+	public Grade findGrade(String key) {
+		for(int i=0; i< grades.size(); i++){
+			if(grades.get(i).getSubject().getSubjectKey().equals(key))
+				return grades.get(i);
+		}
+		return null;
+	}
+	
 	public void addNewStudent(Student newStudent) {
 		students.add(newStudent);
 
@@ -368,23 +376,28 @@ public class DatabaseReader {
 	public void deleteProfessor(String index) {
 		
 		for(int i =0; i< subjects.size(); i++) {
-			if(subjects.get(i).getProfessor() != null)
-			if(subjects.get(i).getProfessor().getId() == findProfessor(index).getId())
-				subjects.get(i).setProfessor(null);
+			if(subjects.get(i).getProfessor() != null) {
+				if(subjects.get(i).getProfessor().getId() == findProfessor(index).getId())
+					subjects.get(i).setProfessor(null);
+			}
+			
 		}
 		professors.remove(findProfessor(index));
 		ObserverNotifier.getInstance().professorDataChanged();
 	}
 	
 	public void deleteSubject(String index) {
-		subjects.remove(findSubject(index));
+		
 		for(int i =0; i< students.size(); i++) {
-				students.get(i).getFailedExams().remove(findSubject(index));
+			students.get(i).getFailedExams().remove(findSubject(index));
 			}
 		for(int i =0; i< professors.size(); i++) {
 			professors.get(i).getSubjectList().remove(findSubject(index));
 		}
-		
+		for( int i = 0; i < students.size(); i++) {
+			students.get(i).getPassedExams().remove(findGrade(index));
+		}
+
 		ObserverNotifier.getInstance().subjectDataChanged();
 	}
 
@@ -419,5 +432,11 @@ public class DatabaseReader {
 	public ArrayList<Department> getDepartments(){
 		return departments;
 	}
+
+	public ArrayList<ProfessorTeachSubject> getProfessorTeachSubjects() {
+		return professorTeachSubjects;
+	}
+
+	
 
 }

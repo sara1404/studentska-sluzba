@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
@@ -20,6 +21,7 @@ import model.DatabaseReader;
 import model.DatabaseWriter;
 import model.ObserverNotifier;
 import model.Professor;
+import model.ProfessorTeachSubject;
 import model.Subject;
 import utils.WindowComponentBuilder;
 import view.MainFrame;
@@ -79,10 +81,13 @@ public class AssignSubjectToProfessor extends JDialog {
 	                    astp.dispose();
 	                    return;
 	                }
+	                ArrayList<ProfessorTeachSubject>  profTeachSubj = DatabaseReader.getInstance().getProfessorTeachSubjects();
 	                DatabaseWriter wr = new DatabaseWriter();
 	                Subject subject = customListModelForSubjectListProfessor.getSubjectElement(subjectList.getSelectedIndex());
 	                professor.getSubjectList().add(customListModelForSubjectListProfessor.getSubjectElement(subjectList.getSelectedIndex()));
 	                subject.setProfessor(professor);
+	                profTeachSubj.add(new ProfessorTeachSubject(professor, subject));
+	                wr.writeInProfessorTeachSubject(profTeachSubj);
 	                wr.writeInSubjectDatabase(DatabaseReader.getInstance().getSubjects());
 	                ObserverNotifier.getInstance().professorTeachSubjectsDataChanged();
 	                astp.dispose();

@@ -110,5 +110,21 @@ public class DatabaseWriter {
 		}   
 	}
 	
+	public void writeInProfessorTeachSubject(ArrayList<ProfessorTeachSubject> profsubj) {
+		FileWriter writer;
+		try {
+			writer = new FileWriter("src/database_resource/professor_teach_subjects.txt");
+			BufferedWriter buffer = new BufferedWriter(writer); 
+			for(int i =0; i< profsubj.size(); i++) {
+				buffer.write(profsubj.get(i).toString());
+				if(i != profsubj.size() - 1) buffer.newLine();
+			}
+			buffer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 }

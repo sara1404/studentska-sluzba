@@ -18,7 +18,6 @@ import javax.swing.*;
 
 public class ChangeStudentController {
 	private static ChangeStudentController instance = null;
-	DatabaseWriter wr = new DatabaseWriter();
 	private ChangeStudentController() {};
 	
 	public void changeStudent(ChangeStudentDialog changeStudentDialog) {
@@ -37,7 +36,6 @@ public class ChangeStudentController {
 	public void swapStudent(ChangeStudentDialog changeStudentDialog) {
 		Student newStudent = generateStudentFromDialogInputs(changeStudentDialog);
 		DatabaseReader.getInstance().getStudents().set(MainFrame.getInstance().getTab().getSelectedRowInStudentTable(), newStudent);
-		wr.writeInStudentDatabase(DatabaseReader.getInstance().getStudents());
 		ObserverNotifier.getInstance().studentsDataChanged();
 	}
 	

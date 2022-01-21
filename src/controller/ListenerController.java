@@ -250,4 +250,16 @@ public class ListenerController {
 		};
 		itm.addActionListener(listener);
 	}
+	
+	public static void saveAllChanges(MainFrame frame, JMenuItem itm) {
+		ActionListener listener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				DatabaseReader.getInstance().initiateWritingToFiles();
+				
+			}
+		};
+		itm.addActionListener(listener);	}
 }

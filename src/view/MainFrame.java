@@ -88,6 +88,7 @@ public class MainFrame extends JFrame {
 		ListenerController.setDisplayDepartmentDialog(this, menu.getDepartment());
 		ListenerController.setDisplayHelpDialogAction(this, menu.gethHelp());
 		ListenerController.setDisplayAboutSection(this, menu.getAbout());
+		ListenerController.saveAllChanges(this, menu.getSave());
 		
 		//menu item listeners for tabs switch
 		ListenerController.switchTabsfromMenu(this, tab, menu.getStudent(), 0);

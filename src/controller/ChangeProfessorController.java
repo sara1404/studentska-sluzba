@@ -21,7 +21,6 @@ import view.tabs.tabPanels.InformationProfessor;
 
 public class ChangeProfessorController {
 	private static ChangeProfessorController instance = null;
-	DatabaseWriter wr = new DatabaseWriter();
 	private ChangeProfessorController() {};
 	
 	public static ChangeProfessorController getInstance() {
@@ -39,7 +38,6 @@ public class ChangeProfessorController {
 			Professor oldProfessor = databaseReader.getProfessors().get(position);
 			newProfessor.setDepartment(oldProfessor.getDepartment());
 			databaseReader.getProfessors().set(position, newProfessor);
-			wr.writeInProfessorDatabase(databaseReader.getProfessors());
 			ObserverNotifier.getInstance().professorDataChanged();
 			cpd.dispose();
 		} catch(Exception e) {

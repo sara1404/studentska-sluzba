@@ -19,8 +19,6 @@ import javax.swing.JTextArea;
 import bundle.LanguageSupport;
 
 public class AboutDialog extends JDialog{
-	JPanel panCenter = new JPanel();
-	BoxLayout boxCenter = new BoxLayout(panCenter, BoxLayout.Y_AXIS);
 	
 	public AboutDialog(){
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -32,42 +30,21 @@ public class AboutDialog extends JDialog{
 		Dimension dim = kit.getScreenSize();
         int width = dim.width;
         int height = dim.height;
-        setSize(width * 1/2, height * 3/4);
+        setSize(width * 1/2, height * 2/4);
         setLocationRelativeTo(null);
         setTitle(LanguageSupport.getInstance().getResourceBundle().getString("about-us"));
-        panCenter.setLayout(boxCenter);
-		panCenter.setBackground(Color.DARK_GRAY);
+        setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		
         
-        File text = new File("src/database_resource/about.txt");
-        Scanner scanner;
-		try {
+		JPanel pan = new JPanel();
+		pan.setBackground(Color.DARK_GRAY);
+		JTextArea about = new JTextArea(30, 60);
+		about.setLineWrap(true);
+		about.setEditable(false);
+		about.setText(LanguageSupport.getInstance().getResourceBundle().getString("about-text"));
+		pan.add(new JScrollPane(about));
+		add(pan);
 			
-			scanner = new Scanner(text);
-			
-			while(scanner.hasNextLine()){
-				JPanel pan = new JPanel();
-				pan.setBackground(Color.DARK_GRAY);
-				String about = scanner.nextLine();
-				JLabel label = new JLabel();
-				label.setForeground(Color.WHITE);
-				label.setText(about);
-				
-				pan.add(label);
-				
-				panCenter.add(pan);
-				
-			}
-		    add(panCenter,BorderLayout.CENTER);
-		    
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-
-	
 	}
 
 }

@@ -65,6 +65,7 @@ public class DatabaseWriter {
 			writer = new FileWriter("src/database_resource/subjects_student_passed.txt");
 			BufferedWriter buffer = new BufferedWriter(writer); 
 			for(int i =0; i< grades.size(); i++) {
+				if(grades.get(i).getStudent() == null) continue;
 				buffer.write(grades.get(i).toString());
 				if(i != grades.size() - 1) buffer.newLine();
 			}

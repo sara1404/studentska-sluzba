@@ -44,6 +44,7 @@ public class DatabaseReader {
 	private void linkGradesToStudent(){
 		for(Student student : students){
 			for(int i = 0; i < grades.size(); i++){
+				if(grades.get(i).getStudent() == null) continue;
 				if(student.getIndex().equals(grades.get(i).getStudent().getIndex())) {
 					student.getPassedExams().add(grades.get(i));
 				}
